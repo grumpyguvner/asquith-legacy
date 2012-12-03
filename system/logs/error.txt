@@ -1,0 +1,14 @@
+2012-08-16 16:47:33 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 16:48:07 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 16:48:24 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 16:48:52 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 16:54:07 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 16:54:16 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 16:54:39 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 17:01:06 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 17:01:21 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 17:05:33 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 17:05:50 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128
+2012-08-16 17:11:17 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/opencart/www/system/library/session.php on line 11
+2012-08-16 17:36:04 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/opencart/www/system/library/session.php on line 11
+2012-08-16 17:53:04 - PHP Notice:  Undefined index: giftwrap in /home/opencart/www/admin/model/catalog/product.php on line 128

@@ -1,0 +1,26 @@
+# *** WARNING CHANGES TO THIS FILE MAY AFFECT THE OPERATION OF THE WEBSITE ***
+# *** PROCEED WITH CAUTION ***
+
+Options +FollowSymlinks
+
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} !^localhost$ [NC]
+RewriteRule ^(.*)$ http://localhost/$1 [R=301,L]
+
+# Prevent Directoy listing 
+Options -Indexes
+# Prevent Direct Access to files
+<FilesMatch "\.(tpl|ini|log)">
+ Order deny,allow
+ Deny from all
+</FilesMatch>
+
+# SEO URL Settings
+RewriteBase /
+RewriteRule ^sitemap.xml$ index.php?route=feed/google_sitemap [L]
+RewriteRule ^googlebase.xml$ index.php?route=feed/google_base [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
