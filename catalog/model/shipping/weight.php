@@ -5,7 +5,9 @@ class ModelShippingWeight extends Model {
 		
 		$quote_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "geo_zone ORDER BY name");
+                //2012-12-13 TEMPORARY MODIFICATION TO AMEND SORT ORDER FOR ASQUITH (ADDED DESC)
+                //TODO: Add sort order to GEO Zones and use that for sorting
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "geo_zone ORDER BY name DESC");
 	
 		foreach ($query->rows as $result) {
 			if ($this->config->get('weight_' . $result['geo_zone_id'] . '_status')) {

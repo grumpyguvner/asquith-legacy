@@ -5,8 +5,8 @@ Options +FollowSymlinks
 
 RewriteEngine On
 
-RewriteCond %{HTTP_HOST} !^localhost$ [NC]
-RewriteRule ^(.*)$ http://localhost/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} !^asquith.local$ [NC]
+RewriteRule ^(.*)$ http://asquith.local/$1 [R=301,L]
 
 # Prevent Directoy listing 
 Options -Indexes

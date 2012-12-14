@@ -6,11 +6,11 @@ class ModelReportAdvancedCoupon extends Model {
 		$implode = array();
 		
 		if (!empty($data['filter_date_start'])) {
-			$implode[] = "DATE(c.date_added) >= '" . $this->db->escape($data['filter_date_start']) . "'";
+			$implode[] = "DATE(ch.date_added) >= '" . $this->db->escape($data['filter_date_start']) . "'";
 		}
 
 		if (!empty($data['filter_date_end'])) {
-			$implode[] = "DATE(c.date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
+			$implode[] = "DATE(ch.date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
 		if ($implode) {
@@ -31,7 +31,7 @@ class ModelReportAdvancedCoupon extends Model {
 			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
 		}	
 		
-		$query = $this->db->query($sql);
+                $query = $this->db->query($sql);
 		
 		return $query->rows;
 	}	

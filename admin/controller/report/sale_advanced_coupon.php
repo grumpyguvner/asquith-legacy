@@ -47,7 +47,7 @@ class ControllerReportSaleAdvancedCoupon extends Controller {
 
    		$this->data['breadcrumbs'][] = array(
        		'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('report/sale_coupon', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'href'      => $this->url->link('report/sale_advanced_coupon', 'token=' . $this->session->data['token'] . $url, 'SSL'),
       		'separator' => ' :: '
    		);		
 		
@@ -125,7 +125,7 @@ class ControllerReportSaleAdvancedCoupon extends Controller {
 		$this->data['filter_date_start'] = $filter_date_start;
 		$this->data['filter_date_end'] = $filter_date_end;	
 				
-		$this->template = 'report/sale_coupon.tpl';
+		$this->template = 'report/sale_advanced_coupon.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
