@@ -6,7 +6,8 @@ $_['heading_title']    = 'Advanced Coupon Report';
 $_['column_name']      = 'Coupon Name';
 $_['column_code']      = 'Code';
 $_['column_orders']    = 'Orders';
-$_['column_total']     = 'Total';
+$_['column_total_spend']    = 'Total Spend';
+$_['column_total_discount'] = 'Total Discount';
 $_['column_action']    = 'Action';
 
 // Entry

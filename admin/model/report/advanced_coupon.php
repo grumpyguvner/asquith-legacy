@@ -1,10 +1,12 @@
 <?php
 class ModelReportAdvancedCoupon extends Model {
 	public function getAdvancedCoupons($data = array()) {
-		$sql = "SELECT ch.advanced_coupon_id, c.name, c.code, COUNT(DISTINCT ch.order_id) AS `orders`, SUM(ch.amount) AS total FROM `" . DB_PREFIX . "advanced_coupon_history` ch LEFT JOIN `" . DB_PREFIX . "advanced_coupon` c ON (ch.advanced_coupon_id = c.advanced_coupon_id)"; 
+		$sql = "SELECT ch.advanced_coupon_id, c.name, c.code, COUNT(DISTINCT ch.order_id) AS `orders`, SUM(o.total) AS `total spend`, SUM(ch.amount) AS `total discount` FROM (`" . DB_PREFIX . "advanced_coupon_history` ch RIGHT JOIN `" . DB_PREFIX . "order` o ON (ch.order_id = o.order_id)) LEFT JOIN `" . DB_PREFIX . "advanced_coupon` c ON (ch.advanced_coupon_id = c.advanced_coupon_id)"; 
 
 		$implode = array();
 		
+                $implode[] = "ch.advanced_coupon_id IS NOT NULL";
+                
 		if (!empty($data['filter_date_start'])) {
 			$implode[] = "DATE(ch.date_added) >= '" . $this->db->escape($data['filter_date_start']) . "'";
 		}

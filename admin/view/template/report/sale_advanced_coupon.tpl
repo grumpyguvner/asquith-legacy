@@ -25,7 +25,8 @@
             <td class="left"><?php echo $column_name; ?></td>
             <td class="left"><?php echo $column_code; ?></td>
             <td class="right"><?php echo $column_orders; ?></td>
-            <td class="right"><?php echo $column_total; ?></td>
+            <td class="right"><?php echo $column_total_spend; ?></td>
+            <td class="right"><?php echo $column_total_discount; ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
         </thead>
@@ -36,7 +37,8 @@
             <td class="left"><?php echo $coupon['name']; ?></td>
             <td class="left"><?php echo $coupon['code']; ?></td>
             <td class="right"><?php echo $coupon['orders']; ?></td>
-            <td class="right"><?php echo $coupon['total']; ?></td>
+            <td class="right"><?php echo $coupon['total_spend']; ?></td>
+            <td class="right"><?php echo $coupon['total_discount']; ?></td>
             <td class="right"><?php foreach ($coupon['action'] as $action) { ?>
               [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
               <?php } ?></td>            

@@ -78,7 +78,8 @@ class ControllerReportSaleAdvancedCoupon extends Controller {
 				'name'   => $result['name'],
 				'code'   => $result['code'],
 				'orders' => $result['orders'],
-				'total'  => $this->currency->format($result['total'], $this->config->get('config_currency')),
+				'total_spend'  => $this->currency->format($result['total spend'], $this->config->get('config_currency')),
+				'total_discount'  => $this->currency->format($result['total discount'], $this->config->get('config_currency')),
 				'action' => $action
 			);
 		}
@@ -90,7 +91,8 @@ class ControllerReportSaleAdvancedCoupon extends Controller {
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_code'] = $this->language->get('column_code');
 		$this->data['column_orders'] = $this->language->get('column_orders');
-		$this->data['column_total'] = $this->language->get('column_total');
+		$this->data['column_total_spend'] = $this->language->get('column_total_spend');
+		$this->data['column_total_discount'] = $this->language->get('column_total_discount');
 		$this->data['column_action'] = $this->language->get('column_action');
 		
 		$this->data['entry_date_start'] = $this->language->get('entry_date_start');
@@ -143,7 +145,8 @@ class ControllerReportSaleAdvancedCoupon extends Controller {
         $headings[] = $this->language->get('column_name');
         $headings[] = $this->language->get('column_code');
         $headings[] = $this->language->get('column_orders');
-        $headings[] = $this->language->get('column_total');
+        $headings[] = $this->language->get('column_total_spend');
+        $headings[] = $this->language->get('column_total_discount');
         
         // Get Model
         $this->load->model('report/advanced_coupon');
@@ -172,7 +175,8 @@ class ControllerReportSaleAdvancedCoupon extends Controller {
 			$data[$rownum][] = $result['name'];
 			$data[$rownum][] = $result['code'];
 			$data[$rownum][] = $result['orders'];
-			$data[$rownum][] = $this->currency->format($result['total'], $this->config->get('config_currency'));
+			$data[$rownum][] = $this->currency->format($result['total spend'], $this->config->get('config_currency'));
+			$data[$rownum][] = $this->currency->format($result['total discount'], $this->config->get('config_currency'));
 		}
         
         // create data formats per column
@@ -181,6 +185,7 @@ class ControllerReportSaleAdvancedCoupon extends Controller {
         $settings[] = 'text';
         $settings[] = 'text';
         $settings[] = 'text';
+        $settings[] = 'price';
         $settings[] = 'price';
         
         // load excel model
