@@ -26,7 +26,7 @@ class ModelSaleVoucher extends Model {
 	}
 		
 	public function getVouchers($data = array()) {
-		$sql = "SELECT v.voucher_id, v.code, v.from_name, v.from_email, v.to_name, v.to_email, vtd.name AS theme, vtd.email_subject, vtd.email_greeting, vtd.email_from, vtd.email_message, vtd.email_redeem, vtd.email_footer, v.amount, v.status, v.date_added FROM " . DB_PREFIX . "voucher v LEFT JOIN " . DB_PREFIX . "voucher_theme_description vtd ON vtd.voucher_theme_id = v.voucher_theme_id AND vtd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT v.voucher_id, v.code, v.from_name, v.from_email, v.to_name, v.to_email, vtd.name AS theme, vtd.email_subject, vtd.email_greeting, vtd.email_from, vtd.email_message, vtd.email_redeem, vtd.email_footer, v.amount, v.status, v.date_added, v.order_id FROM " . DB_PREFIX . "voucher v LEFT JOIN " . DB_PREFIX . "voucher_theme_description vtd ON vtd.voucher_theme_id = v.voucher_theme_id AND vtd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 		
 		$sort_data = array(
 			'v.code',

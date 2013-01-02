@@ -190,6 +190,8 @@ class ControllerSaleVoucher extends Controller {
 				'amount'     => $this->currency->format($result['amount'], $this->config->get('config_currency')),
 				'status'     => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'order_id'   => ($result['order_id'] ? $result['order_id'] : ""),
+				'order_href' => ($result['order_id'] ? $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, 'SSL') : ""),
 				'selected'   => isset($this->request->post['selected']) && in_array($result['voucher_id'], $this->request->post['selected']),
 				'action'     => $action
 			);
@@ -208,6 +210,7 @@ class ControllerSaleVoucher extends Controller {
 		$this->data['column_amount'] = $this->language->get('column_amount');
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
+		$this->data['column_order_id'] = $this->language->get('column_order_id');
 		$this->data['column_action'] = $this->language->get('column_action');		
 		
 		$this->data['button_insert'] = $this->language->get('button_insert');
@@ -248,6 +251,7 @@ class ControllerSaleVoucher extends Controller {
 		$this->data['sort_amount'] = $this->url->link('sale/voucher', 'token=' . $this->session->data['token'] . '&sort=v.amount' . $url, 'SSL');
 		$this->data['sort_status'] = $this->url->link('sale/voucher', 'token=' . $this->session->data['token'] . '&sort=v.date_end' . $url, 'SSL');
 		$this->data['sort_date_added'] = $this->url->link('sale/voucher', 'token=' . $this->session->data['token'] . '&sort=v.date_added' . $url, 'SSL');
+		$this->data['sort_order_id'] = $this->url->link('sale/voucher', 'token=' . $this->session->data['token'] . '&sort=v.order_id' . $url, 'SSL');
 				
 		$url = '';
 

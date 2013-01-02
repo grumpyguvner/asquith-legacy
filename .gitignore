@@ -4,8 +4,7 @@ admin/config.php
 !index.html
 
 download
-image/cache/*.jpg
-image/cache/data/*
+image/*
 system/cache
 system/logs
 nbproject

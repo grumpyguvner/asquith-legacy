@@ -57,6 +57,11 @@
                 <?php } else { ?>
                 <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?></a>
                 <?php } ?></td>
+              <td class="right"><?php if ($sort == 'v.order_id') { ?>
+                <a href="<?php echo $sort_order_id; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_order_id; ?></a>
+                <?php } else { ?>
+                <a href="<?php echo $sort_order_id; ?>"><?php echo $column_order_id; ?></a>
+                <?php } ?></td>
               <td class="right"><?php echo $column_action; ?></td>
             </tr>
           </thead>
@@ -76,6 +81,13 @@
               <td class="left"><?php echo $voucher['theme']; ?></td>
               <td class="left"><?php echo $voucher['status']; ?></td>
               <td class="left"><?php echo $voucher['date_added']; ?></td>
+              <td class="right">
+                  <?php if (isset($voucher['order_href']) && $voucher['order_href'] != "") { ?>
+                    <a href="<?php echo $voucher['order_href']; ?>"><?php echo $voucher['order_id']; ?></a>
+                  <?php } else { ?>
+                    &nbsp;
+                  <?php } ?>
+              </td>
               <td class="right">[ <a onclick="sendVoucher('<?php echo $voucher['voucher_id']; ?>');"><?php echo $text_send; ?></a> ]
                 <?php foreach ($voucher['action'] as $action) { ?>
                 [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
