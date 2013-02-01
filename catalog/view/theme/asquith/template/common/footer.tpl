@@ -24,7 +24,7 @@
 
         <p><a href="index.php?route=information/information&information_id=3">Security &amp; Privacy</a></p>
 
-        <!-- <p><a href="index.php?route=information/information&information_id=23">Site Map</a></p> -->
+        <!-- <p><a href="index.php?route=information/information&information_id=23">Clothes Site Map</a></p> -->
     </div><div class="column"">
         <h3><a href="index.php?route=information/information&information_id=28">Community</a></h3>
 
@@ -62,7 +62,7 @@
     <span class="payment_methods">We accept the following methods of payment.</span>
 </div>
 <div id="powered">
-    Optimised by <a href="http://www.seoclock.co.uk" target=_blank >SEO Clock</a>. Designed and built by <a href="http://www.boundlesscommerce.co.uk" target=_blank >Boundless Commerce</a>.
+    Yoga Clothes by Asquith London. <a href="http://www.seoclock.co.uk" target=_blank >The SEO Works</a>. Designed by <a href="http://www.boundlesscommerce.co.uk" target=_blank >Boundless</a>.
 </div>
 </body>
 </html>
