@@ -32,9 +32,25 @@ $(document).ready(function() {
 		
 		$('#cart').load('index.php?route=module/cart #cart > *');
 		
-		$('#cart').live('mouseleave', function() {
-			$(this).removeClass('active');
-		});
+                myTimer = setTimeout(function() {
+                    $('#cart').removeClass('active')
+                },5000);
+		
+                /* Ajax Cart Keep on Show*/
+                $('#cart').hover(
+                        function() {
+                            clearTimeout(myTimer);
+                        },
+                        function() {
+                            myTimer = setTimeout(function() {
+                                $('#cart').removeClass('active')
+                                },5000);
+                        }
+                );
+		
+//		$('#cart').live('mouseleave', function() {
+//			$(this).removeClass('active');
+//		});
 	});
 
 	// IE6 & IE7 Fixes

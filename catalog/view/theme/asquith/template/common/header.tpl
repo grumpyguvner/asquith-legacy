@@ -50,7 +50,7 @@
 	  if ($logo) {
 	  ?>
 	  <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
-	  <div class="strapline">CONTEMPORARY LAYERING IN ORGANIC COTTON &amp; BAMBOO FOR YOGA &amp; EASY LIVING</div>
+          <div class="strapline">CONTEMPORARY LAYERING IN ORGANIC COTTON &amp; BAMBOO FOR YOGA, PILATES AND LIVING IN ...</div>
 	  <?php } ?>
 	  <div class="topRow">
 	  	<div class="socialMedia">
