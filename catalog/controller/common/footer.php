@@ -15,15 +15,18 @@ class ControllerCommonFooter extends Controller {
 		$this->data['text_special'] = $this->language->get('text_special');
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_order'] = $this->language->get('text_order');
+		$this->data['text_addresses'] = $this->language->get('text_addresses');
 		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
 		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
+		$this->data['text_clearance'] = $this->language->get('text_clearance');
+		$this->data['text_blog'] = $this->language->get('text_blog');
 		
 		$this->load->model('catalog/information');
 		
 		$this->data['informations'] = array();
 
 		foreach ($this->model_catalog_information->getInformations() as $result) {
-      		$this->data['informations'][] = array(
+      		$this->data['informations'][$result['information_id']] = array(
         		'title' => $result['title'],
 	    		'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
       		);
@@ -38,9 +41,13 @@ class ControllerCommonFooter extends Controller {
 		$this->data['special'] = $this->url->link('product/special');
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
 		$this->data['order'] = $this->url->link('account/order', '', 'SSL');
+		$this->data['addresses'] = $this->url->link('account/address_list', '', 'SSL');
 		$this->data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
-		$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');		
+		$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');	
+		$this->data['clearance'] = $this->url->link('product/category', 'path=102');	
+		$this->data['blog'] = $this->url->link('news/ncategory', 'ncat=59');		
 
+		$this->data['text_payment'] = $this->language->get('text_payment');
 		$this->data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 		
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/footer.tpl')) {
