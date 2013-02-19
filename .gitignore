@@ -3,12 +3,12 @@ admin/config_*.php
 
 !index.html
 
-/download/*
-/image/data/*
-/image/cache/*
-/image/cache/data/*
-/system/cache/*
-/system/logs/*
+download/*
+image/data/*
+image/cache/*
+image/cache/data/*
+system/cache/*
+system/logs/*
 
 .DS_Store
 /nbproject
