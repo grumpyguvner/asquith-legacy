@@ -32,6 +32,30 @@
             <td><?php echo $entry_data_feed; ?></td>
             <td><textarea cols="40" rows="5"><?php echo $data_feed; ?></textarea></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_products; ?></td>
+            <td><select name="google_sitemap_products">
+                <?php if ($google_sitemap_products) { ?>
+                <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                <option value="0"><?php echo $text_no; ?></option>
+                <?php } else { ?>
+                <option value="1"><?php echo $text_yes; ?></option>
+                <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                <?php } ?>
+              </select></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_products_category; ?></td>
+            <td><select name="google_sitemap_products_category">
+                <?php if ($google_sitemap_products_category) { ?>
+                <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                <option value="0"><?php echo $text_no; ?></option>
+                <?php } else { ?>
+                <option value="1"><?php echo $text_yes; ?></option>
+                <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                <?php } ?>
+              </select></td>
+          </tr>
         </table>
       </form>
     </div>

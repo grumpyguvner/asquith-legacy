@@ -22,8 +22,13 @@ class ControllerFeedGoogleSitemap extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
+		
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_data_feed'] = $this->language->get('entry_data_feed');
+		$this->data['entry_products'] = $this->language->get('entry_products');
+		$this->data['entry_products_category'] = $this->language->get('entry_products_category');
 		
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -64,6 +69,18 @@ class ControllerFeedGoogleSitemap extends Controller {
 			$this->data['google_sitemap_status'] = $this->request->post['google_sitemap_status'];
 		} else {
 			$this->data['google_sitemap_status'] = $this->config->get('google_sitemap_status');
+		}
+        
+		if (isset($this->request->post['google_sitemap_products'])) {
+			$this->data['google_sitemap_products'] = $this->request->post['google_sitemap_products'];
+		} else {
+			$this->data['google_sitemap_products'] = $this->config->get('google_sitemap_products');
+		}
+        
+		if (isset($this->request->post['google_sitemap_products_category'])) {
+			$this->data['google_sitemap_products_category'] = $this->request->post['google_sitemap_products_category'];
+		} else {
+			$this->data['google_sitemap_products_category'] = $this->config->get('google_sitemap_products_category');
 		}
 		
 		$this->data['data_feed'] = HTTP_CATALOG . 'index.php?route=feed/google_sitemap';
