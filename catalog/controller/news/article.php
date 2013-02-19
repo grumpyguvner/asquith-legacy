@@ -73,6 +73,7 @@ class ControllerNewsArticle extends Controller {
 				$this->document->setTitle($news_info['title']); 
 				$this->document->setDescription($news_info['meta_desc']);
 			    $this->document->setKeywords($news_info['meta_key']);
+                $this->document->addLink($this->url->link('news/article', 'news_id=' . $this->request->get['news_id']), 'canonical');
 				
 					$this->data['breadcrumbs'][] = array(
         		'text'      => $news_info['title'],

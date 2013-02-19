@@ -32,6 +32,7 @@ class ControllernewsHeadlines extends Controller {
         				'separator' => $this->language->get('text_separator')
         );
 		    $this->document->setTitle($this->language->get('heading_title')); 
+            $this->document->addLink($this->url->link('news/headlines', ''), 'canonical');
 			$headlines = '';
 			$this->data['heading_title'] = $this->language->get('heading_title');
 			$this->data['text_empty'] = $this->language->get('text_empty');			

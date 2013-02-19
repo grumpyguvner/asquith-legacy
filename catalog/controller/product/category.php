@@ -44,7 +44,8 @@ class ControllerProductCategory extends Controller {
 			'href'      => $this->url->link('common/home'),
        		'separator' => false
    		);	
-			
+		
+        $url = '';
 		if (isset($this->request->get['path'])) {
 			$path = '';
 		
@@ -68,6 +69,7 @@ class ControllerProductCategory extends Controller {
 				}
 			}		
 		
+            $url = 'path=' . $this->request->get['path'];
 			$category_id = array_pop($parts);
 		} else {
 			$category_id = 0;
@@ -79,6 +81,7 @@ class ControllerProductCategory extends Controller {
 	  		$this->document->setTitle((!empty($category_info['meta_title']) ? $category_info['meta_title'] : $category_info['name']));
 			$this->document->setDescription($category_info['meta_description']);
 			$this->document->setKeywords($category_info['meta_keyword']);
+			$this->document->addLink($this->url->link('product/category', $url), 'canonical');
 			
 			$this->data['heading_title'] = $category_info['name'];
 			

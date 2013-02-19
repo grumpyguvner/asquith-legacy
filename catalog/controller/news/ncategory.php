@@ -26,6 +26,8 @@ class Controllernewsncategory extends Controller {
 			'href'      => $this->url->link('common/home'),
        		'separator' => false
    		);	
+        
+        $url = '';
 			
 		if (isset($this->request->get['ncat'])) {
 			$ncat = '';
@@ -48,7 +50,9 @@ class Controllernewsncategory extends Controller {
         				'separator' => $this->language->get('text_separator')
         			);
 				}
-			}		
+			}	
+            
+            $url = 'ncat=' . $this->request->get['ncat'];
 		
 			$ncategory_id = array_pop($parts);
 		} else {
@@ -61,6 +65,9 @@ class Controllernewsncategory extends Controller {
 	  		$this->document->setTitle($ncategory_info['name']);
 			$this->document->setDescription($ncategory_info['meta_description']);
 			$this->document->setKeywords($ncategory_info['meta_keyword']);
+            
+			$this->document->addLink($this->url->link('news/ncategory', $url), 'canonical');
+            
 			$limit = $ncategory_info['column'];
 			$this->data['heading_title'] = $ncategory_info['name'];
 			$display_image = $ncategory_info['top'];
