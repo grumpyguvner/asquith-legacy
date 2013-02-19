@@ -2,6 +2,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+define('ALLOW_UPGRADE', false);
+
 // HTTP
 define('HTTP_SERVER', 'http://' . $_SERVER['HTTP_HOST'] . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/');
 define('HTTP_OPENCART', 'http://' . $_SERVER['HTTP_HOST'] . rtrim(rtrim(dirname($_SERVER['PHP_SELF']), 'install'), '/.\\'). '/');
@@ -15,10 +17,32 @@ define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/template/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');
 
+
 // Upgrade
 $upgrade = false;
 
+if (!is_file('../config.php'))
+{
+    if ($file = @fopen('../config.php', 'w')) {
+        chmod('../config.php', '0755');
+        fclose($file);
+    }
+}
+if (!is_file('../admin/config.php'))
+{
+    if ($file = @fopen('../admin/config.php', 'w')) {
+        chmod('../admin/config.php', '0755');
+        fclose($file);
+    }
+}
+
 if (filesize('../config.php') > 0) {
+    if (!ALLOW_UPGRADE)
+    {
+        header('Location: ../');
+        exit();
+    }
+    
 	$upgrade = true;
 	
 	$file = file(DIR_OPENCART . 'config.php');

@@ -1,10 +1,14 @@
-config.php
-admin/config.php
+config_*.php
+admin/config_*.php
 
 !index.html
 
-download
-image/*
-system/cache
-system/logs
-nbproject
+/download/*
+/image/data/*
+/image/cache/*
+/image/cache/data/*
+/system/cache/*
+/system/logs/*
+
+.DS_Store
+/nbproject
