@@ -28,7 +28,7 @@ class ModelCatalogncategory extends Model {
 		}
 						
 		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'ncategory_id=" . (int)$ncategory_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'ncat=" . (int)$ncategory_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 		
 		$this->cache->delete('ncategory');
@@ -65,10 +65,10 @@ class ModelCatalogncategory extends Model {
 			}
 		}
 						
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'ncategory_id=" . (int)$ncategory_id. "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'ncat=" . (int)$ncategory_id. "'");
 		
 		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'ncategory_id=" . (int)$ncategory_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'ncat=" . (int)$ncategory_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 		
 		$this->cache->delete('ncategory');
@@ -79,7 +79,7 @@ class ModelCatalogncategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "ncategory_description WHERE ncategory_id = '" . (int)$ncategory_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "ncategory_to_store WHERE ncategory_id = '" . (int)$ncategory_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "ncategory_to_layout WHERE ncategory_id = '" . (int)$ncategory_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'ncategory_id=" . (int)$ncategory_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'ncat=" . (int)$ncategory_id . "'");
 		
 		$query = $this->db->query("SELECT ncategory_id FROM " . DB_PREFIX . "ncategory WHERE parent_id = '" . (int)$ncategory_id . "'");
 
@@ -91,7 +91,7 @@ class ModelCatalogncategory extends Model {
 	} 
 
 	public function getncategory($ncategory_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'ncategory_id=" . (int)$ncategory_id . "') AS keyword FROM " . DB_PREFIX . "ncategory WHERE ncategory_id = '" . (int)$ncategory_id . "'");
+		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'ncat=" . (int)$ncategory_id . "') AS keyword FROM " . DB_PREFIX . "ncategory WHERE ncategory_id = '" . (int)$ncategory_id . "'");
 		
 		return $query->row;
 	} 
