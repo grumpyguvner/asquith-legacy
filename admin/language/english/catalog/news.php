@@ -30,6 +30,7 @@ $_['entry_acom']        = 'Allow comments for this article?';
 $_['entry_keyword']     = 'SEO Keyword:';
 $_['entry_npages']      = 'Go to module';
 $_['entry_description'] = 'Main Story:';
+$_['entry_meta_title']  = 'Meta Title:';
 $_['entry_meta_desc']   = 'Meta Tag description:';
 $_['entry_meta_key']    = 'Meta Tag keywords:';
 $_['entry_status']		= 'Status:';

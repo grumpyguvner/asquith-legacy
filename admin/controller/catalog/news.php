@@ -276,6 +276,7 @@ class ControllerCatalogNews extends Controller {
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_description'] = $this->language->get('entry_description');
+		$this->data['entry_meta_title'] = $this->language->get('entry_meta_title');
 		$this->data['entry_meta_desc'] = $this->language->get('entry_meta_desc');
 		$this->data['entry_meta_key'] = $this->language->get('entry_meta_key');
 		$this->data['entry_status'] = $this->language->get('entry_status');

@@ -10,7 +10,7 @@ class ModelCatalogncategory extends Model {
 		}
 		
 		foreach ($data['ncategory_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "ncategory_description SET ncategory_id = '" . (int)$ncategory_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "ncategory_description SET ncategory_id = '" . (int)$ncategory_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "'");
 		}
 		
 		if (isset($data['ncategory_store'])) {
@@ -44,7 +44,7 @@ class ModelCatalogncategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "ncategory_description WHERE ncategory_id = '" . (int)$ncategory_id . "'");
 
 		foreach ($data['ncategory_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "ncategory_description SET ncategory_id = '" . (int)$ncategory_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "ncategory_description SET ncategory_id = '" . (int)$ncategory_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "'");
 		}
 		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "ncategory_to_store WHERE ncategory_id = '" . (int)$ncategory_id . "'");
@@ -139,6 +139,7 @@ class ModelCatalogncategory extends Model {
 		foreach ($query->rows as $result) {
 			$ncategory_description_data[$result['language_id']] = array(
 				'name'             => $result['name'],
+				'meta_title'       => $result['meta_title'],
 				'meta_keyword'     => $result['meta_keyword'],
 				'meta_description' => $result['meta_description'],
 				'description'      => $result['description']

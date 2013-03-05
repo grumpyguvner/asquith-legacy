@@ -62,7 +62,7 @@ class Controllernewsncategory extends Controller {
 		$ncategory_info = $this->model_catalog_ncategory->getncategory($ncategory_id);
 	
 		if ($ncategory_info) {
-	  		$this->document->setTitle($ncategory_info['name']);
+	  		$this->document->setTitle(!empty($ncategory_info['meta_title']) ? $ncategory_info['meta_title'] : $ncategory_info['name']);
 			$this->document->setDescription($ncategory_info['meta_description']);
 			$this->document->setKeywords($ncategory_info['meta_keyword']);
             

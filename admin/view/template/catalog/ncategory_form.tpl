@@ -33,6 +33,10 @@
                   <?php } ?></td>
               </tr>
               <tr>
+                <td><?php echo $entry_meta_title; ?></td>
+                <td><input type="text" name="ncategory_description[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($ncategory_description[$language['language_id']]) ? $ncategory_description[$language['language_id']]['meta_title'] : ''; ?>" /></td>
+              </tr>
+              <tr>
                 <td><?php echo $entry_meta_description; ?></td>
                 <td><textarea name="ncategory_description[<?php echo $language['language_id']; ?>][meta_description]" cols="40" rows="5"><?php echo isset($ncategory_description[$language['language_id']]) ? $ncategory_description[$language['language_id']]['meta_description'] : ''; ?></textarea></td>
               </tr>

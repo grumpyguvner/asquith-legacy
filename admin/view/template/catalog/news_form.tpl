@@ -56,6 +56,12 @@
 	</thead>
 	  <?php foreach ($languages as $language) { ?>
 		 <tr>
+          <td><?php echo $entry_meta_title; ?></td>
+          <td><input type="text" name="news_description[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset( $news_description[$language['language_id']]['meta_title']) ? $news_description[$language['language_id']]['meta_title'] : ''; ?>" />
+            <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" style="vertical-align: top;" />
+            </td>
+        </tr>
+		 <tr>
           <td><?php echo $entry_meta_desc; ?></td>
           <td><textarea name="news_description[<?php echo $language['language_id']; ?>][meta_desc]" cols="60" rows="3"><?php echo isset( $news_description[$language['language_id']]['meta_desc']) ? $news_description[$language['language_id']]['meta_desc'] : ''; ?></textarea>
             <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" style="vertical-align: top;" />
