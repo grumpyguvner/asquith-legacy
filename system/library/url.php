@@ -16,10 +16,10 @@ class Url {
 			$url = $this->ssl;	
 		}
 		
-		$url .= 'index.php?route=' . $route;
+		$url .= 'index/' . $route;
 			
 		if ($args) {
-			$url .= str_replace('&', '&amp;', '&' . ltrim($args, '&')); 
+			$url .= str_replace('&', '&amp;', '?' . ltrim($args, '&')); 
 		}
 		
 		foreach ($this->rewrite as $rewrite) {

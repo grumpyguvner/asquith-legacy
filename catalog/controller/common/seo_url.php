@@ -9,53 +9,59 @@ class ControllerCommonSeoUrl extends Controller {
 		// Decode URL
 		if (isset($this->request->get['_route_'])) {
 			$parts = explode('/', $this->request->get['_route_']);
-			
-			$route = "";
-			foreach ($parts as $part) {
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE keyword = '" . $this->db->escape($part) . "'");
-				
-				if ($query->num_rows) {
-					$url = explode('=', $query->row['query']);
-					
-					if ($url[0] == 'product_id') {
-						$this->request->get['product_id'] = $url[1];
-					}
-					//articles url
-					if ($url[0] == 'news_id') {
-						$this->request->get['news_id'] = $url[1];
-					}
-					if ($url[0] == 'ncategory_id') {
-						if (!isset($this->request->get['ncat'])) {
-							$this->request->get['ncat'] = $url[1];
-						} else {
-							$this->request->get['ncat'] .= '_' . $url[1];
-						}
-					}
-					//articles url
-					
-					if ($url[0] == 'category_id') {
-						if (!isset($this->request->get['path'])) {
-							$this->request->get['path'] = $url[1];
-					
-						} else {
-							$this->request->get['path'] .= '_' . $url[1];
-						}
-					}	
-					
-					if ($url[0] == 'manufacturer_id') {
-						$this->request->get['manufacturer_id'] = $url[1];
-					}
-					
-					
-					if ($url[0] == 'information_id') {
-						$this->request->get['information_id'] = $url[1];
-					}	else{
-				        $route = $url[0];
-			        }	
-				} else {
-					$this->request->get['route'] = 'error/not_found';	
-				}
-			}
+            
+            if ($parts[0] == 'index')
+            {
+                array_shift($parts);
+                $route = implode('/', $parts);
+            } else {
+                $route = "";
+                foreach ($parts as $part) {
+                    $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE keyword = '" . $this->db->escape($part) . "'");
+
+                    if ($query->num_rows) {
+                        $url = explode('=', $query->row['query']);
+
+                        if ($url[0] == 'product_id') {
+                            $this->request->get['product_id'] = $url[1];
+                        }
+                        //articles url
+                        if ($url[0] == 'news_id') {
+                            $this->request->get['news_id'] = $url[1];
+                        }
+                        if ($url[0] == 'ncategory_id') {
+                            if (!isset($this->request->get['ncat'])) {
+                                $this->request->get['ncat'] = $url[1];
+                            } else {
+                                $this->request->get['ncat'] .= '_' . $url[1];
+                            }
+                        }
+                        //articles url
+
+                        if ($url[0] == 'category_id') {
+                            if (!isset($this->request->get['path'])) {
+                                $this->request->get['path'] = $url[1];
+
+                            } else {
+                                $this->request->get['path'] .= '_' . $url[1];
+                            }
+                        }	
+
+                        if ($url[0] == 'manufacturer_id') {
+                            $this->request->get['manufacturer_id'] = $url[1];
+                        }
+
+
+                        if ($url[0] == 'information_id') {
+                            $this->request->get['information_id'] = $url[1];
+                        }	else{
+                            $route = $url[0];
+                        }	
+                    } else {
+                        $this->request->get['route'] = 'error/not_found';	
+                    }
+                }
+            }
 			
 			if (isset($this->request->get['product_id'])) {
 				$this->request->get['route'] = 'product/product';
@@ -69,7 +75,7 @@ class ControllerCommonSeoUrl extends Controller {
 				$this->request->get['route'] = 'news/article';
 			} elseif (isset($this->request->get['ncat'])) {
 				$this->request->get['route'] = 'news/ncategory';
-			}else {
+			} else {
 			    $this->request->get['route'] = $route;
 		    }
 			
@@ -81,7 +87,16 @@ class ControllerCommonSeoUrl extends Controller {
 	
 	public function rewrite($link) {
 		if ($this->config->get('config_seo_url')) {
-			$url_data = parse_url(str_replace('&amp;', '&', $link));
+            
+            $newlink = $link;
+            if (strpos($link, 'index') !== false)
+            {
+                $newlink = preg_replace('%\?%', '&amp;', $newlink);
+                $newlink = preg_replace('%/index/%', '/index.php?route=', $link);
+            }
+            
+            
+			$url_data = parse_url(str_replace('&amp;', '&', $newlink));
 		
 			$url = ''; 
 			
