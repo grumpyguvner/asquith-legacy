@@ -8,7 +8,7 @@ class Url {
 		$this->url = $url;
 		$this->ssl = $ssl;
 	}
-	
+		
 	public function link($route, $args = '', $connection = 'NONSSL') {
 		if ($connection ==  'NONSSL') {
 			$url = $this->url;	
@@ -16,10 +16,10 @@ class Url {
 			$url = $this->ssl;	
 		}
 		
-		$url .= 'index/' . $route;
+                    $url .= 'index.php?route=' . $route;
 			
 		if ($args) {
-			$url .= str_replace('&', '&amp;', '?' . ltrim($args, '&')); 
+			$url .= str_replace('&', '&amp;', '&' . ltrim($args, '&')); 
 		}
 		
 		foreach ($this->rewrite as $rewrite) {
@@ -28,9 +28,9 @@ class Url {
 				
 		return $url;
 	}
-		
+
 	public function addRewrite($rewrite) {
 		$this->rewrite[] = $rewrite;
-	}
+	}	
 }
 ?>
