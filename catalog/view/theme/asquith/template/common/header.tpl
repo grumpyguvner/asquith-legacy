@@ -66,7 +66,7 @@
 	  		if (!$logged)
 	  		{
 	  		?>
-	  		<a href="index.php?route=account/register">Register</a>
+	  		<a href="account/register">Register</a>
 	  		<?php
 	  		} // end if
 	  		?>
@@ -115,16 +115,16 @@ if ($categories) {
 	  <?php } ?>
 	</li>
 	<?php } ?>
-	<li><a href="index.php?route=information/information&information_id=30">Brochure</a></li>
+	<li><a href="/brochure-for-yoga-clothing">Brochure</a></li>
 	
-	<li><a href="index.php?route=information/information&information_id=4">About Us</a>
+	<li><a href="/asquith-yoga-clothing">About Us</a>
 	 <div><div><ul>
-	 <li><a href="index.php?route=information/information&information_id=8">Our Ethics</a></li>
-	 <li><a href="index.php?route=information/information&information_id=9">Our Fabrics</a></li>
-	 <li><a href="index.php?route=information/information&information_id=10">Our Style</a></li>
-	 <li><a href="index.php?route=information/information&information_id=11">Meet Alice</a></li>
-	 <li><a href="index.php?route=news/ncategory&ncat=60">In The Press</a></li>
-	 <li><a href="index.php?route=information/information&information_id=13">Stockists</a></li>
+	 <li><a href="/ethical-organic-yoga-clothing">Our Ethics</a></li>
+	 <li><a href="/womens-organic-yoga-clothes">Our Fabrics</a></li>
+	 <li><a href="/stylish-yoga-clothes">Our Style</a></li>
+	 <li><a href="/alice-asquith-yoga-clothing">Meet Alice</a></li>
+	 <li><a href="/news/ncategory&ncat=60">In The Press</a></li>
+	 <li><a href="/yoga-clothing-stockists">Stockists</a></li>
 	 </ul></div></div>
 	
 	</li>

@@ -149,7 +149,7 @@
       <table>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_country; ?></td>
-          <td><select name="country_id" onchange="$('select[name=\'zone_id\']').load('index.php?route=checkout/cart/zone&country_id=' + this.value + '&zone_id=<?php echo $zone_id; ?>');">
+          <td><select name="country_id" onchange="$('select[name=\'zone_id\']').load('checkout/cart/zone&country_id=' + this.value + '&zone_id=<?php echo $zone_id; ?>');">
               <option value=""><?php echo $text_select; ?></option>
               <?php foreach ($countries as $country) { ?>
               <?php if ($country['country_id'] == $country_id) { ?>
@@ -216,7 +216,7 @@ $('#shipping_estimate').trigger('click');
 <script type="text/javascript"><!--
 $('#button-quote').live('click', function() {
 	$.ajax({
-		url: 'index.php?route=checkout/cart/quote',
+		url: 'checkout/cart/quote',
 		type: 'post',
 		data: 'country_id=' + $('select[name=\'country_id\']').val() + '&zone_id=' + $('select[name=\'zone_id\']').val() + '&postcode=' + encodeURIComponent($('input[name=\'postcode\']').val()),
 		dataType: 'json',		

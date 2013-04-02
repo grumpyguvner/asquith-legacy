@@ -93,7 +93,7 @@
     <b><?php echo $entry_captcha; ?></b><br />
     <input type="text" name="captcha" value="" />
     <br />
-    <img src="index.php?route=product/product/captcha" alt="" id="captcha" /><br />
+    <img src="product/product/captcha" alt="" id="captcha" /><br />
     <br />
      <?php
      }
