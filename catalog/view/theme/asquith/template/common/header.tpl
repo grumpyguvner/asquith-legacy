@@ -123,12 +123,12 @@ if ($categories) {
 	 <li><a href="/womens-organic-yoga-clothes">Our Fabrics</a></li>
 	 <li><a href="/stylish-yoga-clothes">Our Style</a></li>
 	 <li><a href="/alice-asquith-yoga-clothing">Meet Alice</a></li>
-	 <li><a href="/news/ncategory&ncat=60">In The Press</a></li>
+	 <li><a href="/in-the-press">In The Press</a></li>
 	 <li><a href="/yoga-clothing-stockists">Stockists</a></li>
 	 </ul></div></div>
 	
 	</li>
-	<li><a href="/index.php?route=news/ncategory&ncat=59">Blog</a></li>
+	<li><a href="/blog">Blog</a></li>
 	</ul>
 </div>
 <?php

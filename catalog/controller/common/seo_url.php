@@ -32,7 +32,7 @@ class ControllerCommonSeoUrl extends Controller {
                                     if ($url[0] == 'news_id') {
                                         $this->request->get['news_id'] = $url[1];
                                     }
-                                    if ($url[0] == 'ncategory_id') {
+                                    if ($url[0] == 'ncategory_id' || $url[0] == 'ncat') {
                                         if (!isset($this->request->get['ncat'])) {
                                             $this->request->get['ncat'] = $url[1];
                                         } else {
