@@ -135,14 +135,27 @@ class ControllerCommonSeoUrl extends Controller {
                                                 unset($data[$key]);
                                                 break;
                                             default:
-                                                if (($data['route'] == 'product/product'  && $key == 'product_id') || (($data['route'] == 'product/manufacturer/product' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id') || ($data['route'] == 'news/ncategory' && $key == 'ncat') || ($data['route'] == 'news/article' && $key == 'news_id')) {
+//                                                if (($data['route'] == 'product/product'  && $key == 'product_id') || (($data['route'] == 'product/manufacturer/product' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id') || ($data['route'] == 'news/ncategory' && $key == 'ncat') || ($data['route'] == 'news/article' && $key == 'news_id')) {
+                                                if (($data['route'] == 'product/product'  && $key == 'product_id') || (($data['route'] == 'product/manufacturer/product' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id') || ($data['route'] == 'news/article' && $key == 'news_id')) {
                                                         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $this->db->escape($key . '=' . (int)$value) . "'");
 
                                                         if ($query->num_rows) {
                                                                 $url .= '/' . $query->row['keyword'];
 
                                                                 unset($data[$key]);
-                                                        }					
+                                                        }
+                                                } elseif ($key == 'ncat') {
+                                                        $ncategories = explode('_', $value);
+
+                                                        foreach ($ncategories as $ncategory) {
+                                                                $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = 'ncat=" . (int)$ncategory . "'");
+
+                                                                if ($query->num_rows) {
+                                                                        $url .= '/' . $query->row['keyword'];
+                                                                }							
+                                                        }
+
+                                                        unset($data[$key]);
                                                 } elseif ($key == 'path') {
                                                         $categories = explode('_', $value);
 
