@@ -44,15 +44,15 @@ class Controllernewsncategory extends Controller {
 				$ncategory_info = $this->model_catalog_ncategory->getncategory($ncat_id);
 				
 				if ($ncategory_info) {
-	       			$this->data['breadcrumbs'][] = array(
-   	    				'text'      => $ncategory_info['name'],
-						'href'      => $this->url->link('news/ncategory', 'ncat=' . $ncat),
-        				'separator' => $this->language->get('text_separator')
-        			);
+                                    $this->data['breadcrumbs'][] = array(
+                                            'text'      => $ncategory_info['name'],
+                                            'href'      => $this->url->link('news/ncategory', 'ncat=' . $ncat),
+                                            'separator' => $this->language->get('text_separator')
+                                    );
 				}
 			}	
             
-            $url = 'ncat=' . $this->request->get['ncat'];
+                        $url = 'ncat=' . $this->request->get['ncat'];
 		
 			$ncategory_id = array_pop($parts);
 		} else {
@@ -121,15 +121,15 @@ class Controllernewsncategory extends Controller {
 			);
 			
 			if ($this->config->get('bnews_image_width')) {
-            $bwidth = $this->config->get('bnews_image_width');
+                            $bwidth = $this->config->get('bnews_image_width');
 			} else {
-			$bwidth = 80;
+                            $bwidth = 80;
 			}
 			
 			if ($this->config->get('bnews_image_height')) {
-            $bheight = $this->config->get('bnews_image_height');
+                            $bheight = $this->config->get('bnews_image_height');
 			} else {
-			$bheight = 80;
+                            $bheight = 80;
 			}
 			
 			$news_total = $this->model_catalog_news->getTotalNews($data);

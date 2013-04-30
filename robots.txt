@@ -1,0 +1,18 @@
+# Website Sitemap
+
+Sitemap: http://www.asquithlondon.com/sitemap.xml
+
+# Crawlers Setup
+
+User-agent: *
+
+# Allowable Index
+
+Allow: /
+
+# Directories
+
+Disallow: /404/
+Disallow: /?sort=
+Disallow: /index.php
+Disallow: /admin
