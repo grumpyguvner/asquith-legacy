@@ -79,6 +79,7 @@ class ControllerReportAffiliateCommission extends Controller {
 				'email'      => $result['email'],
 				'status'     => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
 				'commission' => $this->currency->format($result['commission'], $this->config->get('config_currency')),
+				'accounts'   => $result['accounts'],
 				'orders'     => $result['orders'],
 				'total'      => $this->currency->format($result['total'], $this->config->get('config_currency')),
 				'action'     => $action
@@ -93,6 +94,7 @@ class ControllerReportAffiliateCommission extends Controller {
 		$this->data['column_email'] = $this->language->get('column_email');
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_commission'] = $this->language->get('column_commission');
+		$this->data['column_accounts'] = $this->language->get('column_accounts');
 		$this->data['column_orders'] = $this->language->get('column_orders');
 		$this->data['column_total'] = $this->language->get('column_total');
 		$this->data['column_action'] = $this->language->get('column_action');
@@ -148,6 +150,7 @@ class ControllerReportAffiliateCommission extends Controller {
         $headings[] = $this->language->get('column_email');
         $headings[] = $this->language->get('column_status');
         $headings[] = $this->language->get('column_commission');
+        $headings[] = $this->language->get('column_accounts');
         $headings[] = $this->language->get('column_orders');
         $headings[] = $this->language->get('column_total');
         
@@ -179,6 +182,7 @@ class ControllerReportAffiliateCommission extends Controller {
 			$data[$rownum][] = $result['email'];
 			$data[$rownum][] = ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'));
 			$data[$rownum][] = $this->currency->format($result['commission'], $this->config->get('config_currency'));
+			$data[$rownum][] = $result['accounts'];
 			$data[$rownum][] = $result['orders'];
 			$data[$rownum][] = $this->currency->format($result['total'], $this->config->get('config_currency'));
 		}
@@ -186,6 +190,7 @@ class ControllerReportAffiliateCommission extends Controller {
         // create data formats per column
         $settings = array();
         
+        $settings[] = 'text';
         $settings[] = 'text';
         $settings[] = 'text';
         $settings[] = 'text';
