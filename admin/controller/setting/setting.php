@@ -69,6 +69,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_checkout'] = $this->language->get('entry_checkout');
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');	
+		$this->data['entry_account_commission'] = $this->language->get('entry_account_commission');	
 		$this->data['entry_commission'] = $this->language->get('entry_commission');	
 		$this->data['entry_stock_display'] = $this->language->get('entry_stock_display');
 		$this->data['entry_stock_warning'] = $this->language->get('entry_stock_warning');
@@ -512,6 +513,14 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_affiliate_id'] = $this->request->post['config_affiliate_id'];
 		} else {
 			$this->data['config_affiliate_id'] = $this->config->get('config_affiliate_id');		
+		}
+		
+		if (isset($this->request->post['config_account_commission'])) {
+			$this->data['config_account_commission'] = $this->request->post['config_account_commission'];
+		} elseif ($this->config->has('config_account_commission')) {
+			$this->data['config_account_commission'] = $this->config->get('config_account_commission');		
+		} else {
+			$this->data['config_account_commission'] = '0.00';
 		}
 		
 		if (isset($this->request->post['config_commission'])) {

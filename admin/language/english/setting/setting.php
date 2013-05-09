@@ -45,7 +45,8 @@ $_['entry_guest_checkout']     = 'Guest Checkout:<br /><span class="help">Allow 
 $_['entry_account']            = 'Account Terms:<br /><span class="help">Forces people to agree to terms before an account can be created.</span>';
 $_['entry_checkout']           = 'Checkout Terms:<br /><span class="help">Forces people to agree to terms before an a customer can checkout.</span>';
 $_['entry_affiliate']          = 'Affiliate Terms:<br /><span class="help">Forces people to agree to terms before an affiliate account can be created.</span>';
-$_['entry_commission']         = 'Affiliate Commission (%):<br /><span class="help">The default affiliate commission percentage.</span>';
+$_['entry_account_commission'] = 'New Account Commission:<br /><span class="help">The default affiliate commission amount per new account.</span>';
+$_['entry_commission']         = 'Affiliate Commission (%):<br /><span class="help">The default affiliate commission percentage on each order.</span>';
 $_['entry_stock_display']      = 'Display Stock:<br /><span class="help">Display stock quantity on the product page.</span>';
 $_['entry_stock_warning']      = 'Show Out Of Stock Warning:<br /><span class="help">Display out of stock message on the shopping cart page if a product is out of stock but stock checkout is yes. (Warning always shows if stock checkout is no)</span>';
 $_['entry_stock_checkout']     = 'Stock Checkout:<br /><span class="help">Allow customers to still checkout if the products they are ordering are not in stock.</span>';

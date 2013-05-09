@@ -10,6 +10,7 @@ $_['text_balance']              = 'Balance:';
 $_['text_cheque']               = 'Cheque';
 $_['text_paypal']               = 'PayPal';
 $_['text_bank']                 = 'Bank Transfer';
+$_['text_voucher']              = 'Voucher';
 
 // Column
 $_['column_name']               = 'Affiliate Name';
@@ -40,6 +41,7 @@ $_['entry_postcode']            = 'Postcode:';
 $_['entry_country']             = 'Country:';
 $_['entry_zone']                = 'Region / State:';
 $_['entry_code']                = 'Tracking Code:<span class="help">The tracking code that will be used to track referrals.</span>';
+$_['entry_account_commission']  = 'New Accounts:<span class="help">Amount the affiliate recieves for each new account.</span>';
 $_['entry_commission']          = 'Commission (%):<span class="help">Percentage the affiliate recieves on each order.</span>';
 $_['entry_tax']                 = 'Tax ID:';
 $_['entry_payment']             = 'Payment Method:';

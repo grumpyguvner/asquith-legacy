@@ -513,6 +513,7 @@ class ControllerSaleAffiliate extends Controller {
     	$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_select'] = $this->language->get('text_select');
     	$this->data['text_wait'] = $this->language->get('text_wait');
+		$this->data['text_voucher'] = $this->language->get('text_voucher');
 		$this->data['text_cheque'] = $this->language->get('text_cheque');
 		$this->data['text_paypal'] = $this->language->get('text_paypal');
 		$this->data['text_bank'] = $this->language->get('text_bank');
@@ -530,6 +531,7 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['entry_country'] = $this->language->get('entry_country');
 		$this->data['entry_zone'] = $this->language->get('entry_zone');
 		$this->data['entry_code'] = $this->language->get('entry_code');
+		$this->data['entry_account_commission'] = $this->language->get('entry_account_commission');
 		$this->data['entry_commission'] = $this->language->get('entry_commission');
 		$this->data['entry_tax'] = $this->language->get('entry_tax');
 		$this->data['entry_payment'] = $this->language->get('entry_payment');
@@ -809,6 +811,14 @@ class ControllerSaleAffiliate extends Controller {
       		$this->data['code'] = uniqid();
     	}
 		
+		if (isset($this->request->post['account_commission'])) {
+      		$this->data['account_commission'] = $this->request->post['account_commission'];
+    	} elseif (!empty($affiliate_info)) { 
+			$this->data['account_commission'] = $affiliate_info['account_commission'];
+		} else {
+      		$this->data['account_commission'] = $this->config->get('config_account_commission');
+    	}
+		
 		if (isset($this->request->post['commission'])) {
       		$this->data['commission'] = $this->request->post['commission'];
     	} elseif (!empty($affiliate_info)) { 
@@ -830,7 +840,7 @@ class ControllerSaleAffiliate extends Controller {
     	} elseif (!empty($affiliate_info)) { 
 			$this->data['payment'] = $affiliate_info['payment'];
 		} else {
-      		$this->data['payment'] = 'cheque';
+      		$this->data['payment'] = 'voucher';
     	}	
 
 		if (isset($this->request->post['cheque'])) {

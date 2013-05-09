@@ -102,7 +102,7 @@ $(document).ready(function(){
               <li><a href="<?php echo $customer_blacklist; ?>"><?php echo $text_customer_blacklist; ?></a></li>
             </ul>
           </li>
-<!--          <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li> -->
+          <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
           <li><a href="<?php echo $coupon; ?>"><?php echo $text_coupon; ?></a></li>
           <li><a href="<?php echo $advanced_coupon; ?>"><?php echo $text_advanced_coupon; ?></a></li>
           <li><a class="parent"><?php echo $text_voucher; ?></a>
@@ -187,11 +187,11 @@ $(document).ready(function(){
               <li><a href="<?php echo $report_customer_credit; ?>"><?php echo $text_report_customer_credit; ?></a></li>
             </ul>
           </li>
-<!--          <li><a class="parent"><?php echo $text_affiliate; ?></a>
+          <li><a class="parent"><?php echo $text_affiliate; ?></a>
             <ul>
               <li><a href="<?php echo $report_affiliate_commission; ?>"><?php echo $text_report_affiliate_commission; ?></a></li>
             </ul>
-          </li> -->
+          </li>
         </ul>
       </li>
       <li id="help"><a class="top"><?php echo $text_help; ?></a>
