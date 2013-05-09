@@ -72,8 +72,9 @@ CREATE TABLE `oc_affiliate` (
   `zone_id` int(11) NOT NULL,
   `code` varchar(64) COLLATE utf8_bin NOT NULL,
   `commission` decimal(4,2) NOT NULL DEFAULT '0.00',
+  `account_commission` decimal(4,2) NOT NULL DEFAULT '0.00',
   `tax` varchar(64) COLLATE utf8_bin NOT NULL,
-  `payment` varchar(6) COLLATE utf8_bin NOT NULL,
+  `payment` varchar(10) COLLATE utf8_bin NOT NULL,
   `cheque` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '',
   `paypal` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `bank_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -103,6 +104,7 @@ DROP TABLE IF EXISTS `oc_affiliate_transaction`;
 CREATE TABLE `oc_affiliate_transaction` (
   `affiliate_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `affiliate_id` int(11) NOT NULL,
+  `customer_id` int(11) DEFAULT NULL,
   `order_id` int(11) NOT NULL,
   `description` text COLLATE utf8_bin NOT NULL,
   `amount` decimal(15,4) NOT NULL,

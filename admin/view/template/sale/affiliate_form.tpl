@@ -146,6 +146,10 @@
           <table class="form">
             <tbody>
               <tr>
+                <td><?php echo $entry_account_commission; ?></td>
+                <td><input type="text" name="account_commission" value="<?php echo $account_commission; ?>" /></td>
+              </tr>
+              <tr>
                 <td><?php echo $entry_commission; ?></td>
                 <td><input type="text" name="commission" value="<?php echo $commission; ?>" /></td>
               </tr>
@@ -155,7 +159,13 @@
               </tr>
               <tr>
                 <td><?php echo $entry_payment; ?></td>
-                <td><?php if ($payment == 'cheque') { ?>
+                <td><?php if ($payment == 'voucher') { ?>
+                  <input type="radio" name="payment" value="voucher" id="voucher" checked="checked" />
+                  <?php } else { ?>
+                  <input type="radio" name="payment" value="voucher" id="voucher" />
+                  <?php } ?>
+                  <label for="voucher"><?php echo $text_voucher; ?></label>
+                  <?php if ($payment == 'cheque') { ?>
                   <input type="radio" name="payment" value="cheque" id="cheque" checked="checked" />
                   <?php } else { ?>
                   <input type="radio" name="payment" value="cheque" id="cheque" />

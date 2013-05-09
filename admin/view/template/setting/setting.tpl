@@ -364,6 +364,10 @@
                 </select></td>
             </tr>
             <tr>
+              <td><?php echo $entry_account_commission; ?></td>
+              <td><input type="text" name="config_account_commission" value="<?php echo $config_account_commission; ?>" size="3" /></td>
+            </tr>
+            <tr>
               <td><?php echo $entry_commission; ?></td>
               <td><input type="text" name="config_commission" value="<?php echo $config_commission; ?>" size="3" /></td>
             </tr>
