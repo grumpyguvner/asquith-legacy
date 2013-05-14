@@ -47,6 +47,8 @@
         <p><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></p>
 
         <p><a href="<?php echo $addresses; ?>"><?php echo $text_addresses; ?></a></p>
+
+        <p><a href="<?php echo $recommend; ?>"><?php echo $text_recommend; ?></a></p>
     </div>
 </div>
 <div id="payment_methods">

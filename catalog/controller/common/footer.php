@@ -18,6 +18,7 @@ class ControllerCommonFooter extends Controller {
 		$this->data['text_addresses'] = $this->language->get('text_addresses');
 		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
 		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
+		$this->data['text_recommend'] = $this->language->get('text_recommend');
 		$this->data['text_clearance'] = $this->language->get('text_clearance');
 		$this->data['text_blog'] = $this->language->get('text_blog');
 		
@@ -44,6 +45,7 @@ class ControllerCommonFooter extends Controller {
 		$this->data['addresses'] = $this->url->link('account/address', '', 'SSL');
 		$this->data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
 		$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');	
+		$this->data['recommend'] = $this->url->link('account/recommend', '', 'SSL');	
 		$this->data['clearance'] = $this->url->link('product/category', 'path=102');	
 		$this->data['blog'] = $this->url->link('news/ncategory', 'ncat=59');		
 

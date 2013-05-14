@@ -15,6 +15,7 @@ $_['text_order']        = 'My Orders';
 $_['text_addresses']    = 'My Addresses';
 $_['text_wishlist']     = 'My Wish List';
 $_['text_newsletter']   = 'Newsletter';
+$_['text_recommend']    = 'Recommend Friends';
 $_['text_clearance']    = 'Clearance';
 $_['text_blog']         = 'Blog';
 
