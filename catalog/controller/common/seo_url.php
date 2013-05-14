@@ -124,6 +124,7 @@ class ControllerCommonSeoUrl extends Controller {
                                             case "account/login":
                                             case "account/logout":
                                             case "account/newsletter":
+                                            case "account/recommend":
                                             case "account/order":
                                             case "account/password":
                                             case "account/register":
