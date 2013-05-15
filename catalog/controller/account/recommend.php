@@ -11,7 +11,14 @@ class ControllerAccountRecommend extends Controller {
 
         $this->language->load('account/recommend');
 
-        $this->document->setTitle($this->language->get('heading_title'));
+        $title = $this->config->get('recommend_page_meta_title');
+        if (!empty($title)) {
+            $this->document->setTitle($title);
+        } else {
+            $this->document->setTitle($this->language->get('heading_title'));
+        }
+        $this->document->setDescription($this->config->get('recommend_page_meta_description'));
+        $this->document->setKeywords($this->config->get('recommend_page_meta_keyword'));
 
         $this->data['breadcrumbs'] = array();
 
@@ -33,16 +40,19 @@ class ControllerAccountRecommend extends Controller {
             'separator' => $this->language->get('text_separator')
         );
 
-        $this->data['heading_title'] = $this->language->get('heading_title');
+        $this->data['heading_title'] = $this->config->get('recommend_page_title');
+        if (empty($this->data['heading_title']))
+            $this->data['heading_title'] = $this->language->get('heading_title');
 
-        $this->data['text_instructions'] = $this->language->get('text_instructions');
+        $this->data['text_instructions'] = html_entity_decode($this->config->get('recommend_page_instructions'));
+        if (empty($this->data['text_instructions']))
+            $this->data['text_instructions'] = $this->language->get('text_instructions');
 
         $this->data['text_friend'] = $this->language->get('text_friend');
         $this->data['entry_firstname'] = $this->language->get('entry_firstname');
         $this->data['entry_lastname'] = $this->language->get('entry_lastname');
         $this->data['entry_email'] = $this->language->get('entry_email');
 
-        $this->data['button_add_another'] = $this->language->get('button_add_another');
         $this->data['button_submit'] = $this->language->get('button_submit');
 
         $this->data['action'] = $this->url->link('account/recommend', '', 'SSL');
@@ -65,9 +75,29 @@ class ControllerAccountRecommend extends Controller {
         $this->response->setOutput($this->render());
     }
     
-    public function Send() {
-        //Use ajax to add recommendation to list
+    public function callback() {
 
+        //Uses ajax to add recommendation to list
+        $this->language->load('account/recommend');
+        
+        $success = null;
+        $error = null;
+        
+        if (!$this->request->post['email'] || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
+                $error = $this->language->get('error_email');
+        }
+        
+        
+        $success = sprintf($success, $this->request->post['email']);
+        $error = sprintf($error, $this->request->post['email']);
+        
+        if ($error)
+            echo json_encode($error);
+        else
+            echo json_encode($success);
+        exit;
+        
+        
         $affiliate_ref = $this->_getAffiliateCode();
 
             $this->load->model('account/customer');

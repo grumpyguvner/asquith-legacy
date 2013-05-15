@@ -9,11 +9,13 @@ $_['text_instructions'] = 'Recommend Asquith to your friends and earn money to s
 $_['text_friend']       = 'Friend';
 
 // Buttons
-$_['button_add_another'] = 'Add another friend';
-$_['button_submit']      = 'Submit';
+$_['button_submit']      = 'Send';
 
 // Entry
 $_['entry_firstname']   = 'First Name:';
 $_['entry_lastname']    = 'Last Name:';
 $_['entry_email']       = 'E-mail Address:';
+
+// Errors
+$_['error_email']       = 'Please enter a valid E-mail address!';
 ?>
