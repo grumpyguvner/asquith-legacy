@@ -7064,3 +7064,23 @@ CREATE TABLE `oc_zone_to_geo_zone` (
 INSERT INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES
 (57, 222, 0, 3, '2010-02-26 22:33:24', '0000-00-00 00:00:00'),
 (65, 222, 0, 4, '2010-12-15 15:18:13', '0000-00-00 00:00:00');
+
+--
+-- Table structure for table `oc_reccomend`
+--
+
+DROP TABLE IF EXISTS `oc_recommend`;
+CREATE TABLE `oc_recommend` (
+  `recommend_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) DEFAULT NULL,
+  `code` varchar(64) COLLATE utf8_bin NOT NULL,
+  `firstname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `lastname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `email` varchar(96) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`recommend_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `oc_reccomend`
+--

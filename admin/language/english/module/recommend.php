@@ -27,6 +27,8 @@ $_['page_instructions']     = "Instructions:";
 
 // Email Tab
 $_['email_send_from_customer'] = 'Send email from customer?';
+$_['email_allow_resend']       = "Allow multiple sends to same person?";
+$_['error_if_customer']        = "Display error message if already a customer?";
 $_['email_subject']            = 'Subject:';
 $_['email_body']               = 'Body:';
 

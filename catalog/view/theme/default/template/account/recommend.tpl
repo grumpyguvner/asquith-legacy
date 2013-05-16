@@ -14,15 +14,15 @@
         <tr>
           <td rowspan="3"><strong><?php echo $text_friend; ?></strong></td>
           <td><?php echo $entry_firstname; ?></td>
-          <td><input type="text" name="firstname" value="" /></td>
+          <td><input type="text" name="recommend_firstname" value="" /></td>
         </tr>
         <tr>
           <td><?php echo $entry_lastname; ?></td>
-          <td><input type="text" name="lastname" value="" /></td>
+          <td><input type="text" name="recommend_lastname" value="" /></td>
         </tr>
         <tr>
           <td><?php echo $entry_email; ?></td>
-          <td><input type="text" name="email" value="" /></td>
+          <td><input type="text" name="recommend_email" value="" /></td>
         </tr>
       </table>
     </div>
@@ -36,11 +36,18 @@
         $.ajax({
             type: "POST",
             url: 'index.php?route=account/recommend/callback',
-            data: { firstname: $('input[name=\'firstname\']').val(), 
-                    lastname: $('input[name=\'lastname\']').val(),
-                    email: $('input[name=\'email\']').val() }
-            }).done(function(msg) {
-                $("div#status_message").hide().empty().append(msg).show('slow');
+            dataType : 'json',
+            data: { firstname: $('input[name=\'recommend_firstname\']').val(), 
+                    lastname: $('input[name=\'recommend_lastname\']').val(),
+                    email: $('input[name=\'recommend_email\']').val() }
+            }).done(function(data) {
+                $("div#status_message").hide().empty().append(data.msg).show('slow');
+                if (data.status==0)
+                    {
+                        $('input[name=\'recommend_firstname\']').val("");
+                        $('input[name=\'recommend_lastname\']').val("");
+                        $('input[name=\'recommend_email\']').val("");
+                    }
                 });
         });
 //--></script>

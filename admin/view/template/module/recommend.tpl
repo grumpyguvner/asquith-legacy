@@ -132,6 +132,38 @@
           </td>
         </tr>
         <tr>
+          <td><?php echo $email_allow_resend; ?></td>
+          <td>
+            <?php if (isset($recommend_email_allow_resend) && $recommend_email_allow_resend) { ?>
+                <input type="radio" name="recommend_email_allow_resend" value="1" checked="checked" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="recommend_email_allow_resend" value="0" />
+                <?php echo $text_no; ?>
+            <?php } else { ?>
+                <input type="radio" name="recommend_email_allow_resend" value="1" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="recommend_email_allow_resend" value="0" checked="checked" />
+                <?php echo $text_no; ?>
+            <?php } ?>
+          </td>
+        </tr>
+        <tr>
+          <td><?php echo $error_if_customer; ?></td>
+          <td>
+            <?php if (isset($recommend_error_if_customer) && $recommend_error_if_customer) { ?>
+                <input type="radio" name="recommend_error_if_customer" value="1" checked="checked" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="recommend_error_if_customer" value="0" />
+                <?php echo $text_no; ?>
+            <?php } else { ?>
+                <input type="radio" name="recommend_error_if_customer" value="1" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="recommend_error_if_customer" value="0" checked="checked" />
+                <?php echo $text_no; ?>
+            <?php } ?>
+          </td>
+        </tr>
+        <tr>
           <td><?php echo $email_subject; ?></td>
           <td><input type="text" name="recommend_email_subject" value="<?php echo isset($recommend_email_subject) ? $recommend_email_subject : ''; ?>" size="64" /></td>
         </tr>

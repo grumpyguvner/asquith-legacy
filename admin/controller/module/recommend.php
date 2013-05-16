@@ -40,6 +40,8 @@ class ControllerModuleRecommend extends Controller {
                 $this->data['page_instructions'] = $this->language->get('page_instructions');
 
                 $this->data['email_send_from_customer'] = $this->language->get('email_send_from_customer');
+                $this->data['error_if_customer'] = $this->language->get('error_if_customer');
+                $this->data['email_allow_resend'] = $this->language->get('email_allow_resend');
                 $this->data['email_subject'] = $this->language->get('email_subject');
                 $this->data['email_body'] = $this->language->get('email_body');
                 
@@ -120,6 +122,18 @@ class ControllerModuleRecommend extends Controller {
 			$this->data['recommend_email_send_from_customer'] = $this->request->post['recommend_email_send_from_customer'];
 		} else {
 			$this->data['recommend_email_send_from_customer'] = $this->config->get('recommend_email_send_from_customer');
+		}
+                
+		if (isset($this->request->post['recommend_email_allow_resend'])) {
+			$this->data['recommend_email_allow_resend'] = $this->request->post['recommend_email_allow_resend'];
+		} else {
+			$this->data['recommend_email_allow_resend'] = $this->config->get('recommend_email_allow_resend');
+		}
+                
+		if (isset($this->request->post['recommend_error_if_customer'])) {
+			$this->data['recommend_error_if_customer'] = $this->request->post['recommend_error_if_customer'];
+		} else {
+			$this->data['recommend_error_if_customer'] = $this->config->get('recommend_error_if_customer');
 		}
                 
 		if (isset($this->request->post['recommend_email_subject'])) {
