@@ -900,6 +900,8 @@ CREATE TABLE `oc_customer` (
   `status` tinyint(1) NOT NULL,
   `approved` tinyint(1) NOT NULL,
   `token` varchar(255) COLLATE utf8_bin NOT NULL,
+  `recommend_id` int(11) NOT NULL DEFAULT '0',
+  `affilate_id` int(11) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`customer_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -1571,6 +1573,7 @@ CREATE TABLE `oc_order` (
   `comment` text COLLATE utf8_bin NOT NULL,
   `total` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `order_status_id` int(11) NOT NULL DEFAULT '0',
+  `recommend_id` int(11) NOT NULL,
   `affiliate_id` int(11) NOT NULL,
   `commission` decimal(15,4) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -7077,6 +7080,7 @@ CREATE TABLE `oc_recommend` (
   `firstname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `lastname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `email` varchar(96) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `voucher_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`recommend_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

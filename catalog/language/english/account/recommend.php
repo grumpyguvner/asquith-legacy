@@ -21,10 +21,10 @@ $_['error_email']            = 'Please enter a valid E-mail address!';
 $_['error_own_email']        = 'You have entered your own E-mail address!';
 $_['error_firstname']        = 'Please enter your friends first name!';
 $_['error_lastname']         = 'Please enter your friends last name!';
-$_['error_already_customer'] = 'This person is already a customer!';
+$_['error_already_customer'] = 'Your friend is already a valued Asquith London customer. Please recommend another friend. Thank you!';
 
 // Success
-$_['success_recommend_sent'] = 'Thank you! if your friend isnt already a customer then they will have received an email inviting them to join www.asquith.com!';
+$_['success_recommend_sent'] = 'Thank you for recommending Asquith London! If your friend isn’t already an Asquith London customer, they will have just received an email telling them you recommend they check out Asquith London!';
 
 // E-mail
 $_['email_subject']     = 'A friend has recommended that you try [sitename]';
@@ -32,5 +32,12 @@ $_['email_body']        = '<p>Hi [firstname]</p>';
 $_['email_body']        .= '<p>You are receiving this message because [customer_name] though you might like <a href="[siteurl]?[tracker]">[sitename]</a></p>';
 $_['email_body']        .= '<p>Why not take a look: <a href="[siteurl]?[tracker]">[sitename]</a></p>';
 $_['email_body']        .= '<p>Happy Browsing!</p>';
+
+// Voucher E-mail
+$_['voucher_subject']   = 'Your friend has signed up with [sitename]';
+$_['voucher_body']        = '<p>Hi [firstname]</p>';
+$_['voucher_body']        .= '<p>You have earned a £5.00 voucher because [friend_name] signed up with <a href="[siteurl]">[sitename]</a> and placed an order!</p>';
+$_['voucher_body']        .= '<p>To claim your voucher use [code] when you get to the checkout.</p>';
+$_['voucher_body']        .= '<p>Happy Shopping!</p>';
 
 ?>

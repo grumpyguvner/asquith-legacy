@@ -14,8 +14,20 @@ class ModelAccountCustomer extends Model {
                     $affilate_sql = "affiliate_id = '" . (int)$affiliate_info['affiliate_id'] . "', ";
                 }
         }
+        //Make sure we add the recommend id if we have the tracking cookie set
+        $recommend_sql = "";
+        if (isset($this->request->cookie['recommend'])) {
+                $this->load->model('account/recommend');
+
+                $recommend_info = $this->model_account_recommend->getRecommendByCode($this->request->cookie['recommend']);
+
+                if ($recommend_info) {
+                    $recommend_sql = "recommend_id = '" . (int)$recommend_info['recommend_id'] . "', ";
+                    $this->model_account_recommend->sendNewCustomerVoucher($recommend_info['recommend_id']);
+                }
+        }
         
-      	$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET store_id = '" . (int)$this->config->get('config_store_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', password = '" . $this->db->escape(md5($data['password'])) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "', " . $affilate_sql . "status = '1', date_added = NOW()");
+      	$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET store_id = '" . (int)$this->config->get('config_store_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', password = '" . $this->db->escape(md5($data['password'])) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "', " . $affilate_sql . $recommend_sql . "status = '1', date_added = NOW()");
         
         if (filter_var($data['email'], FILTER_VALIDATE_EMAIL) && $this->config->get('newsletter_mailchimp_enabled'))
         {

@@ -188,10 +188,12 @@ ALTER TABLE oc_tax_rate_to_customer_group DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 #### START 1.5.2.1
 
-ALTER TABLE `oc_customer` ADD `affiliate_id` int(11) DEFAULT NULL AFTER `token`;
+ALTER TABLE `oc_customer` ADD `recommend_id` int(11) DEFAULT NULL AFTER `token`;
+ALTER TABLE `oc_customer` ADD `affiliate_id` int(11) DEFAULT NULL AFTER `recommend_id`;
 ALTER TABLE `oc_affiliate` ADD `account_commission` decimal(4,2) NOT NULL DEFAULT '0.00' AFTER `commission`;
 ALTER TABLE `oc_affiliate` MODIFY `payment` varchar(10) COLLATE utf8_bin NOT NULL;
 ALTER TABLE `oc_affiliate_transaction` ADD `customer_id` int(11) DEFAULT NULL AFTER `affiliate_id`;
+ALTER TABLE `oc_order` ADD `recommend_id` int(11) DEFAULT NULL AFTER `order_status_id`;
 
 -- --------------------------------------------------------
 
@@ -206,6 +208,7 @@ CREATE TABLE IF NOT EXISTS `oc_recommend` (
   `firstname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `lastname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `email` varchar(96) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `voucher_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`recommend_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

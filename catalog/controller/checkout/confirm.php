@@ -293,6 +293,17 @@ class ControllerCheckoutConfirm extends Controller {
 				$data['affiliate_id'] = 0;
 				$data['commission'] = 0;
 			}
+                        
+                        $data['recommend_id'] = 0;
+			if (isset($this->request->cookie['recommend'])) {
+                            $this->load->model('account/recommend');
+
+                            $recommend_info = $this->model_account_recommend->getRecommendByCode($this->request->cookie['recommend']);
+
+                            if ($recommend_info) {
+                                $data['recommend_id'] = $recommend_info['recommend_id']; 
+                            }
+			}
 			
 			$data['language_id'] = $this->config->get('config_language_id');
 			$data['currency_id'] = $this->currency->getId();

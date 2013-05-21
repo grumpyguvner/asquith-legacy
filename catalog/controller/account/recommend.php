@@ -6,7 +6,12 @@ class ControllerAccountRecommend extends Controller {
         if (!$this->customer->isLogged()) {
             $this->session->data['redirect'] = $this->url->link('account/recommend', '', 'SSL');
 
-            $this->redirect($this->url->link('account/login', '', 'SSL'));
+            $redirect = $this->config->get('recommend_page_no_login');
+            if (!empty($redirect)) {
+                $this->redirect($redirect);
+            } else {
+                $this->redirect($this->url->link('account/login', '', 'SSL'));
+            }
         }
 
         $this->language->load('account/recommend');

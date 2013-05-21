@@ -17,7 +17,8 @@
     <div id="tabs" class="htabs">
       <a href="#tab-module">Modules</a>
       <a href="#tab-page">Page</a>
-      <a href="#tab-email">Email</a>
+      <a href="#tab-email">Email to Friend</a>
+      <a href="#tab-voucher">Voucher Email</a>
     </div>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <div id="tab-module">
@@ -91,6 +92,10 @@
     </div>
     <div id="tab-page">
       <table class="form">
+        <tr>
+          <td><?php echo $page_no_login; ?></td>
+          <td><input type="text" name="recommend_page_no_login" value="<?php echo isset($recommend_page_no_login) ? $recommend_page_no_login : 'account/login'; ?>" size="64" /></td>
+        </tr>
         <tr>
           <td><?php echo $page_title; ?></td>
           <td><input type="text" name="recommend_page_title" value="<?php echo isset($recommend_page_title) ? $recommend_page_title : ''; ?>" size="64" /></td>
@@ -173,6 +178,38 @@
         </tr>
       </table>
     </div>
+    <div id="tab-voucher">
+	  <table class="form">
+  	    <tr>
+          <td><?php echo $voucher_send_automatically; ?></td>
+          <td>
+            <?php if (isset($voucher_send_automatically) && $voucher_send_automatically) { ?>
+                <input type="radio" name="recommend_voucher_send_automatically" value="1" checked="checked" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="recommend_voucher_send_automatically" value="0" />
+                <?php echo $text_no; ?>
+            <?php } else { ?>
+                <input type="radio" name="recommend_voucher_send_automatically" value="1" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="recommend_voucher_send_automatically" value="0" checked="checked" />
+                <?php echo $text_no; ?>
+            <?php } ?>
+          </td>
+        </tr>
+        <tr>
+          <td><?php echo $voucher_amount; ?></td>
+          <td><input type="text" name="recommend_voucher_amount" value="<?php echo isset($recommend_voucher_amount) ? $recommend_voucher_amount : '5.00'; ?>" /></td>
+        </tr>
+        <tr>
+          <td><?php echo $email_subject; ?></td>
+          <td><input type="text" name="recommend_voucher_subject" value="<?php echo isset($recommend_voucher_subject) ? $recommend_voucher_subject : ''; ?>" size="64" /></td>
+        </tr>
+        <tr>
+          <td><?php echo $email_body; ?></td>
+          <td><textarea name="recommend_voucher_body" id="recommend_voucher_body"><?php echo isset($recommend_voucher_body) ? $recommend_voucher_body : ''; ?></textarea></td>
+        </tr>
+      </table>
+    </div>
     </form>
   </div>
 </div>
@@ -186,6 +223,13 @@ CKEDITOR.replace('recommend_page_instructions', {
 	filebrowserFlashUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
 });
 CKEDITOR.replace('recommend_email_body', {
+	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+	filebrowserUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+	filebrowserImageUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+	filebrowserFlashUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
+});
+CKEDITOR.replace('recommend_voucher_body', {
 	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
 	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
 	filebrowserUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',

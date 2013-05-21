@@ -33,6 +33,7 @@ class ControllerModuleRecommend extends Controller {
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
+                $this->data['page_no_login'] = $this->language->get('page_no_login');
                 $this->data['page_title'] = $this->language->get('page_title');
                 $this->data['page_meta_title'] = $this->language->get('page_meta_title');
                 $this->data['page_meta_keyword'] = $this->language->get('page_meta_keyword');
@@ -44,6 +45,9 @@ class ControllerModuleRecommend extends Controller {
                 $this->data['email_allow_resend'] = $this->language->get('email_allow_resend');
                 $this->data['email_subject'] = $this->language->get('email_subject');
                 $this->data['email_body'] = $this->language->get('email_body');
+
+                $this->data['voucher_send_automatically'] = $this->language->get('voucher_send_automatically');
+                $this->data['voucher_amount'] = $this->language->get('voucher_amount');
                 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -86,6 +90,12 @@ class ControllerModuleRecommend extends Controller {
 			$this->data['modules'] = $this->request->post['recommend_module'];
 		} elseif ($this->config->get('recommend_module')) { 
 			$this->data['modules'] = $this->config->get('recommend_module');
+		}
+                
+		if (isset($this->request->post['recommend_page_no_login'])) {
+			$this->data['recommend_page_no_login'] = $this->request->post['recommend_page_no_login'];
+		} else {
+			$this->data['recommend_page_no_login'] = $this->config->get('recommend_page_no_login');
 		}
                 
 		if (isset($this->request->post['recommend_page_title'])) {
@@ -146,6 +156,30 @@ class ControllerModuleRecommend extends Controller {
 			$this->data['recommend_email_body'] = $this->request->post['recommend_email_body'];
 		} else {
 			$this->data['recommend_email_body'] = $this->config->get('recommend_email_body');
+		}
+                
+		if (isset($this->request->post['recommend_voucher_send_automatically'])) {
+			$this->data['recommend_voucher_send_automatically'] = $this->request->post['recommend_voucher_send_automatically'];
+		} else {
+			$this->data['recommend_voucher_send_automatically'] = $this->config->get('recommend_voucher_send_automatically');
+		}
+                
+		if (isset($this->request->post['recommend_voucher_amount'])) {
+			$this->data['recommend_voucher_amount'] = $this->request->post['recommend_voucher_amount'];
+		} else {
+			$this->data['recommend_voucher_amount'] = $this->config->get('recommend_voucher_amount');
+		}
+                
+		if (isset($this->request->post['recommend_voucher_subject'])) {
+			$this->data['recommend_voucher_subject'] = $this->request->post['recommend_voucher_subject'];
+		} else {
+			$this->data['recommend_voucher_subject'] = $this->config->get('recommend_voucher_subject');
+		}
+                
+		if (isset($this->request->post['recommend_voucher_body'])) {
+			$this->data['recommend_voucher_body'] = $this->request->post['recommend_voucher_body'];
+		} else {
+			$this->data['recommend_voucher_body'] = $this->config->get('recommend_voucher_body');
 		}
 
                 

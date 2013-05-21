@@ -41,6 +41,7 @@
 DD_belatedPNG.fix('#logo img');
 </script>
 <![endif]-->
+<?php if ($data_layer) echo $data_layer; ?>
 <?php echo $google_analytics; ?>
 </head>
 <body>
