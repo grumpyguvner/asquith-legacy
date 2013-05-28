@@ -58,6 +58,8 @@ class ControllerInformationInformation extends Controller {
 						
 	  		$this->response->setOutput($this->render());
     	} else {
+                $this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
+                
       		$this->data['breadcrumbs'][] = array(
         		'text'      => $this->language->get('text_error'),
 				'href'      => $this->url->link('information/information', 'information_id=' . $information_id),

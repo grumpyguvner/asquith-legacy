@@ -450,6 +450,8 @@ class ControllerProductProduct extends Controller {
 						
 			$this->response->setOutput($this->render());
 		} else {
+                        $this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
+                        
 			$url = '';
 			
 			if (isset($this->request->get['path'])) {
