@@ -454,7 +454,11 @@ class ControllerCheckoutCart extends Controller {
         $this->load->model('checkout/advanced_coupon');
         $advanced_coupon_info = $this->model_checkout_advanced_coupon->getAdvancedCoupon($this->request->post['advanced_coupon']);
         if (!$advanced_coupon_info) {
-            $this->error['warning'] = $this->language->get('error_advanced_coupon');
+            if (!$this->customer->getId() && $this->model_checkout_advanced_coupon->checkLoginRequired($this->request->post['advanced_coupon'])) {
+                $this->error['warning'] = $this->language->get('error_coupon_login');
+            } else {
+                $this->error['warning'] = $this->language->get('error_advanced_coupon');
+            }
         }
         if (!$this->error) {
             return true;

@@ -1,6 +1,33 @@
 <?php
 class ModelCheckoutAdvancedCoupon extends Model {
 	
+	public function checkLoginRequired($code) {
+
+                $loginRequired = false;
+            
+		$advanced_coupon_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "advanced_coupon c WHERE (c.code = '" . $this->db->escape($code) . "')");
+		
+		if ($advanced_coupon_query->num_rows) {
+                    foreach ($advanced_coupon_query->rows as $advanced_coupon_result) { 
+
+                            $advanced_coupon_options = unserialize($advanced_coupon_result['options']);
+
+                            unset($advanced_coupon_result['options']);
+
+                            $result = array_merge($advanced_coupon_result, $advanced_coupon_options);
+
+                            // Condition to display promotion when user logged in
+                            if ($result['logged']) {
+                                    $loginRequired = true;
+                            }
+
+                    }
+		}
+		
+		return $loginRequired;
+		
+	}
+	
 	public function getAdvancedCoupon($code) {
 			
 		$advanced_coupon_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "advanced_coupon c WHERE (c.code = '" . $this->db->escape($code) . "') AND ((c.date_start = '0000-00-00' OR c.date_start < NOW()) AND (c.date_end = '0000-00-00' OR c.date_end > NOW())) AND c.status = '1'");
