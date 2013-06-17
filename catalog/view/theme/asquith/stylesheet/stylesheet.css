@@ -443,6 +443,10 @@ table.radio label {
 	color: #000;
 	padding: 4px;
 }
+#logo .headerbuttons {
+	float: right;
+        padding-top: 20px;
+}
 #header .bottomRow {
 	text-align: right;
 }

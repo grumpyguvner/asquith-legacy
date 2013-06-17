@@ -50,7 +50,12 @@
 	  <?php
 	  if ($logo) {
 	  ?>
-	  <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
+	  <div id="logo">
+                <div class="headerbuttons">
+                      <a href="/free-shipping-offer"><img src="catalog/view/theme/asquith/image/freeshipping.jpg"></a>
+                </div>
+              <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a>
+          </div>
           <div class="strapline">CONTEMPORARY LAYERING IN ORGANIC COTTON &amp; BAMBOO FOR YOGA, PILATES AND LIVING IN ...</div>
 	  <?php } ?>
 	  <div class="topRow">

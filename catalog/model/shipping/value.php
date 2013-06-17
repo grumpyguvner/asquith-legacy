@@ -24,7 +24,7 @@ class ModelShippingValue extends Model {
 		
 			if ($status) {
 				$cost = '';
-				$value = $this->cart->getTotal();
+				$value = $this->cart->getTotal() - $this->cart->getTotalDiscount();
 				
 				$rates = explode(',', $this->config->get('value_' . $result['geo_zone_id'] . '_rate'));
 				

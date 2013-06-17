@@ -25,6 +25,9 @@ class ControllerModuleCart extends Controller {
 		}
 		
 		array_multisort($sort_order, SORT_ASC, $results);
+                
+                unset($this->session->data['discounts']);
+                $discounts = array();
 		
 		foreach ($results as $result) {
 			if ($this->config->get($result['code'] . '_status')) {
@@ -36,11 +39,18 @@ class ControllerModuleCart extends Controller {
 			$sort_order = array(); 
 		  
 			foreach ($total_data as $key => $value) {
+                                switch ($value['code']) {
+                                    case "advanced_coupon":
+                                    case "coupon":
+                                        $discounts[$value['title']] = $value['value'];
+                                }
 				$sort_order[$key] = $value['sort_order'];
 			}
 
 			array_multisort($sort_order, SORT_ASC, $total_data);			
-		}		
+		}	
+
+                $this->session->data['discounts'] = $discounts;
 		
 		$this->data['totals'] = $total_data;
 		
