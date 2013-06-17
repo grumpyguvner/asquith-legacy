@@ -11,6 +11,7 @@ $_['text_edit']          = 'Edit your account information';
 $_['text_password']      = 'Change your password';
 $_['text_address']       = 'Modify your address book entries';
 $_['text_wishlist']      = 'Modify your wish list';
+$_['text_recommend']     = 'Recommend Asquith London to your friends';
 $_['text_order']         = 'View your order history';
 $_['text_download']      = 'Downloads';
 $_['text_reward']        = 'Your Reward Points'; 

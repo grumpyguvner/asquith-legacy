@@ -52,7 +52,8 @@
 	  ?>
 	  <div id="logo">
                 <div class="headerbuttons">
-                      <a href="/free-shipping-offer"><img src="catalog/view/theme/asquith/image/freeshipping.jpg"></a>
+                      <a href="/free-shipping-offer" style="padding-right: 10px;"><img src="catalog/view/theme/asquith/image/freeshipping.jpg" alt="Free UK Shipping on orders over £50" title="Free UK Shipping on orders over £50"></a>
+                      <a href="/account/recommend"><img src="catalog/view/theme/asquith/image/recommend-your-friends.png" alt="Get £5 off you next order by recommending your friends" title="Get £5 off you next order by recommending your friends"></a>
                 </div>
               <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a>
           </div>
