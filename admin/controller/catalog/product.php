@@ -73,9 +73,15 @@ class ControllerCatalogProduct extends Controller {
 
     	$this->document->setTitle($this->language->get('heading_title'));
 		
-		$this->load->model('catalog/product');
+        $this->load->model('catalog/product');
 	
     	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+            
+            foreach ($this->request->post['product_image'] as &$image) {
+                if (empty($image['image']) && !empty($image['video'])) {
+                   $image['image'] = 'http://img.youtube.com/vi/' . $image['video'] . '/0.jpg'; 
+                }
+            }
 			$this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
 			
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -394,7 +400,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');		
 		$this->data['text_disabled'] = $this->language->get('text_disabled');		
 		$this->data['text_no_results'] = $this->language->get('text_no_results');		
-		$this->data['text_image_manager'] = $this->language->get('text_image_manager');		
+		$this->data['text_image_manager'] = $this->language->get('text_image_manager');	
 			
 		$this->data['column_image'] = $this->language->get('column_image');		
 		$this->data['column_name'] = $this->language->get('column_name');		
@@ -543,6 +549,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_percent'] = $this->language->get('text_percent');
 		$this->data['text_amount'] = $this->language->get('text_amount');
+                $this->data['text_link_youtube'] = $this->language->get('text_link_youtube');	                
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_meta_title'] = $this->language->get('entry_meta_title');
@@ -1049,32 +1056,46 @@ if (isset($this->request->post['giftwrap'])) {
 		} else {
 			$this->data['product_specials'] = array();
 		}
-		
-		if (isset($this->request->post['product_image'])) {
-			$product_images = $this->request->post['product_image'];
-		} elseif (isset($this->request->get['product_id'])) {
-			$product_images = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
-		} else {
-			$product_images = array();
-		}
-		
-		$this->data['product_images'] = array();
-		
-		foreach ($product_images as $product_image) {
-			if ($product_image['image'] && file_exists(DIR_IMAGE . $product_image['image'])) {
-				$image = $product_image['image'];
-			} else {
-				$image = 'no_image.jpg';
-			}
-			
-			$this->data['product_images'][] = array(
-				'image'      => $image,
-				'thumb'      => $this->model_tool_image->resize($image, 100, 100),
-				'sort_order' => $product_image['sort_order']
-			);
-		}
+                
+                /*         * *********************************************************************************************** */
+                if (isset($this->request->post['product_image'])) {
+                    $product_images_videos = array($this->request->post['product_image']);
+                } elseif (isset($this->request->get['product_id'])) {
+                    $product_images_videos = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
+                } else {
+                    $product_images_videos = array();
+                }
 
-		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+                $this->data['product_images_videos'] = array();
+
+                foreach ($product_images_videos as $product_image_video) {
+
+                    $video = '';
+                    $reference_number = '';
+                    $image = '';
+                    if (!empty($product_image_video['image']) && empty($product_image_video['video'])) {
+                        if (file_exists(DIR_IMAGE . $product_image_video['image'])) {
+                            $image = $product_image_video['image'];
+                        } else {
+                            $image = 'no_image.jpg';
+                        }
+                    } elseif (!empty($product_image_video['video']) && !empty($product_image_video['image'])) {
+                            $image = 'http://img.youtube.com/vi/' . $product_image_video['video'] . '/0.jpg';
+                            $video = 'http://www.youtube.com/watch?v=' . $product_image_video['video'];
+                            $reference_number = $product_image_video['video'];
+                    }
+
+                    $this->data['product_images_videos'][] = array(
+                        'image' => $image,
+                        'video' => $video,
+                        'reference_number' => $reference_number,
+                        'thumb' => $this->model_tool_image->resize($image, 100, 100),
+                        'sort_order' => $product_image_video['sort_order']
+                    );
+                }
+
+                $this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+                /*         * ******************************************************************************************** */
 
 		$this->load->model('catalog/download');
 		

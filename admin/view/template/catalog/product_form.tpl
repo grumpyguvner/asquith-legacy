@@ -631,19 +631,35 @@
                             </tr>
                         </thead>
                         <?php $image_row = 0; ?>
-                        <?php foreach ($product_images as $product_image) { ?>
-                        <tbody id="image-row<?php echo $image_row; ?>">
-                            <tr>
-                                <td class="left"><div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
-                                        <input type="hidden" name="product_image[<?php echo $image_row; ?>][image]" value="<?php echo $product_image['image']; ?>" id="image<?php echo $image_row; ?>" />
+                        <?php foreach ($product_images_videos as $product_image) { ?>
+                            <tbody id="image-row<?php echo $image_row; ?>">
+                              <tr>
+                                <td class="left">
+                                    <?php if (!empty($product_image['image']) && !empty($product_image['video'])) { ?>
+                                        <div class="image" style="text-align: center; width: 152px;">
+                                             <img src="<?php echo $product_image['image']; ?>" alt="" id="video_image<?php echo $image_row; ?>" height:="133px" width="133px" />
+                                             <input type="hidden" name="product_image[<?php echo $image_row; ?>][image]" value="<?php echo $product_image['image']; ?>" id="image<?php echo $image_row; ?>" />
+                                        </div>
+                                        <div class="video">
+                                             <?php echo $text_link_youtube; ?><input type="text" name="product_image[<?php echo $image_row; ?>][video]" value='<?php echo $product_image['reference_number'];  ?>' />
+                                        </div>
+                                    <?php } elseif (!empty($product_image['image']) && empty($product_image['video'])) { ?>
+
+                                        <div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
+                                            <input type="hidden" name="product_image[<?php echo $image_row; ?>][image]" value="<?php echo $product_image['image']; ?>" id="image<?php echo $image_row; ?>" />
+
                                         <br />
-                                        <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');"><?php echo $text_clear; ?></a></div></td>
+                                        <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');"><?php echo $text_clear; ?></a>
+                                        </div>
+                                    <?php } ?>
+
+                                </td>
                                 <td class="right"><input type="text" name="product_image[<?php echo $image_row; ?>][sort_order]" value="<?php echo $product_image['sort_order']; ?>" size="2" /></td>
                                 <td class="left"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
-                            </tr>
-                        </tbody>
-                        <?php $image_row++; ?>
-                        <?php } ?>
+                              </tr>
+                            </tbody>
+                            <?php $image_row++; ?>
+                            <?php } ?>
                         <tfoot>
                             <tr>
                                 <td colspan="2"></td>
@@ -1096,19 +1112,19 @@ modal: false
 var image_row = <?php echo $image_row; ?>;
 
 function addImage() {
-html  = '<tbody id="image-row' + image_row + '">';
-html += '  <tr>';
-html += '    <td class="left"><div class="image"><img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br /><a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a></div></td>';
-html += '    <td class="right"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" size="2" /></td>';
-html += '    <td class="left"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
-html += '  </tr>';
-html += '</tbody>';
+    html  = '<tbody id="image-row' + image_row + '">';
+	html += '  <tr>';
+	html += '    <td class="left"><div class="image"><img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br /><a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a></div><div style="float: right; width: 76%; padding-top: 64px;"><span style="color: #666666;">or upload a video from youtube: <span style="color: #000000;"><?php echo $text_link_youtube; ?></span><input type="text" id="video' + image_row + '" name="product_image[' + image_row + '][video]" /></span></div></td>';
+	html += '    <td class="right"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" size="2" /></td>';
+	html += '    <td class="left"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '  </tr>';
+	html += '</tbody>';
 	
-$('#images tfoot').before(html);
+	$('#images tfoot').before(html);
 	
-image_row++;
+	image_row++;
 }
-//--></script> 
+//--></script>  
 <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script> 
 <script type="text/javascript"><!--
 $('.date').datepicker({dateFormat: 'yy-mm-dd'});

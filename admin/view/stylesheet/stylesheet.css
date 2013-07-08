@@ -232,6 +232,10 @@ body > #container {
 .image img {
 	margin-bottom: 5px;
 }
+.video {
+    float: right;
+    margin-top: 58px;
+}
 .box {
 	margin-bottom: 15px;
 }

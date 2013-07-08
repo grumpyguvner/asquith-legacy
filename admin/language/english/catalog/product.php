@@ -14,6 +14,8 @@ $_['text_option']            = 'Option';
 $_['text_option_value']      = 'Option Value';
 $_['text_percent']           = 'Percentage';
 $_['text_amount']            = 'Fixed Amount';
+$_['text_link_youtube']      = 'http://www.youtube.com/watch?v=';
+$_['entry_youtube_url']      = 'Video Youtube';
 
 // Column
 $_['column_name']            = 'Product Name';

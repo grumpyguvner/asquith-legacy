@@ -16,3 +16,4 @@ Disallow: /404/
 Disallow: /?sort=
 Disallow: /index.php
 Disallow: /admin
+Disallow: /account

@@ -212,3 +212,7 @@ CREATE TABLE IF NOT EXISTS `oc_recommend` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`recommend_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+#### START 1.5.2.2
+
+ALTER TABLE `oc_product_image` ADD `video` varchar(255) COLLATE utf8_bin DEFAULT NULL AFTER `image`;

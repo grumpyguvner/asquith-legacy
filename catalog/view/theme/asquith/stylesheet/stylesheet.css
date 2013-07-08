@@ -926,12 +926,30 @@ div.product .more {
 }
 .product-info .left .image-additional {
 	margin-left: -13px;
+        clear: both;
+        overflow: hidden;
 }
 .product-info .left .image-additional a {
 	margin: 0 0 13px 13px;
 	display: inline-block;
+        z-index: 1;
+        background:#000;
+        border: 1px solid #E7E7E7;
+        position: relative;
 }
-    
+.product-info .left .image-additional a > img {
+    max-width: 100%;
+    height: auto;
+}
+.product-info .left .image-additional a .play-button {
+    display: block;
+    background: transparent url('../image/play_icon.png')  no-repeat center center;
+    background-color: rgba(255, 255, 255, .2);
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+}    
 .product-info .right {
 	float: right;
 	width: 577px;

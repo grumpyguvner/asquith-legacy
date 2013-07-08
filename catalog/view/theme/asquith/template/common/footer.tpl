@@ -38,7 +38,6 @@
         <p><a href="http://twitter.com/AsquithLondon" target="_blank" rel="me nofollow">Twitter</a></p>
 
         <p><a href="http://pinterest.com/asquithlondon/" target="_blank" rel="me nofollow">Pinterest</a></p>
-
         
     </div><div class="column">
         <h3><a href="<?php echo $account; ?>">Account</a></h3>

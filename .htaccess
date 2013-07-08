@@ -5,8 +5,8 @@ Options +FollowSymlinks
 
 RewriteEngine On
 
-RewriteCond %{HTTP_HOST} !^asquith.local$ [NC]
-RewriteRule ^(.*)$ http://asquith.local/$1 [R=301,L]
+#RewriteCond %{HTTP_HOST} !^www.asquithlondon.com$ [NC]
+#RewriteRule ^(.*)$ http://www.asquithlondon.com/$1 [R=301,L]
 
 # Prevent Directoy listing 
 Options -Indexes
@@ -24,3 +24,5 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
 RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
+
+Redirect 301 /html/THE-COLLECTION-l-17.html http://www.asquithlondon.com/shop-the-look

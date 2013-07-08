@@ -1,4 +1,0 @@
-asquith-opencart
-================
-
-Asquith Code

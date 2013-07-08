@@ -39,7 +39,6 @@
 	DD_belatedPNG.fix('#logo img');
 	</script>
 	<![endif]-->
-        <?php if ($data_layer) echo $data_layer; ?>
 	<?php echo $google_analytics; ?>
 	<script src="catalog/view/javascript/modernizr-2.5.3.min.js"></script>
 </head>

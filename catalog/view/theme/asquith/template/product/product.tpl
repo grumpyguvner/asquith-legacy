@@ -8,20 +8,32 @@
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content">
     <div class="product-info">
-        <?php if ($thumb || $images) { ?>
         <div class="left">
-            <?php if ($thumb) { ?>
-            <div class="image"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox" rel="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>
-            <?php } ?>
-            <?php if ($images) { ?>
-            <div class="image-additional">
-                <?php foreach ($images as $image) { ?>
-                <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="colorbox" rel="colorbox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
-                <?php } ?>
-            </div>
-            <?php } ?>
-        </div>
-        <?php } ?>
+                    <?php if ($thumb || $images) { ?>
+                        <div class="image" id="wrap-image">
+                            <?php if ($thumb) { ?>
+                                <img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" data-colorbox="" />
+                            <?php } ?>
+                        </div>
+                        <?php if ($images) { ?>
+                            <div class="image-additional">
+                                <?php
+                                if ($additional) {
+                                    ?><a href="<?php echo $popup; ?>" target="_blank" class="colorbox imageAdditional" rel="colorbox" data-main="<?php echo $thumb; ?>"><img src="<?php echo $additional; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" class="imageAdditional"/><?php
+                    }
+                    foreach ($images as $image) {
+                        if (empty($image['video'])) {
+                                        ?><a href="<?php echo $image['popup']; ?>" target="_blank" class="colorbox imageAdditional" rel="colorbox" data-main="<?php echo $image['main']; ?>"><img src="<?php echo $image['thumb']; ?>" alt="" /></a><?php
+                        } else {
+                                        ?><a href="http://www.youtube.com/watch?v=<?php echo $image['video']; ?>" class="videoAdditional" data-video="<?php echo $image['video']; ?>" target="_blank" style="line-height:<?php echo $additionalHeight; ?>px;height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"><img src="http://img.youtube.com/vi/<?php echo $image['video']; ?>/0.jpg" alt="" /><span class="play-button" style="height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"></span></a><?php
+                            }
+                        }
+                                ?>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
+
+                </div>
         <div class="right">
             <div style="min-height: 548px;">
                 <?php if ($manufacturer_logo) { ?>
@@ -406,6 +418,31 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
 <?php } ?>
 <?php } ?>
 <?php } ?>
+<script type="text/javascript">
+        
+    $(document).ready(function () {
+            
+        $('.image-additional').delegate('a.videoAdditional','click', function(){
+            $('.left .image').html('<iframe id="playingMovie" width="374" height="374" src="http://www.youtube.com/embed/' + $(this).data('video') + '?autoplay=1&rel=0&theme=light&autohide=1" frameborder="0" allowfullscreen></iframe>');
+            return false;
+        });
+            
+        $('.image-additional').delegate('a.imageAdditional','click', function(){
+            $('.left .image').html('<img src="' + $(this).data('main') + '" alt="" />');
+            return false;
+        });
+            
+        $('.left .image').delegate('img','click', function(){
+            $('.colorbox').colorbox({
+                overlayClose: true,
+                opacity: 0.5,
+                open: true
+            });
+        });
+        
+    });
+        
+</script>
 <script type="text/javascript"><!--
 $('#review .pagination a').live('click', function() {
 	$('#review').slideUp('slow');
