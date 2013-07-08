@@ -8,14 +8,7 @@
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content">
     <div class="product-info">
-        <div class="left">
-                    <?php if ($thumb || $images) { ?>
-                        <div class="image" id="wrap-image">
-                            <?php if ($thumb) { ?>
-                                <img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" data-colorbox="" />
-                            <?php } ?>
-                        </div>
-                        <?php if ($images) { ?>
+        <div class="left"><?php if ($images) { ?>
                             <div class="image-additional">
                                 <?php
                                 if ($additional) {
@@ -31,11 +24,16 @@
                                 ?>
                             </div>
                         <?php } ?>
+                    <?php if ($thumb || $images) { ?>
+                        <div class="image" id="wrap-image">
+                            <?php if ($thumb) { ?>
+                                <img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" data-colorbox="" />
+                            <?php } ?>
+                        </div>
                     <?php } ?>
-
                 </div>
         <div class="right">
-            <div style="min-height: 548px;">
+            <div>
                 <?php if ($manufacturer_logo) { ?>
                 <div class="manufacturer"><a href="<?php echo $manufacturers; ?>"><img src="<?php echo $manufacturer_logo; ?>" title="<?php echo $manufacturer; ?>" alt="<?php echo $manufacturer; ?>" id="image-manufacturer" /></a></div>
                 <?php } else { ?>
@@ -173,12 +171,14 @@
                     <?php } ?>
                 </div>
                 <?php } ?>
+                <div class="addToCart">
+                    <?php // echo $text_qty; ?>
+                    <input type="hidden" name="quantity" size="2" value="<?php echo $minimum; ?>" />
+                    <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
+                    &nbsp;<input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
+                </div>
                 <div class="cart">
-                    <div><?php // echo $text_qty; ?>
-                        <input type="hidden" name="quantity" size="2" value="<?php echo $minimum; ?>" />
-                        <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
-                        &nbsp;<input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
-                    </div>
+                    
                     <?php if ($minimum > 1) { ?>
                     <div class="minimum">&nbsp;<?php echo $text_minimum; ?></div>
                     <?php } ?>
@@ -423,7 +423,7 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
     $(document).ready(function () {
             
         $('.image-additional').delegate('a.videoAdditional','click', function(){
-            $('.left .image').html('<iframe id="playingMovie" width="374" height="374" src="http://www.youtube.com/embed/' + $(this).data('video') + '?autoplay=1&rel=0&theme=light&autohide=1" frameborder="0" allowfullscreen></iframe>');
+            $('.left .image').html('<iframe id="playingMovie" width="256" height="343" src="http://www.youtube.com/embed/' + $(this).data('video') + '?autoplay=1&rel=0&theme=light&autohide=1" frameborder="0" allowfullscreen></iframe>');
             return false;
         });
             

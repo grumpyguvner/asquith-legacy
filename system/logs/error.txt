@@ -13866,3 +13866,6 @@ Reference&#32;&#35;179&#46;6c15434d&#46;1367178494&#46;7c0a52e
 2013-07-08 14:14:06 - PHP Warning:  fopen(/home/antoniovillella/projects/asquith-opencart/system/cache/cache.currency.1373296446): failed to open stream: No such file or directory in /home/antoniovillella/projects/asquith-opencart/system/library/cache.php on line 36
 2013-07-08 14:14:06 - PHP Warning:  fwrite() expects parameter 1 to be resource, boolean given in /home/antoniovillella/projects/asquith-opencart/system/library/cache.php on line 38
 2013-07-08 14:14:06 - PHP Warning:  fclose() expects parameter 1 to be resource, boolean given in /home/antoniovillella/projects/asquith-opencart/system/library/cache.php on line 40
+2013-07-08 15:48:08 - PHP Notice:  Undefined index: giftwrap in /home/antoniovillella/projects/asquith-opencart/admin/model/catalog/product.php on line 128
+2013-07-08 15:48:08 - PHP Notice:  Undefined index: video in /home/antoniovillella/projects/asquith-opencart/admin/model/catalog/product.php on line 203
+2013-07-08 15:48:08 - PHP Notice:  Undefined index: video in /home/antoniovillella/projects/asquith-opencart/admin/model/catalog/product.php on line 203

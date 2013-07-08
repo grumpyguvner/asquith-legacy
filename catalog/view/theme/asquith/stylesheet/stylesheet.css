@@ -804,7 +804,7 @@ div.breadcrumb a:hover {
 	padding-top: 16px;
 }
 .product-list .image {
-	float: left;
+	float: inherit;
 	margin-right: 10px;
 }
 .product-list .image img {
@@ -813,6 +813,7 @@ div.breadcrumb a:hover {
 }
 .product-list .name {
 	margin-bottom: 3px;
+        clear: both;
 }
 .product-list .name a {
 	color: #38B0E3;
@@ -891,7 +892,7 @@ div.product .more {
 	font-weight: bold;
 }
 #relatedAlsoBought .product {
-	width: 176px;
+	width: 166px;
 }
 
 
@@ -917,21 +918,24 @@ div.product .more {
 }
 .product-info .left {
 	float: left;
-	width: 383px;
+	width: 328px;
 	margin-bottom: 20px;
 }
 .product-info .left .image {
 	border: 1px solid #BABABA;
 	margin-bottom: 13px;
+        display: inline-block;
+        vertical-align: top;
 }
 .product-info .left .image-additional {
 	margin-left: -13px;
-        clear: both;
         overflow: hidden;
+        display: inline-block;
+        vertical-align: top;
 }
 .product-info .left .image-additional a {
 	margin: 0 0 13px 13px;
-	display: inline-block;
+	display: block;
         z-index: 1;
         background:#000;
         border: 1px solid #E7E7E7;
@@ -940,6 +944,7 @@ div.product .more {
 .product-info .left .image-additional a > img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 .product-info .left .image-additional a .play-button {
     display: block;
@@ -952,12 +957,9 @@ div.product .more {
 }    
 .product-info .right {
 	float: right;
-	width: 577px;
+	width: 643px;
 	margin-bottom: 20px;
-}
-.product-info .right {
-	float: right;
-	width: 577px;
+        min-height: 0;
 }
 .product-info h1 {
 	margin-top: 0;
@@ -976,10 +978,17 @@ div.product .more {
 .product-info .price-new {
 	color: #f00;
 }
+.product-info .addToCart {
+        display: inline-block;
+}
+.product-info .addToCart input.button {
+        background-color: #ffdad2;
+}
 .product-info .options {
 	border-top: 1px solid #f2f2f2;
 	margin-top: 13px;
 	padding-top: 13px;
+        display: inline-block;
 }
 .product-info .option {
 	margin-bottom: 13px;
@@ -1045,7 +1054,7 @@ div.product .more {
 	margin-bottom: -1px;
 }
 .htabs a {
-	padding: 14px 23px;
+	padding: 7px 23px;
 	display: inline-block;
 	vertical-align: bottom;
 	font-weight: normal;
