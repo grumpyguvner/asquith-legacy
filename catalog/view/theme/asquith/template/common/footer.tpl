@@ -31,13 +31,14 @@
         <p><a href="<?php echo $informations[21]['href']; ?>"><?php echo $informations[21]['title']; ?></a></p>
         <p><a href="<?php echo $informations[22]['href']; ?>"><?php echo $informations[22]['title']; ?></a></p>
         
-        <p><a href="https://plus.google.com/102388213141542496784/posts" target="_blank">Google Plus</a></p>
+        <p><a href="https://plus.google.com/102388213141542496784/posts" target="_blank" rel="me nofollow">Google Plus</a></p>
 
-        <p><a href="https://www.facebook.com/pages/Asquith-London-Organic-Cotton-Bamboo-Lifestyle-and-Yoga-Clothing/170293469708750?sk=wall" target="_blank">Facebook</a></p>
+        <p><a href="https://www.facebook.com/pages/Asquith-London-Organic-Cotton-Bamboo-Lifestyle-and-Yoga-Clothing/170293469708750?sk=wall" target="_blank" rel="me nofollow">Facebook</a></p>
 
-        <p><a href="http://twitter.com/AsquithLondon" target="_blank">Twitter</a></p>
+        <p><a href="http://twitter.com/AsquithLondon" target="_blank" rel="me nofollow">Twitter</a></p>
 
-        <p><a href="http://pinterest.com/asquithlondon/" target="_blank"">Pinterest</a></p>
+        <p><a href="http://pinterest.com/asquithlondon/" target="_blank" rel="me nofollow">Pinterest</a></p>
+
         
     </div><div class="column">
         <h3><a href="<?php echo $account; ?>">Account</a></h3>
@@ -47,6 +48,8 @@
         <p><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></p>
 
         <p><a href="<?php echo $addresses; ?>"><?php echo $text_addresses; ?></a></p>
+
+        <p><a href="<?php echo $recommend; ?>"><?php echo $text_recommend; ?></a></p>
     </div>
 </div>
 <div id="payment_methods">

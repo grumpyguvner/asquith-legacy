@@ -88,7 +88,8 @@
                     &nbsp;
                   <?php } ?>
               </td>
-              <td class="right">[ <a onclick="sendVoucher('<?php echo $voucher['voucher_id']; ?>');"><?php echo $text_send; ?></a> ]
+              <td class="right">
+                <?php if ($voucher['theme'] != "") { ?>[ <a onclick="sendVoucher('<?php echo $voucher['voucher_id']; ?>');"><?php echo $text_send; ?></a> ]<?php } ?>
                 <?php foreach ($voucher['action'] as $action) { ?>
                 [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
                 <?php } ?></td>

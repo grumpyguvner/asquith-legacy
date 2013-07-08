@@ -42,6 +42,7 @@ class ControllerAccountAccount extends Controller {
     	$this->data['text_password'] = $this->language->get('text_password');
     	$this->data['text_address'] = $this->language->get('text_address');
 		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
+		$this->data['text_recommend'] = $this->language->get('text_recommend');
     	$this->data['text_order'] = $this->language->get('text_order');
     	$this->data['text_download'] = $this->language->get('text_download');
 		$this->data['text_reward'] = $this->language->get('text_reward');
@@ -53,6 +54,7 @@ class ControllerAccountAccount extends Controller {
     	$this->data['password'] = $this->url->link('account/password', '', 'SSL');
 		$this->data['address'] = $this->url->link('account/address', '', 'SSL');
 		$this->data['wishlist'] = $this->url->link('account/wishlist');
+		$this->data['recommend'] = $this->url->link('account/recommend');
     	$this->data['order'] = $this->url->link('account/order', '', 'SSL');
     	$this->data['download'] = $this->url->link('account/download', '', 'SSL');
 		$this->data['return'] = $this->url->link('account/return', '', 'SSL');

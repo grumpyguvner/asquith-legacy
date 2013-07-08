@@ -203,6 +203,10 @@ $registry->set('affiliate', new Affiliate($registry));
 if (isset($request->get['tracking']) && !isset($request->cookie['tracking'])) {
 	setcookie('tracking', $request->get['tracking'], time() + 3600 * 24 * 1000, '/');
 }
+
+if (isset($request->get['recommend']) && !isset($request->cookie['recommend'])) {
+	setcookie('recommend', $request->get['recommend'], time() + 3600 * 24 * 1000, '/');
+}
 		
 // Currency
 $registry->set('currency', new Currency($registry));

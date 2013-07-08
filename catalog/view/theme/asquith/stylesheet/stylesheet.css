@@ -443,6 +443,10 @@ table.radio label {
 	color: #000;
 	padding: 4px;
 }
+#logo .headerbuttons {
+	float: right;
+        padding-top: 20px;
+}
 #header .bottomRow {
 	text-align: right;
 }
@@ -832,10 +836,10 @@ div.breadcrumb a:hover {
 	font-size: 12px;
 }
 .product-list .price-old {
-	color: #F00;
 	text-decoration: line-through;
 }
 .product-list .price-new {
+	color: #F00;
 	font-weight: bold;
 }
 .product-list .price-tax {
@@ -880,10 +884,10 @@ div.product .more {
 	margin: 5px 0;
 }
 .product .price-old {
-	color: #F00;
 	text-decoration: line-through;
 }
 .product .price-new {
+	color: #F00;
 	font-weight: bold;
 }
 #relatedAlsoBought .product {
@@ -949,8 +953,10 @@ div.product .more {
 	font-size: 1.273em;
 }
 .product-info .price-old {
-	color: #7C217D;
 	text-decoration: line-through;
+}
+.product-info .price-new {
+	color: #f00;
 }
 .product-info .options {
 	border-top: 1px solid #f2f2f2;
@@ -1112,10 +1118,10 @@ div.product .more {
 }
 .compare-info .price-old {
 	font-weight: bold;
-	color: #F00;
 	text-decoration: line-through;
 }
 .compare-info .price-new {
+	color: #F00;
 	font-weight: bold;
 }
 /* wishlist */

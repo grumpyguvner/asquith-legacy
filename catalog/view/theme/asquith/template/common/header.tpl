@@ -39,6 +39,7 @@
 	DD_belatedPNG.fix('#logo img');
 	</script>
 	<![endif]-->
+        <?php if ($data_layer) echo $data_layer; ?>
 	<?php echo $google_analytics; ?>
 	<script src="catalog/view/javascript/modernizr-2.5.3.min.js"></script>
 </head>
@@ -49,7 +50,13 @@
 	  <?php
 	  if ($logo) {
 	  ?>
-	  <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
+	  <div id="logo">
+                <div class="headerbuttons">
+                      <a href="/free-shipping-offer" style="padding-right: 10px;"><img src="catalog/view/theme/asquith/image/freeshipping.jpg" alt="Free UK Shipping on orders over £50" title="Free UK Shipping on orders over £50"></a>
+                      <a href="/account/recommend"><img src="catalog/view/theme/asquith/image/recommend-your-friends.png" alt="Get £5 off you next order by recommending your friends" title="Get £5 off you next order by recommending your friends"></a>
+                </div>
+              <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a>
+          </div>
           <div class="strapline">CONTEMPORARY LAYERING IN ORGANIC COTTON &amp; BAMBOO FOR YOGA, PILATES AND LIVING IN ...</div>
 	  <?php } ?>
 	  <div class="topRow">

@@ -349,6 +349,15 @@ class Cart {
 
 		return $total;
   	}
+
+  	public function getTotalDiscount() {
+		$total = 0;
+                
+                foreach ($this->session->data['discounts'] as $key => $value) {
+                    $total = $total + ($value * -1);
+                }
+		return $total;
+  	}
 	  	
   	public function countProducts() {
 		$product_total = 0;

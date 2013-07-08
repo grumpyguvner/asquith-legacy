@@ -9,6 +9,8 @@ class Customer {
 	private $newsletter;
 	private $customer_group_id;
 	private $address_id;
+	private $affiliate_id;
+	private $recommend_id;
 	
   	public function __construct($registry) {
 		$this->config = $registry->get('config');
@@ -29,6 +31,8 @@ class Customer {
 				$this->newsletter = $customer_query->row['newsletter'];
 				$this->customer_group_id = $customer_query->row['customer_group_id'];
 				$this->address_id = $customer_query->row['address_id'];
+				$this->affiliate_id = $customer_query->row['affiliate_id'];
+				$this->recommend_id = $customer_query->row['recommend_id'];
 							
       			$this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '" . $this->db->escape(isset($this->session->data['cart']) ? serialize($this->session->data['cart']) : '') . "', wishlist = '" . $this->db->escape(isset($this->session->data['wishlist']) ? serialize($this->session->data['wishlist']) : '') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 			
@@ -90,6 +94,8 @@ class Customer {
 			$this->newsletter = $customer_query->row['newsletter'];
 			$this->customer_group_id = $customer_query->row['customer_group_id'];
 			$this->address_id = $customer_query->row['address_id'];
+                        $this->affiliate_id = $customer_query->row['affiliate_id'];
+                        $this->recommend_id = $customer_query->row['recommend_id'];
           	
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 			
@@ -153,6 +159,14 @@ class Customer {
 	
   	public function getAddressId() {
 		return $this->address_id;	
+  	}
+	
+  	public function getAffiliateId() {
+		return $this->affiliate_id;
+  	}
+	
+  	public function getRecommendId() {
+		return $this->recommend_id;
   	}
 	
   	public function getBalance() {
