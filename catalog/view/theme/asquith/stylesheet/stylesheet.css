@@ -789,6 +789,11 @@ div.breadcrumb a:hover {
 	float: right;
 	line-height: 1.454em;
 }
+#category_description {
+	width: 100%;
+	border-top: 1px solid #f2f2f2;
+	display: inline-block; *display: inline; *zoom: 1;
+}
 
 
 .product-list > div {
