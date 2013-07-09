@@ -26,6 +26,7 @@
 	<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/colorbox/colorbox.css" media="screen" />
 	<script src="catalog/view/javascript/jquery/jquery-1.7.1.min.js"></script>
 	<script src="catalog/view/javascript/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript" src="catalog/view/javascript/jquery/jquery.jcarousel.min.js"></script>
 	<script src="catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
 	<script src="catalog/view/javascript/jquery/colorbox/jquery.colorbox.js"></script>
 	<script src="catalog/view/javascript/jquery/tabs.js"></script>
