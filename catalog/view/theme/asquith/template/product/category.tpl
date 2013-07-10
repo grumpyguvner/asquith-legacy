@@ -33,7 +33,6 @@ if ($heading_title != 'Shop the Look')
 		  </div>
 		<?php } ?>
 		<h1><?php echo $heading_title; ?></h1>
-		<?php echo $description; ?>
 	</div>
 	<?php /* if ($categories) { ?>
   <h2><?php echo $text_refine; ?></h2>
@@ -85,6 +84,12 @@ if ($heading_title != 'Shop the Look')
     <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
   </div>
   <?php } ?>
+  <?php
+  if ($description)
+  {
+      echo '<div id="category_description">' . $description . '</div>';
+  }
+  ?>
   <?php } else { ?>
   <div id="shopthelook">
   <?php echo $content_bottom; ?>
