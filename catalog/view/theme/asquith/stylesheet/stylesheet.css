@@ -1800,3 +1800,94 @@ div.product .more {
     cursor: default;
 }
 /****************************** End Carousel Home Page ************************/
+
+/****************************** Start Carousel in fancybox ********************/
+#mainContainerTImage .thumbCarouselContainer {
+    height: 106px;
+    margin: 0 auto;
+    position: fixed;
+    top: 0;
+    width: 1050px;
+    text-align: center;
+    background: #fff;
+}
+#mainContainerTImage .mainContentImage {
+    padding: 106px 10px 20px 10px;
+    text-align: center;
+}
+#mainContainerTImage .mainContentImage .prevArrow {
+    background: url("../image/preview.png") no-repeat scroll 0 0 transparent;
+}
+#mainContainerTImage .mainContentImage .nextArrow {
+    background: url("../image/next.png") no-repeat scroll 0 0 transparent;
+}
+#mainContainerTImage .mainContentImage .prevArrow, #mainContainerTImage .mainContentImage .nextArrow {
+    width: 12px;
+    height: 18px;
+}
+#mainContainerTImage .mainContentImage .prevArrow, #mainContainerTImage .mainContentImage img, #mainContainerTImage .mainContentImage .nextArrow {
+   display: inline-block;
+}
+#thumbCarousel img {
+    height: 84px;
+    width: 62px;
+}
+#mainContainerTImage .thumbCarouselContainer .jcarousel-skin-tango {
+    display: inline-block;
+    margin: 0 auto;
+}
+#mainContainerTImage .thumbCarouselContainer .jcarousel-skin-tango .jcarousel-container {
+    width: 245px
+}
+#mainContainerTImage .thumbCarouselContainer .jcarousel-skin-tango .jcarousel-clip-horizontal, #mainContainerTImage .thumbCarouselContainer .jcarousel-skin-tango .jcarousel-item-horizontal {
+    height: 84px;
+}
+#mainContainerTImage .thumbCarouselContainer .jcarousel-skin-tango .jcarousel-clip-horizontal {
+    width: 228px;
+    margin-left: 6px;
+}
+#mainContainerTImage .thumbCarouselContainer .jcarousel-skin-tango .jcarousel-clip-horizontal #thumbCarousel {
+    min-width: 100%;
+}
+#mainContainerTImage .thumbCarouselContainer .jcarousel-skin-tango .jcarousel-prev-horizontal, #mainContainerTImage .thumbCarouselContainer .jcarousel-skin-tango .jcarousel-next-horizontal {
+    top:45px;
+    right: 0;
+}
+#mainContainerTImage .thumbCarouselContainer .jcarousel-skin-tango .jcarousel-prev-horizontal {
+    left: 0;
+}
+/****************************** End Carousel in fancybox **********************/
+#mainContainerTImage {    
+    position: relative;
+}
+#mainContainerTImage .footerImage {
+    background: #e7e5e6;
+    height: 34px;
+    position: fixed;
+    bottom: 0;
+    width: 1050px;
+}
+#mainContainerTImage .footerImage .prevNext {
+    float: left;
+}
+#mainContainerTImage .footerImage .descriptionImage {
+    text-align: center;
+}
+#mainContainerTImage .footerImage .closeButton {
+    text-align: right;
+}
+#mainContainerTImage .footerImage .prevNext, #mainContainerTImage .footerImage .descriptionImage, #mainContainerTImage .footerImage .closeButton {
+    display: inline-block;
+    width: 33%;
+    height: 100%;
+    vertical-align: middle;
+}
+#fancybox-title-inside {
+    display: none;
+}
+#fancybox-title {
+    display: none !important;
+}
+#fancybox {
+    text-align: center;
+}
