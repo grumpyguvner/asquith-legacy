@@ -927,10 +927,19 @@ div.product .more {
 	margin-bottom: 20px;
 }
 .product-info .left .image {
-	border: 1px solid #BABABA;
 	margin-bottom: 13px;
         display: inline-block;
         vertical-align: top;
+}
+.product-info .left .image img {
+	border: 1px solid #BABABA;
+	margin-bottom: 13px;
+}
+.product-info .left .image a {
+	color: #000;
+}
+.product-info .left .fullsize {
+    text-align: center;
 }
 .product-info .left .image-additional {
 	margin-left: 0;

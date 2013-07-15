@@ -13,13 +13,13 @@
                                 <ul id="imageCarousel" class="jcarousel-skin-tango">
                                 <?php
                                 if ($additional) {
-                                    ?><li><a href="<?php echo $popup; ?>" target="_blank" class="colorbox imageAdditional" rel="colorbox" data-main="<?php echo $thumb; ?>"><img src="<?php echo $additional; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" class="imageAdditional"/></li><?php
+                                    ?><li><a href="<?php echo $popup; ?>" target="_blank"  title="<?php echo $heading_title; ?>" class="colorbox imageAdditional" rel="colorbox" data-main="<?php echo $thumb; ?>"><img src="<?php echo $additional; ?>" class="imageAdditional"/></li><?php
                     }
                     foreach ($images as $image) {
                         if (empty($image['video'])) {
-                                        ?><li><a href="<?php echo $image['popup']; ?>" target="_blank" class="colorbox imageAdditional" rel="colorbox" data-main="<?php echo $image['main']; ?>"><img src="<?php echo $image['thumb']; ?>" alt="" /></a></li><?php
+                                        ?><li><a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" target="_blank" class="colorbox imageAdditional" rel="colorbox" data-main="<?php echo $image['main']; ?>"><img src="<?php echo $image['thumb']; ?>" /></a></li><?php
                         } else {
-                                        ?><li><a href="http://www.youtube.com/v/<?php echo $image['video']; ?>?rel=0&wmode=transparent" class="colorbox videoAdditional" rel="colorbox" data-video="<?php echo $image['video']; ?>" target="_blank" style="line-height:<?php echo $additionalHeight; ?>px;height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"><img src="http://img.youtube.com/vi/<?php echo $image['video']; ?>/0.jpg" alt="" /><span class="play-button" style="height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"></span></a></li><?php
+                                        ?><li><a href="http://www.youtube.com/v/<?php echo $image['video']; ?>?rel=0&wmode=transparent" class="colorbox videoAdditional" title="<?php echo $heading_title; ?>" rel="colorbox" data-video="<?php echo $image['video']; ?>" target="_blank" style="line-height:<?php echo $additionalHeight; ?>px;height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"><img src="http://img.youtube.com/vi/<?php echo $image['video']; ?>/0.jpg" alt="" /><span class="play-button" style="height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"></span></a></li><?php
                             }
                         }
                                 ?>
@@ -30,7 +30,10 @@
                         <div class="image" id="wrap-image">
                             <?php if ($thumb) { ?>
                                 <img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" data-colorbox="" />
+                                
                             <?php } ?>
+                                
+                        <div class="fullsize"><a href="#">VIEW FULL SIZE IMAGE</a></div>
                         </div>
                     <?php } ?>
                 </div>
@@ -429,7 +432,8 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
             } else {
                 if (!$colorboxOpen)
                 {
-                    $('.left .image').html('<img src="' + $(this).find('a').data('main') + '" alt="" />');
+                    $('.left .image img').remove();
+                    $('.left .image').prepend('<img src="' + $(this).find('a').data('main') + '" alt="" />');
                     $colorboxIndex = $('.image-additional li').index($(this));
                     return false;
                 } else {
@@ -438,7 +442,8 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
             }
         });
             
-        $('.left .image').delegate('img','click', function(){
+        $('.left .image').delegate('img, a','click', function(e){
+            e.preventDefault();
             $colorboxOpen = 1;
             $('.image-additional li a').eq($colorboxIndex).trigger('click');
         });
@@ -453,7 +458,8 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
             width: 1000,
             fixed: true,
             scalePhotos: false,
-            scrolling: true
+            scrolling: true,
+            thumbnails: true
         });
         
     });
