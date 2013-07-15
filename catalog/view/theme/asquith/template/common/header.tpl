@@ -29,9 +29,6 @@
         <script type="text/javascript" src="catalog/view/javascript/jquery/jquery.jcarousel.min.js"></script>
 	<script src="catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
 	<script src="catalog/view/javascript/jquery/colorbox/jquery.colorbox.js"></script>
-        <script type="text/javascript" src="catalog/view/javascript/jquery/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
-	<script type="text/javascript" src="catalog/view/javascript/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-	<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
 	<script src="catalog/view/javascript/jquery/tabs.js"></script>
 	<script src="catalog/view/javascript/common.js"></script>
 	<?php foreach ($scripts as $script) { ?>

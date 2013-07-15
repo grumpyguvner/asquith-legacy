@@ -33,6 +33,8 @@
 		opacity: 0.9,
 		preloading: true,
 		className: false,
+		thumbnails: false,
+		nav: false,
 
 		// alternate image paths for high-res displays
 		retinaImage: false,
@@ -102,6 +104,7 @@
 	$related,
 	$window,
 	$loaded,
+	$thumbs,
 	$loadingBay,
 	$loadingOverlay,
 	$title,
@@ -416,6 +419,7 @@
 			$loadingOverlay = $([$tag(div, "LoadingOverlay")[0],$tag(div, "LoadingGraphic")[0]]);
 			$wrap = $tag(div, "Wrapper");
 			$content = $tag(div, "Content").append(
+                                $thumbs = $tag(div, 'Thumbnails').append($('<div />').addClass('innerContainer')),
 				$title = $tag(div, "Title"),
 				$current = $tag(div, "Current"),
 				$prev = $('<button type="button"/>').attr({id:prefix+'Previous'}),
@@ -482,6 +486,11 @@
 						publicMethod.close();
 					}
 				});
+                                
+                                $thumbs.on('click', 'li', function () {
+                                    index = $thumbs.find('li').index($(this));
+                                    publicMethod.gotoGallery(index);
+                                });
 				
 				// Key Bindings
 				$(document).bind('keydown.' + prefix, function (e) {
@@ -701,7 +710,7 @@
 		var callback, speed = settings.transition === "none" ? 0 : settings.speed;
 
 		$loaded.empty().remove(); // Using empty first may prevent some IE7 issues.
-
+                
 		$loaded = $tag(div, 'LoadedContent').append(object);
 		
 		function getWidth() {
@@ -712,14 +721,21 @@
 		function getHeight() {
 			settings.h = settings.h || $loaded.height();
 			settings.h = settings.mh && settings.mh < settings.h ? settings.mh : settings.h;
-			return settings.h;
+                        
+                        if (settings.thumbnails)
+                        {
+                            return settings.h - $thumbs.outerHeight();
+                        } else {
+                            return settings.h;
+                        }
 		}
 		
 		$loaded.hide()
 		.appendTo($loadingBay.show())// content has to be appended to the DOM for accurate size calculations.
 		.css({width: getWidth(), overflow: settings.scrolling ? 'auto' : 'hidden'})
-		.css({height: getHeight()})// sets the height independently from the width in case the new width influences the value of height.
-		.prependTo($content);
+		.css({height: getHeight()});// sets the height independently from the width in case the new width influences the value of height.
+               
+                $thumbs.after($loaded);
 		
 		$loadingBay.hide();
 		
@@ -849,6 +865,22 @@
 
 	function load () {
 		var href, setResize, prep = publicMethod.prep, $inline, request = ++requests;
+                
+                
+                
+                if (settings.thumbnails)
+                {
+                    $thumbs.empty();
+                    $thumbsUl = $('<ul />');
+                    $related.each(function () {
+                       $thumbsLi = $('<li />').attr('class', $(this).attr('class')).css({height: $(this).height(), width: $(this).width()}).html($(this).html());
+                       $thumbsUl.append($thumbsLi);
+
+                    });
+                    $thumbs.append($thumbsUl).css({display: 'block', float: 'none'});
+                } else {
+                    $thumbs.css({display: 'none', float: 'none'});
+                }
 		
 		active = true;
 		
@@ -992,6 +1024,13 @@
 			index = getIndex(-1);
 			launch($related[index]);
 		}
+	};
+		
+	// Navigates to the next page/image in a set.
+	publicMethod.gotoGallery = function (i) {
+            if (!active && $related[1] && (settings.loop || index)) {
+                    launch($related[i]);
+            }
 	};
 
 	// Note: to use this within an iframe use the following format: parent.jQuery.colorbox.close();

@@ -19,7 +19,7 @@
                         if (empty($image['video'])) {
                                         ?><li><a href="<?php echo $image['popup']; ?>" target="_blank" class="colorbox imageAdditional" rel="colorbox" data-main="<?php echo $image['main']; ?>"><img src="<?php echo $image['thumb']; ?>" alt="" /></a></li><?php
                         } else {
-                                        ?><li><a href="http://www.youtube.com/v/<?php echo $images['video']; ?>?rel=0&wmode=transparent" class="colorbox videoAdditional" rel="colorbox" data-video="<?php echo $image['video']; ?>" target="_blank" style="line-height:<?php echo $additionalHeight; ?>px;height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"><img src="http://img.youtube.com/vi/<?php echo $image['video']; ?>/0.jpg" alt="" /><span class="play-button" style="height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"></span></a></li><?php
+                                        ?><li><a href="http://www.youtube.com/v/<?php echo $image['video']; ?>?rel=0&wmode=transparent" class="colorbox videoAdditional" rel="colorbox" data-video="<?php echo $image['video']; ?>" target="_blank" style="line-height:<?php echo $additionalHeight; ?>px;height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"><img src="http://img.youtube.com/vi/<?php echo $image['video']; ?>/0.jpg" alt="" /><span class="play-button" style="height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"></span></a></li><?php
                             }
                         }
                                 ?>
@@ -33,47 +33,8 @@
                             <?php } ?>
                         </div>
                     <?php } ?>
-            <a id="fancybox" href="#mainContainerTImage" title="Zoom Images">VIEW FULL SIZE IMAGE</a>
                 </div>
         
-        <div style="display: none;">
-		<div id="mainContainerTImage" style="overflow:auto;">
-                    <div class="thumbCarouselContainer">
-                    <?php if ($images) { ?>
-                        <ul id="thumbCarousel" class="jcarousel-skin-tango">
-                        <?php
-                        if ($additional) {
-                            ?><li><a class="imageAdditional" href="<?php echo $popup; ?>" target="_blank" data-main="<?php echo $thumb; ?>"><img src="<?php echo $additional; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" class="imageAdditional"/></li><?php
-                        }
-                        foreach ($images as $image) {
-                            if (empty($image['video'])) {
-                                            ?><li><a class="imageAdditional" href="<?php echo $image['popup']; ?>" target="_blank" data-main="<?php echo $image['main']; ?>"><img src="<?php echo $image['thumb']; ?>" alt="" /></a></li><?php
-                            } else {
-                                            ?><li><a class="videoAdditional" href="http://www.youtube.com/v/<?php echo $images['video']; ?>?rel=0&wmode=transparent" data-video="<?php echo $image['video']; ?>" target="_blank" style="line-height:<?php echo $additionalHeight; ?>px;height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"><img src="http://img.youtube.com/vi/<?php echo $image['video']; ?>/0.jpg" alt="" /><span class="play-button" style="height:<?php echo $additionalHeight; ?>px;width:<?php echo $additionalWidth; ?>px;"></span></a></li><?php
-                                }
-                        }
-                                ?>
-                        </ul>
-                    <?php } ?>
-                    </div>
-                    <div class="mainContentImage">
-                        <?php if ($popup) { ?>
-                                <div class="prevArrow"></div><img src="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /><div class="nextArrow"></div>
-                        <?php } ?>
-                    </div>
-                    <div class="footerImage">
-                        <div class="prevNext">
-                            prev next
-                        </div>
-                        <div class="descriptionImage">
-                            <?php echo $heading_title; ?>
-                        </div>
-                        <div class="closeButton">
-                            close button
-                        </div>
-                    </div>
-		</div>
-	</div>
         <div class="right">
             <div>
                 <?php if ($manufacturer_logo) { ?>
@@ -391,12 +352,6 @@
     <?php } ?>
     <?php echo $content_bottom; ?></div>
 <script type="text/javascript"><!--
-$('.colorbox').colorbox({
-	overlayClose: true,
-	opacity: 0.5
-});
-//--></script> 
-<script type="text/javascript"><!--
 $('#button-cart').bind('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/cart/add',
@@ -463,28 +418,43 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
 <script type="text/javascript">
         
     $(document).ready(function () {
+        $colorboxIndex = 0;
+        $colorboxOpen = 0;
             
-        $('.image-additional').delegate('a.videoAdditional','click', function(){
-            $('.left .image').html('<iframe id="playingMovie" width="256" height="343" src="http://www.youtube.com/embed/' + $(this).data('video') + '?autoplay=1&rel=0&theme=light&autohide=1" frameborder="0" allowfullscreen></iframe>');
-            return false;
+        $('.image-additional').delegate('li','click', function(event) {
+            if ($(this).find('a.videoAdditional').length)
+            {
+                $('.left .image').html('<iframe id="playingMovie" width="256" height="343" src="http://www.youtube.com/embed/' + $(this).find('a.videoAdditional').data('video') + '?autoplay=1&rel=0&theme=light&autohide=1" frameborder="0" allowfullscreen></iframe>');
+                   return false;
+            } else {
+                if (!$colorboxOpen)
+                {
+                    $('.left .image').html('<img src="' + $(this).find('a').data('main') + '" alt="" />');
+                    $colorboxIndex = $('.image-additional li').index($(this));
+                    return false;
+                } else {
+                    $colorboxOpen = 0;
+                }
+            }
         });
             
-        $('.image-additional').delegate('a.imageAdditional','click', function(){
-            $('.left .image').html('<img src="' + $(this).data('main') + '" alt="" />');
-            return false;
+        $('.left .image').delegate('img','click', function(){
+            $colorboxOpen = 1;
+            $('.image-additional li a').eq($colorboxIndex).trigger('click');
         });
-            
-   //     $('.left .image').delegate('img','click', function(){
-   //        $('.colorbox').colorbox({
-   //             overlayClose: true,
-   //             opacity: 0.5,
-   //             open: true,
-   //             maxWidth: '100%',
-   //             maxHeight: '100%'
-   //         });
-   //     });
-        $('.videoAdditional').colorbox({iframe:true, innerWidth:'640', innerHeight:'390'});
         
+        $('.colorbox').colorbox({
+            iframe: true,
+            overlayClose: true,
+            opacity: 0.5,
+            maxWidth: '100%',
+            maxHeight: '100%',
+            height: 1000,
+            width: 1000,
+            fixed: true,
+            scalePhotos: false,
+            scrolling: true
+        });
         
     });
         
@@ -559,48 +529,5 @@ jQuery(document).ready(function() {
          scroll: 3
     });
 });
-</script>
-<script type="text/javascript">
-    var browserWidth = $(document).width();
-    var browserHeight = $(document).height();
-    
-    if ( browserWidth < 1050 || browserWidth > 1050) {
-        var width = 1050;
-    }
-    
-    
-    if ( browserHeight < 1000) {
-        var height = 1000;
-    } else {
-        var height = $(document).height();
-    }
-    
-            $("#fancybox").fancybox({
-                    'titlePosition'		: 'inside',
-                    'transitionIn'		: 'none',
-                    'transitionOut'		: 'none',
-                    'width'                     : width,
-                    'height'                    : height,
-                    'padding'                   : '0',
-                    'margin'                    : '0',
-                    'autoScale'                 : false,
-                    'autoDimensions'            : false
-            });
-            
-            jQuery(document).ready(function() {
-                jQuery('#thumbCarousel').jcarousel({
-                    wrap: 'circular'
-                });
-            });
-            
-            $('.thumbCarouselContainer').delegate('a.imageAdditional','click', function(){
-                $('#mainContainerTImage .mainContentImage').html('<img src="' + $(this).data('main') + '" alt="" />');
-                return false;
-            });
-            
-            $('.thumbCarouselContainer').delegate('a.videoAdditional','click', function(){
-            $('#mainContainerTImage .mainContentImage').html('<iframe id="playingMovie" width="980px" height="785px" src="http://www.youtube.com/embed/' + $(this).data('video') + '?autoplay=1&rel=0&theme=light&autohide=1" frameborder="0" allowfullscreen></iframe>');
-            return false;
-        });
 </script>
 <?php echo $footer; ?>

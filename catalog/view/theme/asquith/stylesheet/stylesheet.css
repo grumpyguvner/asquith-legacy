@@ -944,14 +944,16 @@ div.product .more {
         z-index: 1;
         position: relative;
 }
-.product-info .left .image-additional a.videoAdditional {
+.videoAdditional {
 	background: #000;
+        position: relative;
+        z-index: 1;
 }
 .product-info .left .image-additional a > img {
     max-width: 100%;
     height: auto;
 }
-.product-info .left .image-additional a .play-button {
+.videoAdditional .play-button {
     display: block;
     background: transparent url('../image/play_icon.png')  no-repeat center center;
     background-color: rgba(255, 255, 255, .2);
