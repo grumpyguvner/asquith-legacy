@@ -31,6 +31,7 @@
                             <?php if ($thumb) { ?>
                                 <img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" data-colorbox="" />
                             <?php } ?>
+                                <div class="fullsize"><a href="#">VIEW FULL SIZE IMAGE</a></div>
                         </div>
                     <?php } ?>
                 </div>
@@ -424,12 +425,21 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
         $('.image-additional').delegate('li','click', function(event) {
             if ($(this).find('a.videoAdditional').length)
             {
-                $('.left .image').html('<iframe id="playingMovie" width="256" height="343" src="http://www.youtube.com/embed/' + $(this).find('a.videoAdditional').data('video') + '?autoplay=1&rel=0&theme=light&autohide=1" frameborder="0" allowfullscreen></iframe>');
-                   return false;
+                if (!$colorboxOpen)
+                {
+                    $('.left .image img, .left .image iframe').remove();
+                    $('.left .image').prepend('<iframe id="playingMovie" width="256" height="343" src="http://www.youtube.com/embed/' + $(this).find('a.videoAdditional').data('video') + '?autoplay=1&rel=0&theme=light&autohide=1" frameborder="0" allowfullscreen></iframe>');
+
+                    $colorboxIndex = $('.image-additional li').index($(this));
+                    return false;
+                } else {
+                    $colorboxOpen = 0;
+                }
             } else {
                 if (!$colorboxOpen)
                 {
-                    $('.left .image').html('<img src="' + $(this).find('a').data('main') + '" alt="" />');
+                    $('.left .image img, .left .image iframe').remove();
+                    $('.left .image').prepend('<img src="' + $(this).find('a').data('main') + '" alt="" />');
                     $colorboxIndex = $('.image-additional li').index($(this));
                     return false;
                 } else {
@@ -438,7 +448,8 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
             }
         });
             
-        $('.left .image').delegate('img','click', function(){
+        $('.left .image').delegate('img, a','click', function(e){
+            e.preventDefault();
             $colorboxOpen = 1;
             $('.image-additional li a').eq($colorboxIndex).trigger('click');
         });
