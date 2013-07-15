@@ -918,8 +918,8 @@ div.product .more {
 /* Product */
 .product-info {
     position: relative;
-    display: inline-block; *display: inline; *zoom: 1;
     width: 100%;
+    display: inline-block; *display: inline; *zoom: 1;
 }
 .product-info .left {
 	float: left;
@@ -928,8 +928,8 @@ div.product .more {
 }
 .product-info .left .image {
 	margin-bottom: 13px;
-        display: inline-block;
         vertical-align: top;
+        display: inline-block; *display: inline; *zoom: 1;
 }
 .product-info .left .image img {
 	border: 1px solid #BABABA;
@@ -944,8 +944,8 @@ div.product .more {
 .product-info .left .image-additional {
 	margin-left: 0;
         overflow: hidden;
-        display: inline-block;
         vertical-align: top;
+        display: inline-block; *display: inline; *zoom: 1;
 }
 .product-info .left .image-additional a {
 	margin: 0 0 13px;
@@ -1006,18 +1006,18 @@ div.product .more {
 }
 .product-info .options {
 	padding-top: 13px;
-        display: inline-block;
+        display: inline-block; *display: inline; *zoom: 1;
 }
 .product-info .option {
 	margin-bottom: 13px;
 }
 
 .product-info .option-image {
-    display: inline-block; *display: inline; *zoom: 1;
 	vertical-align: top;
+    display: inline-block; *display: inline; *zoom: 1;
 }
 .product-info .options .label {
-	display: inline-block;
+	display: inline-block; *display: inline; *zoom: 1;
 	width: 80px;
 	vertical-align: middle;
 	text-transform: uppercase;
