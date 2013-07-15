@@ -873,7 +873,12 @@
                     $thumbs.empty();
                     $thumbsUl = $('<ul />');
                     $related.each(function () {
-                       $thumbsLi = $('<li />').attr('class', $(this).attr('class')).css({height: $(this).height(), width: $(this).width()}).html($(this).html());
+//                       $thumbsLi = $('<li />').attr('class', $(this).attr('class')).css({height: $(this).height(), width: $(this).width()}).html($(this).html());
+                       $thumbsLi = $('<li />').css({height: $(this).height(), width: $(this).width()}).html($(this).html());
+                       if ($(this).hasClass('videoAdditional'))
+                       {
+                             $thumbsLi.addClass('videoAdditional');
+                       }
                        $thumbsUl.append($thumbsLi);
 
                     });
