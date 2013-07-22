@@ -1787,10 +1787,10 @@ div.product .more {
     width: 18px;
 }
 .jcarousel-skin-tango .jcarousel-next-vertical:hover, .jcarousel-skin-tango .jcarousel-next-vertical:focus {
-    background-position: 0 -32px;
+    /* background-position: 0 -32px; */
 }
 .jcarousel-skin-tango .jcarousel-next-vertical:active {
-    background-position: 0 -64px;
+    /* background-position: 0 -64px; */
 }
 .jcarousel-skin-tango .jcarousel-next-disabled-vertical, .jcarousel-skin-tango .jcarousel-next-disabled-vertical:hover, .jcarousel-skin-tango .jcarousel-next-disabled-vertical:focus, .jcarousel-skin-tango .jcarousel-next-disabled-vertical:active {
     background-position: 0 2px;
@@ -1806,10 +1806,10 @@ div.product .more {
     width: 18px;
 }
 .jcarousel-skin-tango .jcarousel-prev-vertical:hover, .jcarousel-skin-tango .jcarousel-prev-vertical:focus {
-    background-position: 0 -32px;
+    /* background-position: 0 -32px; */
 }
 .jcarousel-skin-tango .jcarousel-prev-vertical:active {
-    background-position: 0 -64px;
+    /* background-position: 0 -64px; */
 }
 .jcarousel-skin-tango .jcarousel-prev-disabled-vertical, .jcarousel-skin-tango .jcarousel-prev-disabled-vertical:hover, .jcarousel-skin-tango .jcarousel-prev-disabled-vertical:focus, .jcarousel-skin-tango .jcarousel-prev-disabled-vertical:active {
     background-position: 0 0;

@@ -112,6 +112,8 @@
 	$slideshow,
 	$next,
 	$prev,
+	$nextBig,
+	$prevBig,
 	$close,
 	$groupControls,
 	$events = $('<a/>'),
@@ -424,10 +426,12 @@
 				$current = $tag(div, "Current"),
 				$prev = $('<button type="button"/>').attr({id:prefix+'Previous'}),
 				$next = $('<button type="button"/>').attr({id:prefix+'Next'}),
+				$prevBig = $tag(div, 'PreviousBig'),
+				$nextBig = $tag(div, 'NextBig'),
 				$slideshow = $tag('button', "Slideshow"),
 				$loadingOverlay
 			);
-
+                        
 			$close = $('<button type="button"/>').attr({id:prefix+'Close'});
 			
 			$wrap.append( // The 3x3 Grid that makes up Colorbox
@@ -438,7 +442,9 @@
 				),
 				$tag(div, false, 'clear:left').append(
 					$leftBorder = $tag(div, "MiddleLeft"),
+                                        $prevBig,
 					$content,
+                                        $nextBig,
 					$rightBorder = $tag(div, "MiddleRight")
 				),
 				$tag(div, false, 'clear:left').append(
@@ -476,6 +482,12 @@
 					publicMethod.next();
 				});
 				$prev.click(function () {
+					publicMethod.prev();
+				});
+				$nextBig.click(function () {
+					publicMethod.next();
+				});
+				$prevBig.click(function () {
 					publicMethod.prev();
 				});
 				$close.click(function () {
