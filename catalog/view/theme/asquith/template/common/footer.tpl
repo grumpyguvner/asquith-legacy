@@ -57,5 +57,6 @@
 <div id="powered">
     <?php echo $powered; ?>
 </div>
+<?php echo $welcome_popup; ?>
 </body>
 </html>

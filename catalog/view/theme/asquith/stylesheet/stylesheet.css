@@ -1907,3 +1907,124 @@ div.product .more {
 #fancybox {
     text-align: center;
 }
+/********** Welcome popup *************/
+#one-time-offer h1 {
+    border-bottom: 1px solid #D3D2D2;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.077em;
+    line-height: 24px;
+    margin: 0;
+    padding: 0 0 12px;
+    text-align: center;
+    text-transform: uppercase;
+}
+#one-time-offer form p {
+    color: #000000;
+    font: 13px/22px "futura-pt",Futura,"Trebuchet MS",Arial,sans-serif;
+    letter-spacing: 0.04em;
+    margin: 0 0 1em;
+    word-spacing: 0.04em;
+}
+.newsletter-popover .introduction {
+    margin: 0 auto;
+    padding: 20px 0 10px;
+    text-align: left;
+    width: 555px;
+}
+.newsletter-popover .buttons-set {
+/*    float: right;
+    margin: 26px 0 0;
+    width: 100%;*/
+}
+.newsletter-popover .buttons-set .button {
+/*    float: left;
+    margin: 0 0 0 80px;*/
+}
+.newsletter-popover .control {
+    display: none;
+}
+.newsletter-popover .form-list {
+    margin: 0 12px;
+}
+.newsletter-popover .form-list .field {
+    float: left;
+    width: 266px;
+}
+.newsletter-popover .form-list li {
+    margin-bottom: 8px;
+}
+.newsletter-popover .form-list .input-box {
+    width: 266px;
+}
+.newsletter-popover .form-list .input-box input {
+    vertical-align: middle;
+}
+.newsletter-popover .form-list .name-lastname, .newsletter-popover .form-list .pilatesYoga {
+    margin-left: 24px;
+}
+.form-list .pilatesYoga .input-box {
+    margin-top: 10px;
+}
+.newsletter-popover label em {
+    display: none;
+}
+.newsletter-popover p.acknowledge {
+    float: right;
+    margin: 0;
+    text-align: center;
+    width: 284px;
+}
+.form-list input.input-text {
+    border: 1px solid #D3D2D2;
+    height: 23px;
+    padding: 0 5px;
+    width: 254px;
+}
+.form-list .input-box {
+    clear: both;
+    display: block;
+    width: 260px;
+}
+.form-list ul, .form-list {
+    list-style: none outside none;
+    padding: 0;
+}
+.form-list li {
+    clear: both;
+    float: left;
+    margin: 0 0 10px;
+    padding: 0;
+    text-align: left;
+}
+
+.fieldset {
+    clear: both;
+    float: left;
+    width: 100%;
+}
+
+li label {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 26px;
+    position: relative;
+    text-transform: uppercase;
+}
+label.required em {
+    /*display: inline-block;*/
+    line-height: 1.8;
+    position: absolute;
+    right: -10px;
+    top: 0;
+    width: 0.8em;
+}
+#cboxNextBig, #cboxPreviousBig {
+   display: none; 
+}
+.form-list .pilatesYoga span {
+    margin-left: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+/********* End Welcome popup *********/
