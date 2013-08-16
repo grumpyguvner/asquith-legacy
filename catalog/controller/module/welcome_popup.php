@@ -4,7 +4,7 @@ class ControllerModuleWelcomePopup extends Controller {
 
     public function index() {
         if ($this->extensions->isInstalled('welcome_popup', 'module') && $this->config->get('welcome_popup_status')) {
-            
+            if (!$this->request->cookie['welcome_popup'] || $this->request->cookie['welcome_popup'] != $this->config->get('welcome_popup_timestamp')) {
                 if (!$this->customer->isLogged()) {
 
                     $this->language->load('module/welcome_popup');
@@ -27,6 +27,7 @@ class ControllerModuleWelcomePopup extends Controller {
                 setcookie('welcome_popup', $this->config->get('welcome_popup_timestamp'));
             
         }
+    }
     }
 
 }
