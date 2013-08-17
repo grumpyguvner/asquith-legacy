@@ -4,7 +4,7 @@ class ControllerModuleWelcomePopup extends Controller {
 
     public function index() {
         if ($this->extensions->isInstalled('welcome_popup', 'module') && $this->config->get('welcome_popup_status')) {
-            if (!$this->request->cookie['welcome_popup'] || $this->request->cookie['welcome_popup'] != $this->config->get('welcome_popup_timestamp')) {
+            if (!isset($this->request->cookie['welcome_popup']) || $this->request->cookie['welcome_popup'] != $this->config->get('welcome_popup_timestamp')) {
                 if (!$this->customer->isLogged()) {
 
                     $this->language->load('module/welcome_popup');
@@ -24,7 +24,7 @@ class ControllerModuleWelcomePopup extends Controller {
 
                     $this->render();
                 }
-                setcookie('welcome_popup', $this->config->get('welcome_popup_timestamp'));
+                setcookie('welcome_popup', $this->config->get('welcome_popup_timestamp'), time() + 60 * 60 * 24 * 30, '/', $this->request->server['HTTP_HOST']);
             
         }
     }
