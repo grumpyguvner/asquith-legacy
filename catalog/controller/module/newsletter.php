@@ -43,7 +43,7 @@ class ControllerModuleNewsletter extends Controller {
 			$this->request->get['subscribe'] = true;
 		}
                 
-                if ($this->request->get['listId']) {
+                if (isset($this->request->get['listId'])) {
                     $this->config->set('newsletter_mailchimp_listid', $this->request->get['listId']);
                 }
                 
