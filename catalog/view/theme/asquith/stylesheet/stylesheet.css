@@ -70,13 +70,13 @@ body {
 	font-size: .688em;
 }
 p {
-    -ms-word-break: break-all;
-        word-break: break-all;
+    -ms-word-break: normal;
+        word-break: normal;
         /* Non standard for webkit */
-        word-break: break-word;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-            hyphens: auto;
+        word-break: normal;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+            hyphens: none;
 }
 h1 {
 	font-size: 1.636em;
@@ -1915,7 +1915,7 @@ div.product .more {
     letter-spacing: 0.077em;
     line-height: 24px;
     margin: 0;
-    padding: 0 0 12px;
+    padding: 5px 0 12px;
     text-align: center;
     text-transform: uppercase;
 }
@@ -1928,9 +1928,12 @@ div.product .more {
 }
 .newsletter-popover .introduction {
     margin: 0 auto;
-    padding: 20px 0 10px;
+    padding: 10px 0px;
     text-align: left;
     width: 555px;
+}
+.newsletter-popover .introduction .small {
+    font-size: 80%;
 }
 .newsletter-popover .buttons-set {
 /*    float: right;
@@ -1938,8 +1941,7 @@ div.product .more {
     width: 100%;*/
 }
 .newsletter-popover .buttons-set .button {
-/*    float: left;
-    margin: 0 0 0 80px;*/
+    float: right;
 }
 .newsletter-popover .control {
     display: none;
@@ -1960,7 +1962,9 @@ div.product .more {
 .newsletter-popover .form-list .input-box input {
     vertical-align: middle;
 }
-.newsletter-popover .form-list .name-lastname, .newsletter-popover .form-list .pilatesYoga {
+.newsletter-popover .form-list .name-lastname,
+.newsletter-popover .form-list .pilatesYoga,
+.newsletter-popover .form-list .submit-field {
     margin-left: 24px;
 }
 .form-list .pilatesYoga .input-box {
