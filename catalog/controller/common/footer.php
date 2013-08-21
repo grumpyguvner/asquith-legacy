@@ -57,7 +57,9 @@ class ControllerCommonFooter extends Controller {
 		} else {
 			$this->template = 'default/template/common/footer.tpl';
 		}
-		
+		$this->children = array(
+                    'module/welcome_popup'
+                );
 		$this->render();
 	}
 }

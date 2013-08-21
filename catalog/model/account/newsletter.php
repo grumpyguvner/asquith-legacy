@@ -14,7 +14,11 @@ class ModelAccountNewsletter extends Model {
         {
             $mailchimp = new mailchimp($this->config->get('newsletter_mailchimp_apikey'));
             
-            $retval = $mailchimp->listSubscribe($this->config->get('newsletter_mailchimp_listid'), $email, array(), 'html', $this->config->get('newsletter_mailchimp_double_optin'), $this->config->get('newsletter_mailchimp_update_existing'), true, $this->config->get('newsletter_mailchimp_send_welcome'));
+            $fields = array();
+            if ($name) $fields['FNAME'] = $name;
+            if ($name2) $fields['LNAME'] = $name2;
+            
+            $retval = $mailchimp->listSubscribe($this->config->get('newsletter_mailchimp_listid'), $email, $fields, 'html', $this->config->get('newsletter_mailchimp_double_optin'), $this->config->get('newsletter_mailchimp_update_existing'), true, $this->config->get('newsletter_mailchimp_send_welcome'));
  
             if ($mailchimp->errorCode){
                 //echo "Unable to load listSubscribe()!\n";

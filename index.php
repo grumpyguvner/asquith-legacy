@@ -32,6 +32,7 @@ require_once(DIR_SYSTEM . 'library/tax.php');
 require_once(DIR_SYSTEM . 'library/weight.php');
 require_once(DIR_SYSTEM . 'library/length.php');
 require_once(DIR_SYSTEM . 'library/cart.php');
+require_once(DIR_SYSTEM . 'library/extensions.php');
 
 // Registry
 $registry = new Registry();
@@ -140,6 +141,9 @@ $registry->set('session', $session);
 
 // Language Detection
 $languages = array();
+
+// Extensions
+$registry->set('extensions', new Extensions($registry)); 
 
 $query = $db->query("SELECT * FROM " . DB_PREFIX . "language WHERE status = '1'"); 
 
