@@ -9,7 +9,7 @@ class ModelCheckoutVoucher extends Model {
 	public function getVoucher($code) {
 		$status = true;
 		
-		$voucher_query = $this->db->query("SELECT *, vtd.name AS theme, vtd.email_subject, vtd.email_greeting, vtd.email_from, vtd.email_message, vtd.email_redeem, vtd.email_footer AS text FROM " . DB_PREFIX . "voucher v LEFT JOIN " . DB_PREFIX . "voucher_theme vt ON (v.voucher_theme_id = vt.voucher_theme_id) LEFT JOIN " . DB_PREFIX . "voucher_theme_description vtd ON (vt.voucher_theme_id = vtd.voucher_theme_id) WHERE v.code = '" . $this->db->escape($code) . "' AND vtd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND v.status = '1'");
+		$voucher_query = $this->db->query("SELECT *, vtd.name AS theme, vtd.email_subject, vtd.email_greeting, vtd.email_from, vtd.email_message, vtd.email_redeem, vtd.email_footer AS text FROM " . DB_PREFIX . "voucher v LEFT JOIN " . DB_PREFIX . "voucher_theme vt ON (v.voucher_theme_id = vt.voucher_theme_id) LEFT JOIN " . DB_PREFIX . "voucher_theme_description vtd ON (vt.voucher_theme_id = vtd.voucher_theme_id AND vtd.language_id = '" . (int)$this->config->get('config_language_id') . "') WHERE v.code = '" . $this->db->escape($code) . "' AND v.status = '1'");
 		
 		if ($voucher_query->num_rows) {
 			if ($voucher_query->row['order_id']) {
