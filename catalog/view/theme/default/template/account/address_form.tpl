@@ -47,7 +47,7 @@
             <?php } ?></td>
         </tr>
         <tr>
-          <td><span class="required">*</span> <?php echo $entry_postcode; ?></td>
+          <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
           <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
             <?php if ($error_postcode) { ?>
             <span class="error"><?php echo $error_postcode; ?></span>
@@ -101,5 +101,5 @@
   <?php echo $content_bottom; ?></div>
 <script type="text/javascript"><!--
 $('select[name=\'zone_id\']').load('index.php?route=account/address/zone&country_id=<?php echo $country_id; ?>&zone_id=<?php echo $zone_id; ?>');
-//--></script> 
+//--></script>
 <?php echo $footer; ?>
