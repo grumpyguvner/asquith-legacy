@@ -24,7 +24,7 @@
     <td><input type="text" name="city" value="<?php echo $city; ?>" class="large-field" /></td>
   </tr>
   <tr>
-    <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
+    <td><span id="postcode-required1" class="required">*</span> <?php echo $entry_postcode; ?></td>
     <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" class="large-field" /></td>
   </tr>
   <tr>
@@ -67,9 +67,9 @@ $('#shipping-address select[name=\'zone_id\']').load('index.php?route=checkout/g
             },			
             success: function(json) {
                 if (json['postcode_required'] == '1') {
-                    $('#postcode-required').show();
+                    $('#postcode-required1').show();
                 } else {
-                    $('#postcode-required').hide();
+                    $('#postcode-required1').hide();
                 }
 			
                 html = '<option value=""><?php echo $text_select; ?></option>';

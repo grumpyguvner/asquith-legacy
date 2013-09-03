@@ -190,6 +190,7 @@ class ControllerCheckoutGuestShipping extends Controller {
 	
 		$this->response->setOutput($output);
   	}
+    
     public function country() {
         $json = array();
 
