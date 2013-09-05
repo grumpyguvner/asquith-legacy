@@ -1,7 +1,7 @@
 /.htaccess
 
-config_*.php
-admin/config_*.php
+/config*.php
+/admin/config*.php
 
 redirects.php
 
@@ -13,4 +13,4 @@ redirects.php
 /system/logs/*
 
 .DS_Store
-/nbproject 
+/nbproject
