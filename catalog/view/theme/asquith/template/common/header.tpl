@@ -46,54 +46,53 @@
 <body>
 <div id="notification"></div>
 <div id="container">
-	<div id="header">
-	  <?php
-	  if ($logo) {
-	  ?>
-	  <div id="logo">
-                <div class="headerbuttons">
-                      <a href="/free-shipping-offer" style="padding-right: 10px;"><img src="catalog/view/theme/asquith/image/freeshipping.jpg" alt="Free UK Shipping on orders over £50" title="Free UK Shipping on orders over £50"></a>
-                      <a href="/account/recommend"><img src="catalog/view/theme/asquith/image/recommend-your-friends.png" alt="Get £5 off you next order by recommending your friends" title="Get £5 off you next order by recommending your friends"></a>
+    <div id="header">
+        <div id="logo">
+            <?php
+            if ($logo) {
+                ?><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a>
+            <?php } ?>
+            <div class="topRow">
+                <div class="socialMedia">
+                    <a href="https://plus.google.com/b/102388213141542496784/I" target="_blank"><img src="catalog/view/theme/asquith/image/googleplus.png"></a>
+                    <a href="https://www.facebook.com/pages/Asquith-London-Organic-Cotton-Bamboo-Lifestyle-and-Yoga-Clothing/170293469708750?sk=wall" target="_blank"><img src="catalog/view/theme/asquith/image/facebook.gif"></a>
+                    <a href="http://twitter.com/AsquithLondon" target="_blank"><img src="catalog/view/theme/asquith/image/twitter.gif"></a>
+                    <a href="http://pinterest.com/asquithlondon/" target="_blank"><img src="catalog/view/theme/asquith/image/big-p-button.png" width="20" alt="Follow Me on Pinterest" /></a>
                 </div>
-              <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a>
-          </div>
-          <div class="strapline">CONTEMPORARY LAYERING IN ORGANIC COTTON &amp; BAMBOO FOR YOGA, PILATES AND LIVING IN ...</div>
-	  <?php } ?>
-	  <div class="topRow">
-	  	<div class="socialMedia">
-	  		<a href="https://plus.google.com/b/102388213141542496784/I" target="_blank"><img src="catalog/view/theme/asquith/image/googleplus.png"></a>
-	  		<a href="https://www.facebook.com/pages/Asquith-London-Organic-Cotton-Bamboo-Lifestyle-and-Yoga-Clothing/170293469708750?sk=wall" target="_blank"><img src="catalog/view/theme/asquith/image/facebook.gif"></a>
-	  		<a href="http://twitter.com/AsquithLondon" target="_blank"><img src="catalog/view/theme/asquith/image/twitter.gif"></a>
-	  		<a href="http://pinterest.com/asquithlondon/" target="_blank"><img src="catalog/view/theme/asquith/image/big-p-button.png" width="20" alt="Follow Me on Pinterest" /></a>
-	  	</div>
-	  	<div class="links">
-	  		<a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a>
-	  		<a href="<?php echo $account; ?>"><?php echo $text_account; ?></a>
-	  		<?php
-	  		if (!$logged)
-	  		{
-	  		?>
-	  		<a href="account/register">Register</a>
-	  		<?php
-	  		} // end if
-	  		?>
-	  		
-	  	</div>
-	  	<?php echo $cart; ?>
-	  </div>
-	  <div class="bottomRow">
-	  		<?php echo $currency; ?>
-			<div id="header_newsletter_wrapper">
-                <form action="/index.php" method="get" id="header_newsletter_form" target="_blank">
-                	<div id="header_newsletter" class="header_input">
-                    <input type="hidden" name="route" value="module/newsletter/callback">
-                    <input type="hidden" name="subscribe" value="1">
-                    <input type="email" id="newsletter_email" name="email" placeholder="Email newsletter signup"><a class="action" href="#" onclick="$('#header_newsletter_form').trigger('submit');return false;">GO</a>
-                	</div>
-                </form>
+                <div class="links">
+                    <a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a>
+                    <a href="<?php echo $account; ?>"><?php echo $text_account; ?></a>
+                    <?php
+                    if (!$logged) {
+                        ?>
+                        <a href="account/register">Register</a>
+                        <?php
+                    } // end if
+                    ?>
+                            
+                </div>
+                <?php echo $cart; ?>
             </div>
-	  </div>
-	</div>
+            <div class="headerbuttons">
+                <a href="/free-shipping-offer" style="padding-right: 10px;"><img src="catalog/view/theme/asquith/image/freeshipping.jpg" alt="Free UK Shipping on orders over £50" title="Free UK Shipping on orders over £50"></a>
+                <a href="/account/recommend"><img src="catalog/view/theme/asquith/image/recommend-your-friends.png" alt="Get £5 off you next order by recommending your friends" title="Get £5 off you next order by recommending your friends"></a>
+                <div class="bottomRow">
+                    <?php echo $currency; ?>
+                    <div id="header_newsletter_wrapper">
+                        <form action="/index.php" method="get" id="header_newsletter_form" target="_blank">
+                            <div id="header_newsletter" class="header_input">
+                                <input type="hidden" name="route" value="module/newsletter/callback">
+                                <input type="hidden" name="subscribe" value="1">
+                                <input type="email" id="newsletter_email" name="email" placeholder="Email newsletter signup"><a class="action" href="#" onclick="$('#header_newsletter_form').trigger('submit');return false;">GO</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+                    
+        </div>
+              
+    </div>
 <?php
 if ($categories) {
 ?>
@@ -123,7 +122,7 @@ if ($categories) {
 	</li>
 	<?php } ?>
 	<li><a href="/brochure-for-yoga-clothing">Brochure</a></li>
-	
+
 	<li><a href="/asquith-yoga-clothing">About Us</a>
 	 <div><div><ul>
 	 <li><a href="/ethical-organic-yoga-clothing">Our Ethics</a></li>
@@ -133,13 +132,13 @@ if ($categories) {
 	 <li><a href="/in-the-press">In The Press</a></li>
 	 <li><a href="/yoga-clothing-stockists">Stockists</a></li>
 	 </ul></div></div>
-	
+
 	</li>
 	<li><a href="/blog">Blog</a></li>
 	</ul>
 </div>
 <?php
-} 
+}
 $page="common/home";
 if (isset($_GET['route'])) $page = $_GET['route'];
 ?>
