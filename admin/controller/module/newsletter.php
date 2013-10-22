@@ -1,5 +1,7 @@
 <?php
 require_once(DIR_SYSTEM . 'library/mailchimp.php');
+require_once(DIR_SYSTEM . 'library/csrest_general.php');
+require_once(DIR_SYSTEM . 'library/csrest_clients.php');
 
 class ControllerModuleNewsletter extends Controller {
 	private $error = array();
@@ -64,6 +66,12 @@ class ControllerModuleNewsletter extends Controller {
       		'separator' => ' :: '
    		);
 
+                $this->data['tab_modules'] = $this->language->get('tab_modules');
+                $this->data['tab_mailchimp'] = $this->language->get('tab_mailchimp');
+                $this->data['tab_mailcampaign'] = $this->language->get('tab_mailcampaign');
+                
+                $this->data['text_none'] = $this->language->get('text_none');
+                
 		$this->data['action'] = $this->url->link('module/' . $this->name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
@@ -100,7 +108,31 @@ class ControllerModuleNewsletter extends Controller {
 			$this->data[$this->name . '_mailchimp_listid'] = $this->config->get($this->name . '_mailchimp_listid');
 		}
         
-		if (isset($this->request->post[$this->name . '_mailchimp_double_optin'])) {
+if (isset($this->request->post[$this->name . '_mailchimp_account_listid'])) {
+			$this->data[$this->name . '_mailchimp_account_listid'] = $this->request->post[$this->name . '_mailchimp_account_listid'];
+		} else {
+			$this->data[$this->name . '_mailchimp_account_listid'] = $this->config->get($this->name . '_mailchimp_account_listid');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailchimp_account_optin'])) {
+			$this->data[$this->name . '_mailchimp_account_optin'] = $this->request->post[$this->name . '_mailchimp_account_optin'];
+		} else {
+			$this->data[$this->name . '_mailchimp_account_optin'] = $this->config->get($this->name . '_mailchimp_account_optin');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailchimp_checkout_listid'])) {
+			$this->data[$this->name . '_mailchimp_checkout_listid'] = $this->request->post[$this->name . '_mailchimp_checkout_listid'];
+		} else {
+			$this->data[$this->name . '_mailchimp_checkout_listid'] = $this->config->get($this->name . '_mailchimp_checkout_listid');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailchimp_checkout_optin'])) {
+			$this->data[$this->name . '_mailchimp_checkout_optin'] = $this->request->post[$this->name . '_mailchimp_checkout_optin'];
+		} else {
+			$this->data[$this->name . '_mailchimp_checkout_optin'] = $this->config->get($this->name . '_mailchimp_checkout_optin');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailchimp_double_optin'])) {
 			$this->data[$this->name . '_mailchimp_double_optin'] = $this->request->post[$this->name . '_mailchimp_double_optin'];
 		} else {
 			$this->data[$this->name . '_mailchimp_double_optin'] = $this->config->get($this->name . '_mailchimp_double_optin');
@@ -116,6 +148,12 @@ class ControllerModuleNewsletter extends Controller {
 			$this->data[$this->name . '_mailchimp_send_welcome'] = $this->request->post[$this->name . '_mailchimp_send_welcome'];
 		} else {
 			$this->data[$this->name . '_mailchimp_send_welcome'] = $this->config->get($this->name . '_mailchimp_send_welcome');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailchimp_custom_fields'])) {
+			$this->data[$this->name . '_mailchimp_custom_fields'] = $this->request->post[$this->name . '_mailchimp_custom_fields'];
+		} else {
+			$this->data[$this->name . '_mailchimp_custom_fields'] = $this->config->get($this->name . '_mailchimp_custom_fields');
 		}
         
         $this->data[$this->name . '_mailchimp_lists'] = false;
@@ -139,6 +177,125 @@ class ControllerModuleNewsletter extends Controller {
         }
         
         
+ //----------------------- Start mailcampaign ---------------------------------
+                
+                if ($this->config->get($this->name . '_mailcampaign_enabled'))
+                {
+                    $this->data['error_newsletter_override_yes'] = true;
+                }
+        
+		if (isset($this->request->post[$this->name . '_mailcampaign_enabled'])) {
+			$this->data[$this->name . '_mailcampaign_enabled'] = $this->request->post[$this->name . '_mailcampaign_enabled'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_enabled'] = $this->config->get($this->name . '_mailcampaign_enabled');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailcampaign_apikey'])) {
+			$this->data[$this->name . '_mailcampaign_apikey'] = $this->request->post[$this->name . '_mailcampaign_apikey'];
+		} elseif ($this->config->get($this->name . '_mailcampaign_apikey')) {
+			$this->data[$this->name . '_mailcampaign_apikey'] = $this->config->get($this->name . '_mailcampaign_apikey');
+		} else {
+                        $this->data[$this->name . '_mailcampaign_apikey'] = 'c5b9a54763d113e8d24fad6e93e55c7a';
+                }
+                
+                if (isset($this->request->post[$this->name . '_mailcampaign_listid'])) {
+			$this->data[$this->name . '_mailcampaign_listid'] = $this->request->post[$this->name . '_mailcampaign_listid'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_listid'] = $this->config->get($this->name . '_mailcampaign_listid');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailcampaign_account_listid'])) {
+			$this->data[$this->name . '_mailcampaign_account_listid'] = $this->request->post[$this->name . '_mailcampaign_account_listid'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_account_listid'] = $this->config->get($this->name . '_mailcampaign_account_listid');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailcampaign_account_optin'])) {
+			$this->data[$this->name . '_mailcampaign_account_optin'] = $this->request->post[$this->name . '_mailcampaign_account_optin'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_account_optin'] = $this->config->get($this->name . '_mailcampaign_account_optin');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailcampaign_checkout_listid'])) {
+			$this->data[$this->name . '_mailcampaign_checkout_listid'] = $this->request->post[$this->name . '_mailcampaign_checkout_listid'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_checkout_listid'] = $this->config->get($this->name . '_mailcampaign_checkout_listid');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailcampaign_custom_fields'])) {
+			$this->data[$this->name . '_mailcampaign_custom_fields'] = $this->request->post[$this->name . '_mailcampaign_custom_fields'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_custom_fields'] = $this->config->get($this->name . '_mailcampaign_custom_fields');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailcampaign_checkout_optin'])) {
+			$this->data[$this->name . '_mailcampaign_checkout_optin'] = $this->request->post[$this->name . '_mailcampaign_checkout_optin'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_checkout_optin'] = $this->config->get($this->name . '_mailcampaign_checkout_optin');
+		}
+                
+                if (isset($this->request->post[$this->name . '_mailcampaign_client_id'])) {
+			$this->data[$this->name . '_mailcampaign_client_id'] = $this->request->post[$this->name . '_mailcampaign_client_id'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_client_id'] = $this->config->get($this->name . '_mailcampaign_client_id');
+		}
+                
+                /*if (isset($this->request->post[$this->name . '_mailcampaign_double_optin'])) {
+			$this->data[$this->name . '_mailcampaign_double_optin'] = $this->request->post[$this->name . '_mailcampaign_double_optin'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_double_optin'] = $this->config->get($this->name . '_mailcampaign_double_optin');
+		}*/
+        
+		if (isset($this->request->post[$this->name . '_mailcampaign_update_existing'])) {
+			$this->data[$this->name . '_mailcampaign_update_existing'] = $this->request->post[$this->name . '_mailcampaign_update_existing'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_update_existing'] = $this->config->get($this->name . '_mailcampaign_update_existing');
+		}
+        
+		if (isset($this->request->post[$this->name . '_mailcampaign_send_welcome'])) {
+			$this->data[$this->name . '_mailcampaign_send_welcome'] = $this->request->post[$this->name . '_mailcampaign_send_welcome'];
+		} else {
+			$this->data[$this->name . '_mailcampaign_send_welcome'] = $this->config->get($this->name . '_mailcampaign_send_welcome');
+		}
+                
+        
+        $this->data[$this->name . '_mailcampaign_clients'] = false;                
+        
+        
+        if ($this->data[$this->name . '_mailcampaign_apikey'] && $this->user->isSuperuser()) {
+            $mailc_general = new CS_REST_General($this->data[$this->name . '_mailcampaign_apikey']);
+             $clients = $mailc_general->get_clients();
+               if ($clients->was_successful())
+                {
+                    $this->data[$this->name . '_mailcampaign_clients'] = array();
+                    foreach ($clients->response as $client)
+                    {
+                        $this->data[$this->name . '_mailcampaign_clients'][$client->ClientID] = $client->Name;
+                    }
+                }
+        }    
+        
+        
+        $this->data[$this->name . '_mailcampaign_lists'] = false;
+        if ($this->data[$this->name . '_mailcampaign_apikey'] && $this->data[$this->name . '_mailcampaign_client_id'])
+        {
+            $mailcampaign = new CS_REST_Clients($this->data[$this->name . '_mailcampaign_client_id'], $this->data[$this->name . '_mailcampaign_apikey'] );
+           
+                $lists = $mailcampaign->get_lists();
+                if ($lists->was_successful())
+                {
+                    $this->data[$this->name . '_mailcampaign_lists'] = array();
+                    foreach ($lists->response as $list)
+                    {
+                        $this->data[$this->name . '_mailcampaign_lists'][$list->ListID] = $list->Name;
+                    }
+                }
+                        
+        }
+        
+        
+ //----------------------- End mailcampaign ---------------------------------
+
 
 		$this->load->model('design/layout');
 
@@ -223,6 +380,49 @@ class ControllerModuleNewsletter extends Controller {
             }
         }
         
+        //-------------------------- Start Mail campaign -------------------------------
+        
+        if ($this->request->post['newsletter_mailcampaign_enabled'])
+        {
+            if (empty($this->request->post['newsletter_mailcampaign_apikey']))
+            {
+                $this->error['warning'] = $this->language->get('error_newsletter_mailcampaign_apikey');
+                return false;
+            }
+            
+            
+            $mailc_general = new CS_REST_General($this->request->post['newsletter_mailcampaign_apikey']);
+            $clients = $mailc_general->get_clients();
+            
+            $total_clients = array();
+                    foreach ($clients->response as $client)
+                    {
+                        $total_clients[] = $client->ClientID;
+                    }
+                        
+            if (empty($this->request->post[$this->name . '_mailcampaign_client_id']) && !array_search($this->request->post[$this->name . '_mailcampaign_client_id'], $total_clients) ){
+                $this->error['warning'] = $this->language->get('error_newsletter_mailcampaign_clients');
+                return false;
+                }
+            
+            
+            
+            $mailcampaign = new CS_REST_Clients($this->request->post['newsletter_mailcampaign_client_id'], $this->request->post['newsletter_mailcampaign_apikey'] );
+            $lists = $mailcampaign->get_lists();
+            
+            $total_lists = array();
+            foreach ($lists->response as $list)
+                    {
+                        $total_lists[] = $list->ListID;
+                    }
+            if(empty($this->request->post[$this->name . '_mailcampaign_listid']) && !array_search($this->request->post[$this->name . '_mailcampaign_listid'], $total_lists)){
+               $this->error['warning'] = $this->language->get('error_newsletter_mailcampaign_lists');
+                return false;
+                }
+           
+        }
+        
+        //------------------------ End Mail Campaign ------------------------------------
 
 		if (!$this->error) {
 			return true;

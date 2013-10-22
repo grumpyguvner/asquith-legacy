@@ -15,9 +15,10 @@
   </div>
   <div class="content">
 	<div id="tabs" class="htabs">
-      <a href="#tab-module">Modules</a>
-      <a href="#tab-mailchimp">MailChimp</a>
-      <a href="#tab-email">Email List</a>
+      <a href="#tab-module"><?php echo $tab_modules; ?></a>
+      <a href="#tab-mailchimp"><?php echo $tab_mailchimp; ?></a>
+      <a href="#tab-mailcampaign"><?php echo $tab_mailcampaign; ?></a>
+      <a href="#tab-email"><?php echo $tab_email; ?></a>
     </div>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <div id="tab-module">
@@ -202,6 +203,95 @@
         <?php
         } // end if
         ?>
+<!------------------------------- Added AV 12/04/2013 ------------------------------------------------------->
+    <?php
+        if (is_array($newsletter_mailchimp_lists))
+        {
+        ?>
+        <tr>
+          <td><?php echo $mailchimp_account_lists; ?></td>
+          <td>
+            <select name="newsletter_mailchimp_account_listid">
+                <option><?php echo $text_none; ?></option>
+            <?php
+            foreach ($newsletter_mailchimp_lists as $listid => $listname)
+            {
+              echo '<option value="'.$listid.'"'.($listid == $newsletter_mailchimp_account_listid ? ' selected="selected"' : '').'>'.$listname.'</option>';
+            }
+            ?>
+            </select>
+          </td>
+        </tr>
+        <?php
+        } else {
+        ?>
+        <tr>
+          <td><?php echo $mailchimp_account_listid; ?></td>
+          <td><input type="text" name="newsletter_mailchimp_account_listid" value="<?php echo $newsletter_mailchimp_account_listid; ?>" size="10" /></td>
+        </tr>
+        <?php
+        } // end if
+        ?>
+        
+        <tr>
+          <td><?php echo $mailchimp_account_optin; ?></td>
+          <td><?php if ($newsletter_mailchimp_account_optin) { ?>
+                <input type="radio" name="newsletter_mailchimp_account_optin" value="1" checked="checked" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="newsletter_mailchimp_account_optin" value="0" />
+                <?php echo $text_no; ?>
+                <?php } else { ?>
+                <input type="radio" name="newsletter_mailchimp_account_optin" value="1" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="newsletter_mailchimp_account_optin" value="0" checked="checked" />
+                <?php echo $text_no; ?>
+                <?php } ?></td>
+        </tr>
+        
+        <?php
+        if (is_array($newsletter_mailchimp_lists))
+        {
+        ?>
+        <tr>
+          <td><?php echo $mailchimp_checkout_lists; ?></td>
+          <td>
+            <select name="newsletter_mailchimp_checkout_listid">
+                <option><?php echo $text_none; ?></option>
+            <?php
+            foreach ($newsletter_mailchimp_lists as $listid => $listname)
+            {
+              echo '<option value="'.$listid.'"'.($listid == $newsletter_mailchimp_checkout_listid ? ' selected="selected"' : '').'>'.$listname.'</option>';
+            }
+            ?>
+            </select>
+          </td>
+        </tr>
+        <?php
+        } else {
+        ?>
+        <tr>
+          <td><?php echo $mailchimp_checkout_listid; ?></td>
+          <td><input type="text" name="newsletter_mailchimp_checkout_listid" value="<?php echo $newsletter_mailchimp_checkout_listid; ?>" size="10" /></td>
+        </tr>
+        <?php
+        } // end if
+        ?>
+        
+        <tr>
+          <td><?php echo $mailchimp_checkout_optin; ?></td>
+          <td><?php if ($newsletter_mailchimp_checkout_optin) { ?>
+                <input type="radio" name="newsletter_mailchimp_checkout_optin" value="1" checked="checked" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="newsletter_mailchimp_checkout_optin" value="0" />
+                <?php echo $text_no; ?>
+                <?php } else { ?>
+                <input type="radio" name="newsletter_mailchimp_checkout_optin" value="1" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="newsletter_mailchimp_checkout_optin" value="0" checked="checked" />
+                <?php echo $text_no; ?>
+                <?php } ?></td>
+        </tr>
+<!------------------------------------- Added AV 12/04/2013 ------------------------------------------------->
         <tr>
           <td><?php echo $mailchimp_double_optin; ?></td>
           <td><?php if ($newsletter_mailchimp_double_optin) { ?>
@@ -244,8 +334,186 @@
                 <?php echo $text_no; ?>
                 <?php } ?></td>
         </tr>
+        <tr>
+          <td><?php echo $mailchimp_custom_fields; ?></td>
+          <td><input type="text" name="newsletter_mailchimp_custom_fields" value="<?php echo $newsletter_mailchimp_custom_fields ?>" size="50" /></td>
+        </tr>
       </table>
 	  </div>
+        <!----------------- Start tab Campaign ----------------------->
+        <div id="tab-mailcampaign">
+	  <table class="form">
+  	    <tr>
+          <td><?php echo $mailcampaign_enabled; ?></td>
+          <td><?php if ($newsletter_mailcampaign_enabled) { ?>
+                <input type="radio" name="newsletter_mailcampaign_enabled" value="1" checked="checked" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="newsletter_mailcampaign_enabled" value="0" />
+                <?php echo $text_no; ?>
+                <?php } else { ?>
+                <input type="radio" name="newsletter_mailcampaign_enabled" value="1" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="newsletter_mailcampaign_enabled" value="0" checked="checked" />
+                <?php echo $text_no; ?>
+                <?php } ?></td>
+        </tr>
+        <tr>
+          <td><?php echo $mailcampaign_apikey; ?></td>
+          <td>
+            <input type="text" name="newsletter_mailcampaign_apikey" value="<?php echo $newsletter_mailcampaign_apikey; ?>" size="50" />
+          </td>
+        </tr>
+        <?php 
+        if (is_array($newsletter_mailcampaign_clients) && $this->user->isSuperuser())
+        {
+        ?>
+        <tr>
+          <td><?php echo $mailcampaign_client_id; ?></td>
+          <td>
+            <select name="newsletter_mailcampaign_client_id">
+                <option></option>
+            <?php
+            foreach ($newsletter_mailcampaign_clients as $ctlistid => $listname)
+            {
+              echo '<option value="'.$ctlistid.'"'.($ctlistid == $newsletter_mailcampaign_client_id ? ' selected="selected"' : '').'>'.$listname.'</option>';
+            }
+            ?>
+            </select>
+          </td>
+        </tr>
+        <?php
+        } else {
+        ?>
+        <tr>
+          <td><?php echo $mailcampaign_client_id; ?></td>
+          <td><input type="text" name="newsletter_mailcampaign_client_id" value="<?php echo $newsletter_mailcampaign_client_id; ?>" size="10" /></td>
+        </tr>
+        <?php
+        } // end if
+        ?>
+        <?php 
+        if (is_array($newsletter_mailcampaign_lists))
+        {
+        ?>
+        <tr>
+          <td><?php echo $mailcampaign_lists; ?></td>
+          <td>
+            <select name="newsletter_mailcampaign_listid">
+            <?php
+            foreach ($newsletter_mailcampaign_lists as $listid => $listname)
+            {
+              echo '<option value="'.$listid.'"'.($listid == $newsletter_mailcampaign_listid ? ' selected="selected"' : '').'>'.$listname.'</option>';
+            }
+            ?>
+            </select>
+          </td>
+        </tr>
+        <?php
+        } else {
+        ?>
+        <tr>
+          <td><?php echo $mailcampaign_listid; ?></td>
+          <td><input type="text" name="newsletter_mailcampaign_listid" value="<?php echo $newsletter_mailcampaign_listid; ?>" size="10" /></td>
+        </tr>
+        <?php
+        } // end if
+        ?>
+        <?php 
+        if (is_array($newsletter_mailcampaign_lists))
+        {
+        ?>
+        <tr>
+          <td><?php echo $mailcampaign_account_lists; ?></td>
+          <td>
+            <select name="newsletter_mailcampaign_account_listid">
+                <option><?php echo $text_none; ?></option>
+            <?php
+            foreach ($newsletter_mailcampaign_lists as $listid => $listname)
+            {
+              echo '<option value="'.$listid.'"'.($listid == $newsletter_mailcampaign_account_listid ? ' selected="selected"' : '').'>'.$listname.'</option>';
+            }
+            ?>
+            </select>
+          </td>
+        </tr>
+        <?php
+        } else {
+        ?>
+        <tr>
+          <td><?php echo $mailcampaign_account_listid; ?></td>
+          <td><input type="text" name="newsletter_mailcampaign_account_listid" value="<?php echo $newsletter_mailcampaign_account_listid; ?>" size="10" /></td>
+        </tr>
+        <?php
+        } // end if
+        ?>
+
+        <tr>
+          <td><?php echo $mailcampaign_account_optin; ?></td>
+          <td><?php if ($newsletter_mailcampaign_account_optin) { ?>
+                <input type="radio" name="newsletter_mailcampaign_account_optin" value="1" checked="checked" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="newsletter_mailcampaign_account_optin" value="0" />
+                <?php echo $text_no; ?>
+                <?php } else { ?>
+                <input type="radio" name="newsletter_mailcampaign_account_optin" value="1" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="newsletter_mailcampaign_account_optin" value="0" checked="checked" />
+                <?php echo $text_no; ?>
+                <?php } ?></td>
+        </tr>
+        
+        <?php 
+        if (is_array($newsletter_mailcampaign_lists))
+        {
+        ?>
+        <tr>
+          <td><?php echo $mailcampaign_checkout_lists; ?></td>
+          <td>
+            <select name="newsletter_mailcampaign_checkout_listid">
+                <option><?php echo $text_none; ?></option>
+            <?php
+            foreach ($newsletter_mailcampaign_lists as $listid => $listname)
+            {
+              echo '<option value="'.$listid.'"'.($listid == $newsletter_mailcampaign_checkout_listid ? ' selected="selected"' : '').'>'.$listname.'</option>';
+            }
+            ?>
+            </select>
+          </td>
+        </tr>
+        <?php
+        } else {
+        ?>
+        <tr>
+          <td><?php echo $mailcampaign_checkout_listid; ?></td>
+          <td><input type="text" name="newsletter_mailcampaign_checkout_listid" value="<?php echo $newsletter_mailcampaign_checkout_listid; ?>" size="10" /></td>
+        </tr>
+        <?php
+        } // end if
+        ?>
+        
+        <tr>
+          <td><?php echo $mailcampaign_checkout_optin; ?></td>
+          <td><?php if ($newsletter_mailcampaign_checkout_optin) { ?>
+                <input type="radio" name="newsletter_mailcampaign_checkout_optin" value="1" checked="checked" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="newsletter_mailcampaign_checkout_optin" value="0" />
+                <?php echo $text_no; ?>
+                <?php } else { ?>
+                <input type="radio" name="newsletter_mailcampaign_checkout_optin" value="1" />
+                <?php echo $text_yes; ?>
+                <input type="radio" name="newsletter_mailcampaign_checkout_optin" value="0" checked="checked" />
+                <?php echo $text_no; ?>
+                <?php } ?></td>
+        </tr>
+        <tr>
+          <td><?php echo $mailcampaign_custom_fields; ?></td>
+          <td><input type="text" name="newsletter_mailcampaign_custom_fields" value="<?php echo $newsletter_mailcampaign_custom_fields ?>" size="50" /></td>
+        </tr>
+<!---------------------------------------- End AV 12/04/2013 --------------------------------------------------->
+        
+      </table>
+	  </div>
+        <!------------------- End tab Campaign ------------------------>
     </form>
   </div>
 </div>

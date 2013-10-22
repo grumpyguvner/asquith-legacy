@@ -1,8 +1,10 @@
 <?php
 // Entry
+$_['entry_title'] 		= 'Title';
 $_['entry_name'] 		= 'Last Name';
 $_['entry_name2'] 		= 'First Name';
 $_['entry_email'] 		= 'Email Address';
+$_['entry_dob'] 		= 'Date of Birth';
 
 // Buttons
 $_['button_go'] 	    = 'Subscribe';

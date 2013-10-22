@@ -1,6 +1,4 @@
 <?php 
-require_once(DIR_SYSTEM . 'library/mailchimp.php');
-
 class ControllerAccountNewsletter extends Controller {  
 	public function index() {
 		if (!$this->customer->isLogged()) {
@@ -10,17 +8,21 @@ class ControllerAccountNewsletter extends Controller {
     	} 
 		
 		$this->language->load('account/newsletter');
+                
+                $this->load->model('account/newsletter');
     	
 		$this->document->setTitle($this->language->get('heading_title'));
 				
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
-			$this->load->model('account/customer');
-			
-			$this->model_account_customer->editNewsletter($this->request->post['newsletter']);
-			
-			$this->session->data['success'] = $this->language->get('text_success');
-			
-			$this->redirect($this->url->link('account/account', '', 'SSL'));
+                    if ($this->request->post['newsletter']) {
+                        $this->model_account_newsletter->subscribe($this->customer->getEmail(), array(), 'account');
+                    } else {
+                        $this->model_account_newsletter->unsubscribe($this->customer->getEmail());
+                    }
+
+                    $this->session->data['success'] = $this->language->get('text_success');
+
+                    $this->redirect($this->url->link('account/account', '', 'SSL'));
 		}
 
       	$this->data['breadcrumbs'] = array();
@@ -46,12 +48,21 @@ class ControllerAccountNewsletter extends Controller {
     	$this->data['heading_title'] = $this->language->get('heading_title');
 
     	$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no'] = $this->language->get('text_no');
-		
-		$this->data['entry_newsletter'] = $this->language->get('entry_newsletter');
-		
-		$this->data['button_continue'] = $this->language->get('button_continue');
-		$this->data['button_back'] = $this->language->get('button_back');
+        $this->data['text_no'] = $this->language->get('text_no');
+        $this->data['text_choose_newsletter'] = $this->language->get('text_choose_newsletter');
+        $this->data['text_choose_newsletter_womens'] = $this->language->get('text_choose_newsletter_womens');
+        $this->data['text_choose_newsletter_mens'] = $this->language->get('text_choose_newsletter_mens');
+        $this->data['text_choose_newsletter_main'] = $this->language->get('text_choose_newsletter_main');
+
+        $this->data['entry_newsletter'] = $this->language->get('entry_newsletter');
+
+        $this->data['button_continue'] = $this->language->get('button_continue');
+        $this->data['button_back'] = $this->language->get('button_back');
+
+        $this->data['entry_newsletter'] = $this->language->get('entry_newsletter');
+
+        $this->data['button_continue'] = $this->language->get('button_continue');
+        $this->data['button_back'] = $this->language->get('button_back');
 
     	$this->data['action'] = $this->url->link('account/newsletter', '', 'SSL');
 		

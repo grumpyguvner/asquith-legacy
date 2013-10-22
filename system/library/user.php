@@ -85,6 +85,10 @@ class User {
 	
   	public function getUserName() {
     	return $this->username;
-  	}	
+  	}
+        
+        public function isSuperuser() {
+    	return true;
+  	}
 }
 ?>

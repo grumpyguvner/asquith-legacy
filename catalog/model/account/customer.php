@@ -1,7 +1,6 @@
 <?php
-require_once(DIR_SYSTEM . 'library/mailchimp.php');
-
 class ModelAccountCustomer extends Model {
+
 	public function addCustomer($data) {
         //Make sure we add the affiliate id if we have the tracking cookie set
         $affilate_sql = "";
@@ -29,28 +28,6 @@ class ModelAccountCustomer extends Model {
         
       	$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET store_id = '" . (int)$this->config->get('config_store_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', password = '" . $this->db->escape(md5($data['password'])) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "', " . $affilate_sql . $recommend_sql . "status = '1', date_added = NOW()");
         
-        if (filter_var($data['email'], FILTER_VALIDATE_EMAIL) && $this->config->get('newsletter_mailchimp_enabled'))
-        {
-            $mailchimp = new mailchimp($this->config->get('newsletter_mailchimp_apikey'));
-            
-            $retval = $mailchimp->listMemberInfo($this->config->get('newsletter_mailchimp_listid'), $data['email']);
-
-            if (!$mailchimp->errorCode){
-                $newsletter = ($retval['success'] && $retval['data'][0]['status'] != 'unsubscribed') ? 1 : 0;
-            }
-            
-            if ((bool)$data['newsletter'] != (bool)$newsletter)
-            {
-                if ($data['newsletter'])
-                {
-                    $retval = $mailchimp->listSubscribe($this->config->get('newsletter_mailchimp_listid'),$data['email'], array(), 'html', $this->config->get('newsletter_mailchimp_double_optin'), $this->config->get('newsletter_mailchimp_update_existing'), true, $this->config->get('newsletter_mailchimp_send_welcome'));
-                } else {
-
-                    $retval = $mailchimp->listUnsubscribe($this->config->get('newsletter_mailchimp_listid'), $data['email']);
-                }
-            }
-        }
-        
 		$customer_id = $this->db->getLastId();
 			
       	$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', zone_id = '" . (int)$data['zone_id'] . "'");
@@ -63,6 +40,15 @@ class ModelAccountCustomer extends Model {
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET approved = '1' WHERE customer_id = '" . (int)$customer_id . "'");
 		}	
 		
+                $this->load->model('account/newsletter');
+
+                if ($data['newsletter'] == 1 || (($this->config->get('newsletter_mailcampaign_enabled') && !$this->config->get('newsletter_mailcampaign_account_optin')) || ($this->config->get('newsletter_mailchimp_enabled') && !$this->config->get('newsletter_mailchimp_account_optin')))) {
+                    $customer_info = $this->getCustomer($customer_id);
+                    $this->model_account_newsletter->subscribe($data['email'], $customer_info, 'account');
+                } elseif ($data['newsletter'] == 0) {
+                    $this->model_account_newsletter->unsubscribe($data['email']);
+                }
+                
 		$this->language->load('mail/customer');
         
         $subject = $this->config->get('config_email_customer_subject');

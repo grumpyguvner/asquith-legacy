@@ -24,12 +24,7 @@ class ControllerModuleNewsletter extends Controller {
 				$this->data['action'] = HTTP_SERVER;
 			}
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/'.$this->name.'.tpl')) {
-				$this->template = $this->config->get('config_template') . '/template/module/'.$this->name.'.tpl';
-			} else {
-				$this->template = 'default/template/module/'.$this->name.'.tpl';
-			}
-
+                        $this->setTemplate('module/' . $this->name . '.tpl');
 
 			$this->render();
 		}
@@ -38,7 +33,9 @@ class ControllerModuleNewsletter extends Controller {
   	public function callback() {
 
 		$this->language->load('module/newsletter');
-
+                
+                $this->load->model('account/newsletter');
+                
 		if (!isset($this->request->get['subscribe'])) {
 			$this->request->get['subscribe'] = true;
 		}
@@ -85,13 +82,14 @@ class ControllerModuleNewsletter extends Controller {
             }
         }
 
-        if (is_null($error))
-        {
+        if (is_null($error)) {
             if ($this->request->get['subscribe']) {
-                $this->model_account_newsletter->subscribe($this->request->get['email'], $this->request->get['name'], $this->request->get['name2']);
-                
-                if ($this->config->get('newsletter_mailchimp_enabled') && $this->config->get('newsletter_mailchimp_double_optin'))
-                {
+                if ($this->customer->isLogged() && !isset($this->request->get['listId'])) {
+                    $this->model_account_newsletter->subscribe($this->request->get['email'], $data, 'account');
+                } else {
+                    $this->model_account_newsletter->subscribe($this->request->get['email'], $data);
+                }
+                if ($this->config->get('newsletter_mailchimp_enabled') && $this->config->get('newsletter_mailchimp_double_optin')) {
                     $success = $this->language->get('text_subscribed_optin');
                 } else {
                     $success = $this->language->get('text_subscribed');
