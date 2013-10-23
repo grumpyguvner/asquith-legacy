@@ -2035,6 +2035,12 @@ label.required em {
 }
 /********* End Welcome popup *********/
 /********* Start Mailchimp Embedded Forms *********/
+#mc_embed_signup .asterisk {
+    color: #f00;
+}
+#mc_embed_signup .required {
+    color: #000;
+}
 .mc-field-group {
     display: table-row;
 }
