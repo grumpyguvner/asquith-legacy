@@ -99,7 +99,7 @@ form {
 	display: inline-block; *display: inline; *zoom: 1;
 	width: 100%;
 }
-input[type='text'], input[type='password'], textarea {
+input[type='text'], input[type='password'], input[type='email'], textarea {
 	background: #F8F8F8;
 	border: 1px solid #CCCCCC;
 	padding: 3px;
@@ -2034,3 +2034,16 @@ label.required em {
     vertical-align: middle;
 }
 /********* End Welcome popup *********/
+/********* Start Mailchimp Embedded Forms *********/
+.mc-field-group {
+    display: table-row;
+}
+.mc-field-group label {
+    width: 120px;
+    display: table-cell;
+    padding: 6px 0px;
+}
+#mc-embedded-subscribe {
+    margin: 12px 0px 0px 120px;
+}
+/********* End Mailchimp Embedded Forms *********/
