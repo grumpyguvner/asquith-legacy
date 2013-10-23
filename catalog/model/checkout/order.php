@@ -39,6 +39,15 @@ class ModelCheckoutOrder extends Model {
             }
             //Gift Wrapping Update End                        
         }
+        
+        if ((isset($data['newsletter']) && $data['newsletter']) ||
+            ($this->config->get('newsletter_mailcampaign_enabled') && $this->config->get('newsletter_mailcampaign_checkout_listid') && !$this->config->get('newsletter_mailcampaign_checkout_optin')) || 
+            ($this->config->get('newsletter_mailchimp_enabled') && $this->config->get('newsletter_mailchimp_checkout_listid') && !$this->config->get('newsletter_mailchimp_checkout_optin')))
+        {
+            $this->load->model('account/newsletter');
+
+            $this->model_account_newsletter->subscribe($data['email'], $data, 'checkout');
+        }
 
         return $order_id;
     }

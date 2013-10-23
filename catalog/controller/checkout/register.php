@@ -21,6 +21,15 @@ class ControllerCheckoutRegister extends Controller {
 		$this->data['entry_country'] = $this->language->get('entry_country');
 		$this->data['entry_zone'] = $this->language->get('entry_zone');
 		$this->data['entry_newsletter'] = sprintf($this->language->get('entry_newsletter'), $this->config->get('config_name'));
+                
+                if (($this->config->get('newsletter_mailcampaign_enabled') && (!$this->config->get('newsletter_mailcampaign_account_listid') || !$this->config->get('newsletter_mailcampaign_account_optin'))) ||
+                    ($this->config->get('newsletter_mailchimp_enabled') && (!$this->config->get('newsletter_mailchimp_account_listid') || !$this->config->get('newsletter_mailchimp_account_optin'))))
+                {
+                    $this->data['show_newsletter'] = false;
+                } else {
+                    $this->data['show_newsletter'] = true;
+                }
+                
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_confirm'] = $this->language->get('entry_confirm');
 		$this->data['entry_shipping'] = $this->language->get('entry_shipping');

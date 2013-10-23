@@ -66,18 +66,7 @@ class ControllerAccountNewsletter extends Controller {
 
     	$this->data['action'] = $this->url->link('account/newsletter', '', 'SSL');
 		
-		$this->data['newsletter'] = $this->customer->getNewsletter();
-        
-        if (filter_var($this->customer->getEmail(), FILTER_VALIDATE_EMAIL) && $this->config->get('newsletter_mailchimp_enabled'))
-        {
-            $mailchimp = new mailchimp($this->config->get('newsletter_mailchimp_apikey'));
-            
-            $retval = $mailchimp->listMemberInfo($this->config->get('newsletter_mailchimp_listid'), $this->customer->getEmail());
-
-            if (!$mailchimp->errorCode){
-                $this->data['newsletter'] = ($retval['success'] && $retval['data'][0]['status'] != 'unsubscribed') ? 1 : 0;
-            }
-        }
+	$this->data['newsletter'] = $this->model_account_newsletter->getTotalNewsletterByEmail($this->customer->getEmail());
 		
 		$this->data['back'] = $this->url->link('account/account', '', 'SSL');
 
