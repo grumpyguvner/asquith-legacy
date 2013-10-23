@@ -54,7 +54,7 @@
             <?php } ?>
             <div class="topRow">
                 <div class="socialMedia">
-                    <a href="https://plus.google.com/b/102388213141542496784/I" target="_blank"><img src="catalog/view/theme/asquith/image/googleplus.png"></a>
+                    <a href="https://plus.google.com/102388213141542496784/posts" target="_blank"><img src="catalog/view/theme/asquith/image/googleplus.png"></a>
                     <a href="https://www.facebook.com/pages/Asquith-London-Organic-Cotton-Bamboo-Lifestyle-and-Yoga-Clothing/170293469708750?sk=wall" target="_blank"><img src="catalog/view/theme/asquith/image/facebook.gif"></a>
                     <a href="http://twitter.com/AsquithLondon" target="_blank"><img src="catalog/view/theme/asquith/image/twitter.gif"></a>
                     <a href="http://pinterest.com/asquithlondon/" target="_blank"><img src="catalog/view/theme/asquith/image/big-p-button.png" width="20" alt="Follow Me on Pinterest" /></a>
