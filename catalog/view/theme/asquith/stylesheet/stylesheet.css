@@ -99,7 +99,7 @@ form {
 	display: inline-block; *display: inline; *zoom: 1;
 	width: 100%;
 }
-input[type='text'], input[type='password'], textarea {
+input[type='text'], input[type='password'], input[type='email'], textarea {
 	background: #F8F8F8;
 	border: 1px solid #CCCCCC;
 	padding: 3px;
@@ -449,6 +449,7 @@ table.radio label {
 }
 #header .bottomRow {
 	text-align: right;
+
         margin-top: 33px;
 }
 #currency,
@@ -2033,3 +2034,22 @@ label.required em {
     vertical-align: middle;
 }
 /********* End Welcome popup *********/
+/********* Start Mailchimp Embedded Forms *********/
+#mc_embed_signup .asterisk {
+    color: #f00;
+}
+#mc_embed_signup .required {
+    color: #000;
+}
+.mc-field-group {
+    display: table-row;
+}
+.mc-field-group label {
+    width: 120px;
+    display: table-cell;
+    padding: 6px 0px;
+}
+#mc-embedded-subscribe {
+    margin: 12px 0px 0px 120px;
+}
+/********* End Mailchimp Embedded Forms *********/

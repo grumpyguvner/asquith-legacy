@@ -84,15 +84,16 @@ if ($heading_title != 'Shop the Look')
     <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
   </div>
   <?php } ?>
+  <?php } else { ?>
+  <div id="shopthelook">
+  <?php echo $content_bottom; ?>
+  </div>
+  <?php } ?>
   <?php
   if ($description)
   {
       echo '<div id="category_description">' . $description . '</div>';
   }
   ?>
-  <?php } else { ?>
-  <div id="shopthelook">
-  <?php echo $content_bottom; ?>
-  </div>
-  <?php } ?></div>
+</div>
 <?php echo $footer; ?>

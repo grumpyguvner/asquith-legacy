@@ -46,7 +46,7 @@
 <body>
 <div id="notification"></div>
 <div id="container">
-    <div id="header">
+  <div id="header">
         <div id="logo">
             <?php
             if ($logo) {
@@ -54,7 +54,7 @@
             <?php } ?>
             <div class="topRow">
                 <div class="socialMedia">
-                    <a href="https://plus.google.com/b/102388213141542496784/I" target="_blank"><img src="catalog/view/theme/asquith/image/googleplus.png"></a>
+                    <a href="https://plus.google.com/102388213141542496784/posts" target="_blank"><img src="catalog/view/theme/asquith/image/googleplus.png"></a>
                     <a href="https://www.facebook.com/pages/Asquith-London-Organic-Cotton-Bamboo-Lifestyle-and-Yoga-Clothing/170293469708750?sk=wall" target="_blank"><img src="catalog/view/theme/asquith/image/facebook.gif"></a>
                     <a href="http://twitter.com/AsquithLondon" target="_blank"><img src="catalog/view/theme/asquith/image/twitter.gif"></a>
                     <a href="http://pinterest.com/asquithlondon/" target="_blank"><img src="catalog/view/theme/asquith/image/big-p-button.png" width="20" alt="Follow Me on Pinterest" /></a>
@@ -122,7 +122,7 @@ if ($categories) {
 	</li>
 	<?php } ?>
 	<li><a href="/brochure-for-yoga-clothing">Brochure</a></li>
-
+	
 	<li><a href="/asquith-yoga-clothing">About Us</a>
 	 <div><div><ul>
 	 <li><a href="/ethical-organic-yoga-clothing">Our Ethics</a></li>
@@ -132,13 +132,13 @@ if ($categories) {
 	 <li><a href="/in-the-press">In The Press</a></li>
 	 <li><a href="/yoga-clothing-stockists">Stockists</a></li>
 	 </ul></div></div>
-
+	
 	</li>
 	<li><a href="/blog">Blog</a></li>
 	</ul>
 </div>
 <?php
-}
+} 
 $page="common/home";
 if (isset($_GET['route'])) $page = $_GET['route'];
 ?>
