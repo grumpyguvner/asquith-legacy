@@ -6,6 +6,7 @@ abstract class Controller {
 	protected $template;
 	protected $children = array();
 	protected $data = array();
+    protected $data_layer = array();
 	protected $output;
 	
 	public function __construct($registry) {
@@ -41,6 +42,10 @@ abstract class Controller {
 
 			$controller = new $class($this->registry);
 			
+            //Pass the data layer to all children
+            $controller->setDataLayer($this->data_layer);
+
+
 			$controller->$method($args);
 			
 			return $controller->output;
@@ -50,6 +55,10 @@ abstract class Controller {
 		}		
 	}
 	
+    protected function setDataLayer($data_layer) {
+        $this->data_layer = $data_layer;
+    }
+	
 	protected function render() {
 		foreach ($this->children as $child) {
 			$this->data[basename($child)] = $this->getChild($child);
@@ -57,6 +66,8 @@ abstract class Controller {
 		
 		if (file_exists(DIR_TEMPLATE . $this->template)) {
 			extract($this->data);
+
+            $data_layer = $this->data_layer;
 			
       		ob_start();
       

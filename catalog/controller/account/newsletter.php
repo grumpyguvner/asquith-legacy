@@ -1,4 +1,6 @@
 <?php 
+require_once(DIR_SYSTEM . 'library/mailchimp.php');
+
 class ControllerAccountNewsletter extends Controller {  
 	public function index() {
 		if (!$this->customer->isLogged()) {

@@ -15,10 +15,12 @@
 	<?php if ($icon) { ?>
 	<link href="<?php echo $icon; ?>" rel="icon" />
 	<?php } ?>
+        <link rel="author" href="https://plus.google.com/100120190352459224644/posts"/>
 	<?php foreach ($links as $link) { ?>
 	<link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 	<?php } ?>
 	<link rel="stylesheet" type="text/css" href="catalog/view/theme/asquith/stylesheet/stylesheet.css" />
+        <link rel="stylesheet" type="text/css" href="catalog/view/theme/asquith/stylesheet/social-buttons.css">
 	<?php foreach ($styles as $style) { ?>
 	<link rel="<?php echo $style['rel']; ?>" type="text/css" href="<?php echo $style['href']; ?>" media="<?php echo $style['media']; ?>" />
 	<?php } ?>
@@ -31,6 +33,7 @@
 	<script src="catalog/view/javascript/jquery/colorbox/jquery.colorbox.js"></script>
 	<script src="catalog/view/javascript/jquery/tabs.js"></script>
 	<script src="catalog/view/javascript/common.js"></script>
+	<script src="catalog/view/javascript/social-buttons.js"></script>
 	<?php foreach ($scripts as $script) { ?>
 	<script src="<?php echo $script; ?>"></script>
 	<?php } ?>
@@ -40,10 +43,11 @@
 	DD_belatedPNG.fix('#logo img');
 	</script>
 	<![endif]-->
-	<?php echo $google_analytics; ?>
+<?php if (isset($data_layer)) echo "<script>dataLayer =[" . json_encode($data_layer) . "];</script>"; ?>
 	<script src="catalog/view/javascript/modernizr-2.5.3.min.js"></script>
 </head>
 <body>
+<?php echo $google_analytics; ?>
 <div id="notification"></div>
 <div id="container">
   <div id="header">
@@ -142,4 +146,4 @@ if ($categories) {
 $page="common/home";
 if (isset($_GET['route'])) $page = $_GET['route'];
 ?>
-<div id="content_wrapper">
+<div id="content_wrapper">

@@ -96,4 +96,4 @@ if ($heading_title != 'Shop the Look')
   }
   ?>
 </div>
-<?php echo $footer; ?>
+<?php echo $footer; ?>
